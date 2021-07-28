@@ -16,15 +16,16 @@ $hexjson = $datadir."msoa_hex_coords.hexjson";
 $hexjsonsmall = $datadir."msoa_yorkshireandhumber.hexjson";
 $traveltime = $datadir."temp/TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
 $datafile = $datadir."msoa_lookup.csv";
-
+$casesfile = $datadir."temp/cases-phe-msoa.csv";
 
 
 open(FILE,$hexjson);
 @lines = <FILE>;
 close(FILE);
 
-@keepvac = ('1st dose 0-24 %','1st dose 25-29 %','1st dose 30-34 %','1st dose 35-39 %','1st dose 40-44 %','1st dose 45-49 %','1st dose 50-54 %','1st dose 55-59 %','1st dose 60-64 %','1st dose 65-69 %','1st dose 70-74 %','1st dose 75-79 %','1st dose 80+ %','2nd dose 0-24 %','2nd dose 25-29 %','2nd dose 30-34 %','2nd dose 35-39 %','2nd dose 40-44 %','2nd dose 45-49 %','2nd dose 50-54 %','2nd dose 55-59 %','2nd dose 60-64 %','2nd dose 65-69 %','2nd dose 70-74 %','2nd dose 75-79 %','2nd dose 80+ %');
+@keepvac = ('1st dose 0-17 %','1st dose 18-24 %','1st dose 25-29 %','1st dose 30-34 %','1st dose 35-39 %','1st dose 40-44 %','1st dose 45-49 %','1st dose 50-54 %','1st dose 55-59 %','1st dose 60-64 %','1st dose 65-69 %','1st dose 70-74 %','1st dose 75-79 %','1st dose 80+ %','2nd dose 0-17 %','2nd dose 18-24 %','2nd dose 25-29 %','2nd dose 30-34 %','2nd dose 35-39 %','2nd dose 40-44 %','2nd dose 45-49 %','2nd dose 50-54 %','2nd dose 55-59 %','2nd dose 60-64 %','2nd dose 65-69 %','2nd dose 70-74 %','2nd dose 75-79 %','2nd dose 80+ %');
 @keeplocalhealth = ('Older People in Deprivation, Number of older people','Rural Urban Classification','IMD Score, 2019','Income deprivation, English Indices of Deprivation, 2019','Fuel Poverty, 2018','Older people living alone','Population aged 0 to 15 years','Population aged 0 to 4 years','Population aged 5 to 15 years','Population aged 16 to 24 years','Population aged 25 to 64 years','Population aged between 50 and 64 years','Population aged 65 years and over','Population aged 85 years and over','Black and Minority Ethnic Population',"Population whose ethnicity is not 'White UK'",'Population who cannot speak English well or at all','Child Poverty, English Indices of Deprivation, 2019','Older People in Deprivation, English Indices of Deprivation, 2019','Overcrowded houses, 2011','Proportion of households in poverty','Unemployment','Long term unemployment','Total population','Population aged 65 years and over','Income Deprivation, Number of people','Child Poverty, Number of children','Population density');
+@keepcases = ('newCasesBySpecimenDateChange','newCasesBySpecimenDateRollingRate','newCasesBySpecimenDateRollingSum','cases-date');
 
 %data;
 @output = "";
@@ -102,6 +103,31 @@ for($i = 0; $i < @features; $i++){
 $txt = JSON::XS->new->utf8->pretty->allow_nonref->encode($geojson);
 
 #################################
+# Cases data
+%cases;
+$url = "https://api.coronavirus.data.gov.uk/v2/data?areaType=msoa&areaCode=E12000003&metric=newCasesBySpecimenDateRollingRate&metric=newCasesBySpecimenDateChange&metric=newCasesBySpecimenDateRollingSum&format=csv";
+if(!-e $casesfile || (time() - (stat $casesfile)[9] >= 86400/2)){
+	print "Getting $url\n";
+	`wget -q --no-check-certificate -O $casesfile "$url"`;
+}
+open(FILE,$casesfile);
+while(<FILE>){
+	$line = $_;
+	$line =~ s/[\n\r]//g;
+	($regionCode,$regionName,$UtlaCode,$UtlaName,$LtlaCode,$LtlaName,$areaCode,$areaName,$areaType,$date,$newCasesBySpecimenDateChange,$newCasesBySpecimenDateRollingRate,$newCasesBySpecimenDateRollingSum) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$line);
+	if($data{$areaCode}){
+		# Only take the first entry
+		if(!$cases{$areaCode}){
+			$cases{$areaCode} = {'cases-date'=>$date,'newCasesBySpecimenDateChange'=>$newCasesBySpecimenDateChange,'newCasesBySpecimenDateRollingRate'=>$newCasesBySpecimenDateRollingRate,'newCasesBySpecimenDateRollingSum'=>$newCasesBySpecimenDateRollingSum};
+		}
+	}
+}
+close(FILE);
+
+
+
+
+#################################
 # Travel times
 #OriginName,DestinationName,Mode,Minutes
 #E02002303,E02002604,CAR,60
@@ -150,6 +176,9 @@ for($k = 0; $k < @keepvac; $k++){
 for($k = 0; $k < @keeplocalhealth; $k++){
 	$csv .= "\,\"$keeplocalhealth[$k]\"";
 }
+for($k = 0; $k < @keepcases; $k++){
+	$csv .= "\,$keepcases[$k]";
+}
 $csv .= ",Vaccination sites";
 $csv .= "\n";
 foreach $msoa (sort(keys(%data))){
@@ -160,6 +189,9 @@ foreach $msoa (sort(keys(%data))){
 	for($k = 0; $k < @keeplocalhealth; $k++){
 		$commas = $localhealth{$msoa}{$keeplocalhealth[$k]} =~ /\,/;
 		$csv .= "\,".($commas ? "\"":"").$localhealth{$msoa}{$keeplocalhealth[$k]}.($commas ? "\"":"");
+	}
+	for($k = 0; $k < @keepcases; $k++){
+		$csv .= "\,$cases{$msoa}{$keepcases[$k]}";
 	}
 	$csv .= "\,".($vacsites{$msoa}||0);
 	$csv .= "\n";

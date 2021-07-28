@@ -30,18 +30,20 @@ data = {};
 function updateHexmap(ab){
 	var min = 1e100;
 	var max = -1e100;
-	var cat = false;
+	var cat = 0;
 	var categories = {};
 	var field = hexmaps[ab].select.value;
+	var n = 0;
 	for(var r in data){
 		if(typeof data[r][field]==="string"){
-			cat = true;
+			cat++;
 			if(!categories[data[r][field]]) categories[data[r][field]] = 0;
 			categories[data[r][field]]++;
 		}
+		n++;
 	}
-	if(cat){
-		console.log(categories)
+	if(cat > 0){
+		console.log(categories,cat,n)
 		if(field=="LTLA"){
 			colours = {
 				'E08000016':'#67E767',
@@ -161,7 +163,7 @@ ODI.ready(function(){
 					for(p in d[i]){
 						v = d[i][p];
 						vf = parseFloat(d[i][p]);
-						if(v==vf+'') v = vf;
+						if(v==vf+'' || v==vf+'.0') v = vf;
 						data[d[i].MSOA11CD][p] = v;
 					}
 				}
