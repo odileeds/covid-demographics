@@ -212,8 +212,7 @@ foreach $msoa (keys(%data)){
 }
 
 #################################
-# IMD data
-%imd = getCSV($datadir."local-health-tidy.csv",{'id'=>'MSOA11CD','map'=>{'Code'=>'MSOA11CD','Income deprivation, English Indices of Deprivation, 2019'=>'Income deprivation'}});
+# Local Health Data - PHE
 %localhealth = getCSV($datadir."local-health-data.csv",{'id'=>'MSOA11CD','map'=>{'Code'=>'MSOA11CD'}});
 
 
