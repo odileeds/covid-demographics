@@ -14,6 +14,8 @@ use JSON::XS;
 $datadir = $dir."../data/";
 $hexjson = $datadir."msoa_hex_coords.hexjson";
 $hexjsonsmall = $datadir."msoa_yorkshireandhumber.hexjson";
+$traveltime = $datadir."temp/TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
+$datafile = $datadir."msoa_lookup.csv";
 
 
 
@@ -99,6 +101,39 @@ for($i = 0; $i < @features; $i++){
 
 $txt = JSON::XS->new->utf8->pretty->allow_nonref->encode($geojson);
 
+#################################
+# Travel times
+#OriginName,DestinationName,Mode,Minutes
+#E02002303,E02002604,CAR,60
+%traveltimes;
+$url = "https://github.com/odileeds/OpenJourneyTime/blob/master/TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
+if(!-e $traveltime){
+	print "Getting $url\n";
+	`wget -q --no-check-certificate -O $traveltime "$url"`;
+}
+open(FILE,$traveltime);
+while(<FILE>){
+	$line = $_;
+	$line =~ s/[\n\r]//g;
+	($origin,$dest,$mode,$min) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$line);
+	if($data{$origin} && $data{$dest}){
+		if(!$traveltimes{$origin}){ $traveltimes{$origin} = {}; }
+		if(!$traveltimes{$origin}{$dest}){ $traveltimes{$origin}{$dest} = {}; }
+		$traveltimes{$origin}{$dest}{$mode} = $min;
+	}
+}
+close(FILE);
+#type,name,postcode,latitude,longitude,adminDistrict,msoa,lsoa
+#Vaccination Centres,Airedale General Hospital,BD20 6TD,53.898015,-1.962695,E08000032,E02002186,E01010645
+open(FILE,$datadir."vaccination-centres.csv");
+@lines = <FILE>;
+close(FILE);
+foreach $line (@lines){
+	($typ,$name,$pc,$lat,$lon,$admin,$msoa,$lsoa) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$line);
+	if(!$vacsites{$msoa}){ $vacsites{$msoa} = 0; }
+	$vacsites{$msoa}++;
+}
+
 
 #################################
 # IMD data
@@ -115,6 +150,7 @@ for($k = 0; $k < @keepvac; $k++){
 for($k = 0; $k < @keeplocalhealth; $k++){
 	$csv .= "\,\"$keeplocalhealth[$k]\"";
 }
+$csv .= ",Vaccination sites";
 $csv .= "\n";
 foreach $msoa (sort(keys(%data))){
 	$csv .= "$msoa,\"$data{$msoa}{'msoa_name_hcl'}\",$data{$msoa}{'ltla'},$datevac";
@@ -125,11 +161,14 @@ foreach $msoa (sort(keys(%data))){
 		$commas = $localhealth{$msoa}{$keeplocalhealth[$k]} =~ /\,/;
 		$csv .= "\,".($commas ? "\"":"").$localhealth{$msoa}{$keeplocalhealth[$k]}.($commas ? "\"":"");
 	}
+	$csv .= "\,".($vacsites{$msoa}||0);
 	$csv .= "\n";
 }
-open(FILE,">",$datadir."msoa_lookup.csv");
+
+open(FILE,">",$datafile);
 print FILE $csv;
 close(FILE);
+print "Saved data to $datafile\n";
 
 
 
