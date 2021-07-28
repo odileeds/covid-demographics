@@ -6,7 +6,8 @@ on:
   push:
     paths:
       - .github/workflows/flat.yml
-      - ./scripts/extract-vaccination-sites.ts
+      - scripts/*.ts
+      - lib/*.ts
 jobs:
   scheduled:
     runs-on: ubuntu-latest

@@ -56,3 +56,19 @@ const vaccinationCentreData = data.map((row: any) => {
 
 await writeCSV('./data/vaccination-centres.csv', vaccinationCentreData.filter(r => Boolean(r.msoa)));
 await writeCSV('./data/vaccination-centres-invalid.csv', vaccinationCentreData.filter(r => !Boolean(r.msoa)));
+
+const createGeoJsonFeature = (site: any) => ({
+  type: "Feature",
+  geometry: {
+    type: "Point",
+    coordinates: [site.longitude, site.latitude],
+  },
+  properties: {
+    ...site
+  }
+});
+
+await writeJSON('./data/vaccination-centres.geojson', {
+  type: 'FeatureCollection',
+  features: vaccinationCentreData.filter(r => Boolean(r.msoa)).map(createGeoJsonFeature)
+})
