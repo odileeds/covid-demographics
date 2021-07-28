@@ -1,4 +1,5 @@
-import { xlsx, readXLSX, writeCSV } from 'https://deno.land/x/flat/mod.ts'
+import { xlsx, readXLSX, writeJSON, writeCSV } from 'https://deno.land/x/flat/mod.ts'
+import { bulkPostcodeLookup } from '../lib/postcode.ts';
 
 const filename = Deno.args[0]
 
@@ -39,6 +40,19 @@ const getData = async (sheetName: string) => {
 }
 
 const data = (await Promise.all(workbook.SheetNames.map(getData)))
-    .flat()
+  .flat()
 
-await writeCSV('./data/vaccination-centres.csv', data);
+const postcodes = [...(new Set(data.map((row: any) => row.postcode)))];
+
+const postcodeData = await bulkPostcodeLookup(postcodes);
+
+const vaccinationCentreData = data.map((row: any) => {
+  const location = postcodeData.find(p => p.postcode === row.postcode.trim());
+  return {
+    ...row,
+    ...location,
+  }
+});
+
+await writeCSV('./data/vaccination-centres.csv', vaccinationCentreData.filter(r => Boolean(r.msoa)));
+await writeCSV('./data/vaccination-centres-invalid.csv', vaccinationCentreData.filter(r => !Boolean(r.msoa)));
