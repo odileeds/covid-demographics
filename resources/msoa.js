@@ -33,14 +33,29 @@ ODI.ready(function(){
 	function updateHexmap(){
 		var min = 1e100;
 		var max = -1e100;
+		var cat = false;
+		var categories = {};
 		for(var r in data){
-			min = Math.min(data[r][fields.value],min);
-			max = Math.max(data[r][fields.value],max);
+			if(typeof data[r][fields.value]==="string"){
+				cat = true;
+				if(!categories[data[r][fields.value]]) categories[data[r][fields.value]] = 0;
+				categories[data[r][fields.value]]++;
+			}
 		}
-		console.log(fields.value+' min,max:',min,max);
-		// Update hex map colours
-		hexmap.updateColours(function(r){ return viridis.getValue(data[r][fields.value],min,max); });
-		// Remove any tooltips
+		console.log(cat,categories)
+		if(cat){
+			hexmap.updateColours(function(r){ return '#000'; });
+		}else{
+			//Urban minor conurbation
+			for(var r in data){
+				min = Math.min(data[r][fields.value],min);
+				max = Math.max(data[r][fields.value],max);
+			}
+			console.log(fields.value+' min,max:',min,max);
+			// Update hex map colours
+			hexmap.updateColours(function(r){ return viridis.getValue(data[r][fields.value],min,max); });
+		}
+		// Update any tooltips
 		updateTip(region);
 	}
 	function updateTip(r){
@@ -59,6 +74,10 @@ ODI.ready(function(){
 		format = fields.options[fields.selectedIndex].getAttribute('data-format');
 		v = data[r][fields.value];
 		v = format.replace(/\{\{v\}\}/g,v);
+		for(f in data[r]){
+			regex = new RegExp("{{"+f+"}}","g");
+			v = v.replace(regex,data[r][f]);
+		}
 		// Update contents of tooltip
 		tip.innerHTML = data[r].Name+'<br />'+v;
 		// Update position of tooltip
