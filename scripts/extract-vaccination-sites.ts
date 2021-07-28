@@ -33,7 +33,7 @@ const getData = async (sheetName: string) => {
 
   const formatData = (row: any) => ({
     type: sheetName,
-    name: row[lookup.name],
+    name: row[lookup.name].replace(/[\r\n]+/, ', ', 'g'),
     postcode: row[lookup.postcode],
   });
   return (await xlsx.utils.sheet_to_json(workbook.Sheets[sheetName])).map(formatData);
