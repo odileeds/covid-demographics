@@ -35,7 +35,7 @@ function updateHexmap(ab){
 	var field = hexmaps[ab].select.value;
 	var n = 0;
 	for(var r in data){
-		if(typeof data[r][field]==="string"){
+		if(typeof data[r][field]==="string" && data[r][field].length > 0){
 			cat++;
 			if(!categories[data[r][field]]) categories[data[r][field]] = 0;
 			categories[data[r][field]]++;

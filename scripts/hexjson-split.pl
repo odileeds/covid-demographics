@@ -157,16 +157,24 @@ if(!-e $traveltime){
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $traveltime "$url"`;
 }
+%modes;
 open(FILE,$traveltime);
+$n = 0;
 while(<FILE>){
 	$line = $_;
 	$line =~ s/[\n\r]//g;
-	($origin,$dest,$mode,$min) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$line);
-	if($data{$origin} && $data{$dest}){
-		if(!$traveltimes{$origin}){ $traveltimes{$origin} = {}; }
-		if(!$traveltimes{$origin}{$dest}){ $traveltimes{$origin}{$dest} = {}; }
-		$traveltimes{$origin}{$dest}{$mode} = $min;
+	if($n > 0){
+		($origin,$dest,$mode,$min) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$line);
+		$mode =~ s/(^\"|\"$)//g;
+		if(!$modes{$mode}){ $modes{$mode} = 0; }
+		$modes{$mode}++;
+		if($data{$origin} && $data{$dest}){
+			if(!$traveltimes{$origin}){ $traveltimes{$origin} = {}; }
+			if(!$traveltimes{$origin}{$dest}){ $traveltimes{$origin}{$dest} = {}; }
+			$traveltimes{$origin}{$dest}{$mode} = $min;
+		}
 	}
+	$n++;
 }
 close(FILE);
 #type,name,postcode,latitude,longitude,adminDistrict,msoa,lsoa
@@ -174,15 +182,34 @@ close(FILE);
 open(FILE,$datadir."vaccination-centres.csv");
 @lines = <FILE>;
 close(FILE);
+%vacsites;
+%travel;
 # Set up null values
 foreach $msoa (keys(%data)){
 	$vacsites{$msoa} = 0;
+	$travel{$msoa} = {};
+	foreach $mode (keys(%modes)){
+		$travel{$msoa}{$mode} = 60;
+	}
 }
 foreach $line (@lines){
 	($typ,$name,$pc,$lat,$lon,$admin,$msoa,$lsoa) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$line);
 	$vacsites{$msoa}++;
 }
-
+# Calculate the minimum travel time for each MSOA
+foreach $msoa (keys(%data)){
+	# Loop over destinations
+	foreach $dest (keys(%{$traveltimes{$msoa}})){
+		# If there is a vaccination site at this destination we check it
+		if($vacsites{$dest}){
+			# Loop over the modes
+			foreach $mode (keys(%{$traveltimes{$msoa}{$dest}})){
+				# If using this mode to this destination is quicker than the existing minimum time we update it
+				if($traveltimes{$msoa}{$dest}{$mode} < $travel{$msoa}{$mode}){ $travel{$msoa}{$mode} = $traveltimes{$msoa}{$dest}{$mode}; }
+			}
+		}
+	}
+}
 
 #################################
 # IMD data
@@ -204,6 +231,9 @@ for($k = 0; $k < @keepcases; $k++){
 }
 #$csv .= ",Population 18-24 (%)";
 $csv .= ",Vaccination sites";
+foreach $mode (keys(%modes)){
+	$csv .= ",\"Travel time by $mode\"";
+}
 $csv .= "\n";
 foreach $msoa (sort(keys(%data))){
 	$csv .= "$msoa,\"$data{$msoa}{'msoa_name_hcl'}\",$data{$msoa}{'ltla'},\"$data{$msoa}{'ltla_name'}\",$data{$msoa}{'utla'},$datevac";
@@ -219,6 +249,9 @@ foreach $msoa (sort(keys(%data))){
 	}
 	#$csv .= "\,".$nims{$msoa}{'18-24 pc'};
 	$csv .= "\,".($vacsites{$msoa});
+	foreach $mode (keys(%modes)){
+		$csv .= "\,".($travel{$msoa}{$mode});
+	}
 	$csv .= "\n";
 }
 
