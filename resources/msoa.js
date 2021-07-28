@@ -88,7 +88,7 @@ function updateHexmap(ab){
 			max = Math.max(data[r][field],max);
 		}
 		// Update hex map colours
-		hexmaps[ab].map.updateColours(function(r){ return viridis.getValue(data[r][field],min,max); });
+		hexmaps[ab].map.updateColours(function(r){ return (min!=max ? viridis.getValue(data[r][field],min,max) : '#444'); });
 	}
 	// Update any tooltips
 	updateTips(region);

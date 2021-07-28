@@ -17,13 +17,14 @@ $hexjsonsmall = $datadir."msoa_yorkshireandhumber.hexjson";
 $traveltime = $datadir."temp/TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
 $datafile = $datadir."msoa_lookup.csv";
 $casesfile = $datadir."temp/cases-phe-msoa.csv";
+$nimsfile = $datadir."temp/NIMS-MSOA-population.csv";
 
 
 open(FILE,$hexjson);
 @lines = <FILE>;
 close(FILE);
 
-@keepvac = ('1st dose 0-17 %','1st dose 18-24 %','1st dose 25-29 %','1st dose 30-34 %','1st dose 35-39 %','1st dose 40-44 %','1st dose 45-49 %','1st dose 50-54 %','1st dose 55-59 %','1st dose 60-64 %','1st dose 65-69 %','1st dose 70-74 %','1st dose 75-79 %','1st dose 80+ %','2nd dose 0-17 %','2nd dose 18-24 %','2nd dose 25-29 %','2nd dose 30-34 %','2nd dose 35-39 %','2nd dose 40-44 %','2nd dose 45-49 %','2nd dose 50-54 %','2nd dose 55-59 %','2nd dose 60-64 %','2nd dose 65-69 %','2nd dose 70-74 %','2nd dose 75-79 %','2nd dose 80+ %');
+@keepvac = ('1st dose Under 18 %','1st dose 18-24 %','1st dose 25-29 %','1st dose 30-34 %','1st dose 35-39 %','1st dose 40-44 %','1st dose 45-49 %','1st dose 50-54 %','1st dose 55-59 %','1st dose 60-64 %','1st dose 65-69 %','1st dose 70-74 %','1st dose 75-79 %','1st dose 80+ %','2nd dose Under 18 %','2nd dose 18-24 %','2nd dose 25-29 %','2nd dose 30-34 %','2nd dose 35-39 %','2nd dose 40-44 %','2nd dose 45-49 %','2nd dose 50-54 %','2nd dose 55-59 %','2nd dose 60-64 %','2nd dose 65-69 %','2nd dose 70-74 %','2nd dose 75-79 %','2nd dose 80+ %');
 @keeplocalhealth = ('Older People in Deprivation, Number of older people','Rural Urban Classification','IMD Score, 2019','Income deprivation, English Indices of Deprivation, 2019','Fuel Poverty, 2018','Older people living alone','Population aged 0 to 15 years','Population aged 0 to 4 years','Population aged 5 to 15 years','Population aged 16 to 24 years','Population aged 25 to 64 years','Population aged between 50 and 64 years','Population aged 65 years and over','Population aged 85 years and over','Black and Minority Ethnic Population',"Population whose ethnicity is not 'White UK'",'Population who cannot speak English well or at all','Child Poverty, English Indices of Deprivation, 2019','Older People in Deprivation, English Indices of Deprivation, 2019','Overcrowded houses, 2011','Proportion of households in poverty','Unemployment','Long term unemployment','Total population','Population aged 65 years and over','Income Deprivation, Number of people','Child Poverty, Number of children','Population density');
 @keepcases = ('newCasesBySpecimenDateChange','newCasesBySpecimenDateRollingRate','newCasesBySpecimenDateRollingSum','cases-date');
 
@@ -75,32 +76,48 @@ print FILE $str;
 close(FILE);
 
 
-$url = "https://odileeds.github.io/covid-19/vaccines/inc/vaccine-msoa.geojson";
-$file = $datadir."temp/vaccine-msoa.geojson";
+#################################
+# Population (NIMS)
+$url = "https://raw.githubusercontent.com/odileeds/covid-19/main/vaccines/data/NIMS-MSOA-population.csv";
+# If older than 3 days
+if(!-e $nimsfile || (time() - (stat $nimsfile)[9] >= 3*86400)){
+	print "Getting $url\n";
+	`wget -q --no-check-certificate -O $nimsfile "$url"`;
+}
+%nims = getCSV($nimsfile,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD'}});
+foreach $msoa (keys(%nims)){
+	$nims{$msoa}{'All'} = $nims{$msoa}{'Under 18'}+$nims{$msoa}{'18+'};
+	$nims{$msoa}{'18-24 pc'} = sprintf("%0.2f",100*$nims{$msoa}{'18-24'}/$nims{$msoa}{'All'});
+}
+
+
+###############################
+# Vaccine data - get the raw data and work out the percentages using the NIMS data
+$url = "https://raw.githubusercontent.com/odileeds/covid-19/main/vaccines/data/vaccinations-MSOA-latest.csv";
+$file = $datadir."temp/vaccine-MSOA-latest.csv";
 # If the file doesn't exist or is older than 12 hours
 if(!-e $file || (time() - (stat $file)[9] >= 86400/2)){
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $file "$url"`;
 }
-# Get the populations data
-open(FILE,$file);
-@lines = <FILE>;
-close(FILE);
-$geojson = JSON::XS->new->utf8->decode(join("\n",@lines));
-$datevac = $geojson->{'updated'};
-@features = @{$geojson->{'features'}};
-for($i = 0; $i < @features; $i++){
-	$msoa = $features[$i]{'properties'}{'MSOA11CD'};
-	if($data{$msoa}){
-		for($k = 0; $k < @keepvac; $k++){
-			$data{$msoa}{$keepvac[$k]} = $features[$i]{'properties'}{$keepvac[$k]};
+%vaccines = getCSV($file,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD'}});
+foreach $msoa (sort(keys(%vaccines))){
+	foreach $key (sort(keys(%{$vaccines{$msoa}}))){
+		$r = "";
+		if($key =~ /dose (Under [0-9]+)/){
+			$r = $1;
 		}
-	}else{
-		delete $geojson->{'features'}[$i];
+		if($key =~ /dose ([0-9\-\+]+)/){
+			$r = $1;
+		}
+		if($r){
+			$vaccines{$msoa}{$key." %"} = sprintf("%0.1f",100*$vaccines{$msoa}{$key}/$nims{$msoa}{$r});
+			#print "$msoa - $key - $r - $nims{$msoa}{$r}\n";
+		}
 	}
 }
 
-$txt = JSON::XS->new->utf8->pretty->allow_nonref->encode($geojson);
+
 
 #################################
 # Cases data
@@ -179,12 +196,13 @@ for($k = 0; $k < @keeplocalhealth; $k++){
 for($k = 0; $k < @keepcases; $k++){
 	$csv .= "\,$keepcases[$k]";
 }
+#$csv .= ",Population 18-24 (%)";
 $csv .= ",Vaccination sites";
 $csv .= "\n";
 foreach $msoa (sort(keys(%data))){
 	$csv .= "$msoa,\"$data{$msoa}{'msoa_name_hcl'}\",$data{$msoa}{'ltla'},\"$data{$msoa}{'ltla_name'}\",$data{$msoa}{'utla'},$datevac";
 	for($k = 0; $k < @keepvac; $k++){
-		$csv .= "\,$data{$msoa}{$keepvac[$k]}";
+		$csv .= "\,$vaccines{$msoa}{$keepvac[$k]}";
 	}
 	for($k = 0; $k < @keeplocalhealth; $k++){
 		$commas = $localhealth{$msoa}{$keeplocalhealth[$k]} =~ /\,/;
@@ -193,6 +211,7 @@ foreach $msoa (sort(keys(%data))){
 	for($k = 0; $k < @keepcases; $k++){
 		$csv .= "\,$cases{$msoa}{$keepcases[$k]}";
 	}
+	#$csv .= "\,".$nims{$msoa}{'18-24 pc'};
 	$csv .= "\,".($vacsites{$msoa}||0);
 	$csv .= "\n";
 }
