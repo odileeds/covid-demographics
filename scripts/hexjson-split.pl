@@ -20,13 +20,16 @@ $casesfile = $datadir."temp/cases-phe-msoa.csv";
 $nimsfile = $datadir."temp/NIMS-MSOA-population.csv";
 
 
-open(FILE,$hexjson);
-@lines = <FILE>;
-close(FILE);
-
 @keepvac = ('1st dose Under 18 %','1st dose 18-24 %','1st dose 25-29 %','1st dose 30-34 %','1st dose 35-39 %','1st dose 40-44 %','1st dose 45-49 %','1st dose 50-54 %','1st dose 55-59 %','1st dose 60-64 %','1st dose 65-69 %','1st dose 70-74 %','1st dose 75-79 %','1st dose 80+ %','2nd dose Under 18 %','2nd dose 18-24 %','2nd dose 25-29 %','2nd dose 30-34 %','2nd dose 35-39 %','2nd dose 40-44 %','2nd dose 45-49 %','2nd dose 50-54 %','2nd dose 55-59 %','2nd dose 60-64 %','2nd dose 65-69 %','2nd dose 70-74 %','2nd dose 75-79 %','2nd dose 80+ %');
 @keeplocalhealth = ('Older People in Deprivation, Number of older people','Rural Urban Classification','IMD Score, 2019','Income deprivation, English Indices of Deprivation, 2019','Fuel Poverty, 2018','Older people living alone','Population aged 0 to 15 years','Population aged 0 to 4 years','Population aged 5 to 15 years','Population aged 16 to 24 years','Population aged 25 to 64 years','Population aged between 50 and 64 years','Population aged 65 years and over','Population aged 85 years and over','Black and Minority Ethnic Population',"Population whose ethnicity is not 'White UK'",'Population who cannot speak English well or at all','Child Poverty, English Indices of Deprivation, 2019','Older People in Deprivation, English Indices of Deprivation, 2019','Overcrowded houses, 2011','Proportion of households in poverty','Unemployment','Long term unemployment','Total population','Population aged 65 years and over','Income Deprivation, Number of people','Child Poverty, Number of children','Population density');
 @keepcases = ('newCasesBySpecimenDateChange','newCasesBySpecimenDateRollingRate','newCasesBySpecimenDateRollingSum','cases-date');
+
+
+##########################
+# Read in HexJSON
+open(FILE,$hexjson);
+@lines = <FILE>;
+close(FILE);
 
 %data;
 @output = "";
@@ -171,9 +174,12 @@ close(FILE);
 open(FILE,$datadir."vaccination-centres.csv");
 @lines = <FILE>;
 close(FILE);
+# Set up null values
+foreach $msoa (keys(%data)){
+	$vacsites{$msoa} = 0;
+}
 foreach $line (@lines){
 	($typ,$name,$pc,$lat,$lon,$admin,$msoa,$lsoa) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$line);
-	if(!$vacsites{$msoa}){ $vacsites{$msoa} = 0; }
 	$vacsites{$msoa}++;
 }
 
@@ -212,7 +218,7 @@ foreach $msoa (sort(keys(%data))){
 		$csv .= "\,$cases{$msoa}{$keepcases[$k]}";
 	}
 	#$csv .= "\,".$nims{$msoa}{'18-24 pc'};
-	$csv .= "\,".($vacsites{$msoa}||0);
+	$csv .= "\,".($vacsites{$msoa});
 	$csv .= "\n";
 }
 
