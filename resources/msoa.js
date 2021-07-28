@@ -44,7 +44,19 @@ ODI.ready(function(){
 		}
 		console.log(cat,categories)
 		if(cat){
-			hexmap.updateColours(function(r){ return '#000'; });
+			if(fields.value=="Rural Urban Classification"){
+				colours = {
+					'Rural village and dispersed in a sparse setting':'#67E767',
+					'Rural village and dispersed':'#67E767',
+					'Rural town and fringe in a sparse setting':'#1DD3A7',
+					'Rural town and fringe':'#1DD3A7',
+					'Urban minor conurbation':'#D73058',
+					'Urban city and town in a sparse setting':'#EF3AAB',
+					'Urban city and town':'#EF3AAB',
+					'Urban major conurbation':'#E6007C'
+				};
+			}
+			hexmap.updateColours(function(r){ return colours[data[r][fields.value]]||'#444'; });
 		}else{
 			//Urban minor conurbation
 			for(var r in data){
