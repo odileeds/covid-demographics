@@ -109,6 +109,10 @@ path.hex.active {
 	stroke: black;
 	stroke-width: 4;
 }
+.grid.maps li {
+	background: #f8f8f8;
+	padding: 1em;
+}
 .hexmap {
 	width: 100%;
 	height: 500px;
