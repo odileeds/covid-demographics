@@ -24,8 +24,116 @@ function ColourScale(c){
 
 // Define the Viridis colour scale
 viridis = new ColourScale([{'rgb':[68,1,84],v:0},{'rgb':[72,35,116],'v':0.1},{'rgb':[64,67,135],'v':0.2},{'rgb':[52,94,141],'v':0.3},{'rgb':[41,120,142],'v':0.4},{'rgb':[32,143,140],'v':0.5},{'rgb':[34,167,132],'v':0.6},{'rgb':[66,190,113],'v':0.7},{'rgb':[121,209,81],'v':0.8},{'rgb':[186,222,39],'v':0.9},{'rgb':[253,231,36],'v':1}]);
-var region,data,hexmaps;
+var region,data,hexmaps,h;
 data = {};
+
+function updateHexmap(ab){
+	var min = 1e100;
+	var max = -1e100;
+	var cat = false;
+	var categories = {};
+	var field = hexmaps[ab].select.value;
+	for(var r in data){
+		if(typeof data[r][field]==="string"){
+			cat = true;
+			if(!categories[data[r][field]]) categories[data[r][field]] = 0;
+			categories[data[r][field]]++;
+		}
+	}
+	if(cat){
+		console.log(categories)
+		if(field=="LTLA"){
+			colours = {
+				'E08000016':'#67E767',
+				'E08000017':'#00B6FF',
+				'E08000018':'#E6007C',
+				'E08000019':'#08DEF9',
+				'E08000032':'#D73058',
+				'E08000033':'#0DBC37',
+				'E08000034':'#2254F4',
+				'E08000035':'#F9BC26',
+				'E08000036':'#722EA5',
+				'E06000010':'#178CFF',
+				'E06000011':'#1DD3A7',
+				'E06000012':'#EF3AAB',
+				'E06000013':'#FF6700',
+				'E06000014':'#0DBC37',
+				'E07000163':'#67E767',
+				'E07000164':'#F9BC26',
+				'E07000165':'#2254F4',
+				'E07000166':'#D73058',
+				'E07000167':'#00B6FF',
+				'E07000168':'#EF3AAB',
+				'E07000169':'#D60303'
+			}
+		}else if(field=="Rural Urban Classification"){
+			colours = {
+				'Rural village and dispersed in a sparse setting':'#67E767',
+				'Rural village and dispersed':'#67E767',
+				'Rural town and fringe in a sparse setting':'#1DD3A7',
+				'Rural town and fringe':'#1DD3A7',
+				'Urban minor conurbation':'#D73058',
+				'Urban city and town in a sparse setting':'#EF3AAB',
+				'Urban city and town':'#EF3AAB',
+				'Urban major conurbation':'#E6007C'
+			};
+		}
+		hexmaps[ab].map.updateColours(function(r){ return colours[data[r][field]]||'#444'; });
+	}else{
+		//Urban minor conurbation
+		for(var r in data){
+			min = Math.min(data[r][field],min);
+			max = Math.max(data[r][field],max);
+		}
+		// Update hex map colours
+		hexmaps[ab].map.updateColours(function(r){ return viridis.getValue(data[r][field],min,max); });
+	}
+	// Update any tooltips
+	updateTips(region);
+}
+function updateTips(r){
+	if(!r){
+		for(ab in hexmaps){
+			if(hexmaps[ab].tip){
+				hexmaps[ab].tip.parentNode.removeChild(hexmaps[ab].tip);
+				delete hexmaps[ab].tip;
+			}
+		}
+		return;
+	}
+	region = r;
+	
+	var svg,hx,hex;
+
+	for(ab in hexmaps){
+		hx = hexmaps[ab];
+		svg = hx.map.el;
+		hex = hx.map.areas[r].hex;
+		// Get any existing tooltip for this hexmap
+		hx.tip = svg.querySelector('.tooltip');
+		if(!hx.tip){
+			// Add a new tooltip
+			hx.tip = document.createElement('div');
+			hx.tip.classList.add('tooltip');
+			svg.appendChild(hx.tip);
+		}
+		format = hx.select.options[hx.select.selectedIndex].getAttribute('data-format');
+		v = data[r][hx.select.value];
+		v = format.replace(/\{\{v\}\}/g,v);
+		for(f in data[r]){
+			regex = new RegExp("{{"+f+"}}","g");
+			v = v.replace(regex,data[r][f]);
+		}
+		// Update contents of tooltip
+		hx.tip.innerHTML = data[r].Name+'<br />'+v;
+		// Update position of tooltip
+		bb = hex.getBoundingClientRect();
+		bbo = svg.getBoundingClientRect();
+		hx.tip.style.left = Math.round(bb.left + bb.width/2 - bbo.left + svg.scrollLeft)+'px';
+		hx.tip.style.top = Math.round(bb.top + bb.height/2 - bbo.top)+'px';
+	}
+	return;
+}
 
 
 ODI.ready(function(){
@@ -37,108 +145,9 @@ ODI.ready(function(){
 	for(h in hexmaps){
 		hexmaps[h].select = hexmaps[h].el.querySelector('select');
 		addEvent('change',hexmaps[h].select,{h:h},function(e){ updateHexmap(e.data.h); });
+		addEvent('mouseleave',hexmaps[h].el,{},function(e){ updateTips(); });
 	}
 
-	function updateHexmap(ab){
-		var min = 1e100;
-		var max = -1e100;
-		var cat = false;
-		var categories = {};
-		var field = hexmaps[ab].select.value;
-		for(var r in data){
-			if(typeof data[r][field]==="string"){
-				cat = true;
-				if(!categories[data[r][field]]) categories[data[r][field]] = 0;
-				categories[data[r][field]]++;
-			}
-		}
-		if(cat){
-			console.log(categories)
-			if(field=="LTLA"){
-				colours = {
-					'E08000016':'#67E767',
-					'E08000017':'#00B6FF',
-					'E08000018':'#E6007C',
-					'E08000019':'#08DEF9',
-					'E08000032':'#D73058',
-					'E08000033':'#0DBC37',
-					'E08000034':'#2254F4',
-					'E08000035':'#F9BC26',
-					'E08000036':'#722EA5',
-					'E06000010':'#178CFF',
-					'E06000011':'#1DD3A7',
-					'E06000012':'#EF3AAB',
-					'E06000013':'#FF6700',
-					'E06000014':'#0DBC37',
-					'E07000163':'#67E767',
-					'E07000164':'#F9BC26',
-					'E07000165':'#2254F4',
-					'E07000166':'#D73058',
-					'E07000167':'#00B6FF',
-					'E07000168':'#EF3AAB',
-					'E07000169':'#D60303'
-				}
-			}else if(field=="Rural Urban Classification"){
-				colours = {
-					'Rural village and dispersed in a sparse setting':'#67E767',
-					'Rural village and dispersed':'#67E767',
-					'Rural town and fringe in a sparse setting':'#1DD3A7',
-					'Rural town and fringe':'#1DD3A7',
-					'Urban minor conurbation':'#D73058',
-					'Urban city and town in a sparse setting':'#EF3AAB',
-					'Urban city and town':'#EF3AAB',
-					'Urban major conurbation':'#E6007C'
-				};
-			}
-			hexmaps[ab].map.updateColours(function(r){ return colours[data[r][field]]||'#444'; });
-		}else{
-			//Urban minor conurbation
-			for(var r in data){
-				min = Math.min(data[r][field],min);
-				max = Math.max(data[r][field],max);
-			}
-			// Update hex map colours
-			hexmaps[ab].map.updateColours(function(r){ return viridis.getValue(data[r][field],min,max); });
-		}
-		// Update any tooltips
-		updateTips(region);
-	}
-	function updateTips(r){
-		if(r) region = r;
-		if(!r && region) r = region;
-		if(!r) return;
-
-		var svg,hx,hex;
-
-		for(ab in hexmaps){
-			hx = hexmaps[ab];
-			svg = hx.map.el;
-			hex = hx.map.areas[r].hex;
-			// Get any existing tooltip for this hexmap
-			hx.tip = svg.querySelector('.tooltip');
-			if(!hx.tip){
-				// Add a new tooltip
-				hx.tip = document.createElement('div');
-				hx.tip.classList.add('tooltip');
-				svg.appendChild(hx.tip);
-			}
-			format = hx.select.options[hx.select.selectedIndex].getAttribute('data-format');
-			v = data[r][hx.select.value];
-			v = format.replace(/\{\{v\}\}/g,v);
-			for(f in data[r]){
-				regex = new RegExp("{{"+f+"}}","g");
-				v = v.replace(regex,data[r][f]);
-			}
-			// Update contents of tooltip
-			hx.tip.innerHTML = data[r].Name+'<br />'+v;
-			// Update position of tooltip
-			bb = hex.getBoundingClientRect();
-			bbo = svg.getBoundingClientRect();
-			hx.tip.style.left = Math.round(bb.left + bb.width/2 - bbo.left + svg.scrollLeft)+'px';
-			hx.tip.style.top = Math.round(bb.top + bb.height/2 - bbo.top)+'px';
-		}
-		return;
-	}
 
 	// Load the data
 	ODI.ajax('data/msoa_lookup.csv',{
