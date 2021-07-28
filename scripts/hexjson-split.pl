@@ -99,6 +99,9 @@ for($i = 0; $i < @features; $i++){
 $txt = JSON::XS->new->utf8->pretty->allow_nonref->encode($geojson);
 
 
+#################################
+# IMD data
+%imd = getCSV($datadir."local-health-tidy.csv",{'id'=>'MSOA11CD','map'=>{'Code'=>'MSOA11CD','Income deprivation, English Indices of Deprivation, 2019'=>'Income deprivation'}});
 
 
 #################################
@@ -107,15 +110,71 @@ $csv = "MSOA11CD,Name,LTLA,Vac date";
 for($k = 0; $k < @keepvac; $k++){
 	$csv .= "\,$keepvac[$k]";
 }
+$csv .= "\,Income deprivation,Older people living alone";
 $csv .= "\n";
 foreach $msoa (sort(keys(%data))){
 	$csv .= "$msoa,\"$data{$msoa}{'msoa_name_hcl'}\",$data{$msoa}{'ltla'},$datevac";
 	for($k = 0; $k < @keepvac; $k++){
 		$csv .= "\,$data{$msoa}{$keepvac[$k]}";
 	}
+	$csv .= "\,$imd{$msoa}{'Income deprivation'},$imd{$msoa}{'Older people living alone'}";
 	$csv .= "\n";
 }
 open(FILE,">",$datadir."msoa_lookup.csv");
 print FILE $csv;
 close(FILE);
 
+
+
+
+##############################
+# SUBROUTINES
+
+sub getCSV {
+	my (@lines,@header,%datum,$c,$i,$id,@data,%dat);
+	my ($file, $props) = @_;
+
+	# Open the file
+	open(FILE,$file);
+	@lines = <FILE>;
+	close(FILE);
+	$lines[0] =~ s/[\n\r]//g;
+	@header = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$lines[0]);
+	$id = -1;
+	for($c = 0; $c < @header; $c++){
+		$header[$c] =~ s/(^\"|\"$)//g;
+		if($props->{'map'} && $props->{'map'}{$header[$c]}){
+			$header[$c] = $props->{'map'}{$header[$c]};
+		}
+		if($props->{'id'} && $header[$c] eq $props->{'id'}){
+			$id = $c;
+		}
+	}
+
+	for($i = 1; $i < @lines; $i++){
+		undef %datum;
+		$lines[$i] =~ s/[\n\r]//g;
+		(@cols) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$lines[$i]);
+		for($c = 0; $c < @cols; $c++){
+			#print "\t$i = $header[$c] = $cols[$c]\n";
+			if($cols[$c] =~ /^" ?([0-9\,]+) ?"$/){
+				$cols[$c] =~ s/(^" ?| ?"$)//g;
+				$cols[$c] =~ s/\,//g;
+			}
+			$cols[$c] =~ s/(^\"|\"$)//g;
+			if($header[$c] ne ""){
+				$datum{$header[$c]} = $cols[$c];
+			}
+		}
+		if($id >= 0){
+			$dat{$cols[$id]} = {%datum};
+		}else{
+			push(@data,{%datum});
+		}
+	}
+	if($id >= 0){
+		return %dat;
+	}else{
+		return @data;
+	}
+}
