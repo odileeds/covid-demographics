@@ -193,7 +193,17 @@
 	<footer class="bottom doublepadded b1-bg">
 		<div class="holder">
 			<h2>About these maps</h2>
-			<p>These <a href="https://github.com/houseofcommonslibrary/uk-hex-cartograms-noncontiguous/blob/main/hexjson/msoa_hex_coords.hexjson">MSOA</a> <a href="https://github.com/odileeds/hexmaps">hex cartogram layouts</a> are created by the House of Commons Library. A hex cartogram gives each area the same visual weight on the map at the expense of geography. This helps make geographically compact (but often big in population) areas more easily visible than a geographic map.</p>
+			<p>This visualisation was created by <a href="https://odileeds.org/">ODI Leeds</a> and uses <a href="https://github.com/odileeds/hexmaps">hex cartograms</a>. A hex cartogram gives each area the same visual weight on the map at the expense of accurate geography. This helps make geographically compact (but often big in population) areas more easily visible than a geographic map. Using consistent shapes (hexagons) also makes it easier to spot outliers.</p>
+			<p>The travel time values are calculated by finding the minimum travel time by each mode to an MSOA with a vaccination site from the current MSOA. Times are <em>limited to 60 minutes</em> so where a time shows as 60 minutes the real time may be longer in practice.</p>
+			<h2>Data sources</h2>
+			<ul>
+				<li>Cartogram: created by the House of Commons Library (<a href="https://github.com/houseofcommonslibrary/uk-hex-cartograms-noncontiguous/blob/main/licence.txt">Open Parliament Licence</a>).</li>
+				<li>MSOA names: the <a href="https://houseofcommonslibrary.github.io/msoanames/">MSOA names come from the House of Commons Library</a>.</li>
+				<li>Demographic data: obtained from <a href="https://www.localhealth.org.uk/">www.localhealth.org.uk</a>, Public Health England. Contains public sector information licensed under the <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>.</li>
+				<li>Vaccination data: obtained from <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/covid-19-vaccinations/">NHS England</a> (<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>) via <a href="https://github.com/odileeds/covid-19/blob/main/vaccines/data/vaccinations-MSOA-latest.csv">extracted MSOA data</a>.</li>
+				<li>Vaccination sites: <a href="https://www.england.nhs.uk/coronavirus/publication/vaccination-sites/">vaccinations sites listed by NHS England</a> (<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>).</li>
+				<li>Travel time data: created by <a href="https://github.com/odileeds/OpenJourneyTime">Tom Forth &amp; ODI Leeds</a> (CC-BY 4.0) using data from public transport timetables (<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>) and OpenStreetMap (<a href=" CC-BY 4.0. Please credit Tom Forth at ODILeeds and ODILeeds.">ODbL</a>).</li>
+			</ul>
 		</div>
 	</footer>
 

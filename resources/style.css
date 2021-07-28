@@ -47,10 +47,11 @@ p { margin-bottom: 1em; }
 button, .button { border: 0px; font-size: 1em; background-color: #efefef; color: black; text-decoration: none!important; display: inline-block; padding: 0.5em 1em; cursor: pointer; vertical-align: top; line-height: 1.25em; }
 a:hover, a:focus { text-decoration: underline; }
 a:visited { color: inherit; }
-header a { text-decoration: none; }
+header a { text-decoration: none; line-height: 0; }
 footer { width: 100%; padding: 1em; padding-bottom: 3em; }
-footer h2 + p { margin-top: 1em; }
-header a { line-height: 0; }
+footer h2 + p, footer h2 + ul { margin-top: 1em; }
+footer ul { list-style: disc; margin-left: 1em; }
+footer a, footer a:visited { color: inherit; }
 .msg { text-align:center; padding: 0.5em; }
 #main { padding: 1em; }
 
