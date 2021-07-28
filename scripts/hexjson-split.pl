@@ -143,7 +143,7 @@ foreach $line (@lines){
 
 #################################
 # Save CSV
-$csv = "MSOA11CD,Name,LTLA,Vac date";
+$csv = "MSOA11CD,Name,LTLA,LTLA name,UTLA,Vac date";
 for($k = 0; $k < @keepvac; $k++){
 	$csv .= "\,$keepvac[$k]";
 }
@@ -153,7 +153,7 @@ for($k = 0; $k < @keeplocalhealth; $k++){
 $csv .= ",Vaccination sites";
 $csv .= "\n";
 foreach $msoa (sort(keys(%data))){
-	$csv .= "$msoa,\"$data{$msoa}{'msoa_name_hcl'}\",$data{$msoa}{'ltla'},$datevac";
+	$csv .= "$msoa,\"$data{$msoa}{'msoa_name_hcl'}\",$data{$msoa}{'ltla'},\"$data{$msoa}{'ltla_name'}\",$data{$msoa}{'utla'},$datevac";
 	for($k = 0; $k < @keepvac; $k++){
 		$csv .= "\,$data{$msoa}{$keepvac[$k]}";
 	}

@@ -24,27 +24,61 @@ function ColourScale(c){
 
 // Define the Viridis colour scale
 viridis = new ColourScale([{'rgb':[68,1,84],v:0},{'rgb':[72,35,116],'v':0.1},{'rgb':[64,67,135],'v':0.2},{'rgb':[52,94,141],'v':0.3},{'rgb':[41,120,142],'v':0.4},{'rgb':[32,143,140],'v':0.5},{'rgb':[34,167,132],'v':0.6},{'rgb':[66,190,113],'v':0.7},{'rgb':[121,209,81],'v':0.8},{'rgb':[186,222,39],'v':0.9},{'rgb':[253,231,36],'v':1}]);
-
-var hexmap,region,hex,data,field,fields,tip;
+var region,data,hexmaps;
 data = {};
 
+
 ODI.ready(function(){
-	fields = document.getElementById('fields');
-	function updateHexmap(){
+	var h = 0;
+	hexmaps = {
+		'a':{ 'el':document.getElementById('a') },
+		'b':{ 'el':document.getElementById('b') }
+	};
+	for(h in hexmaps){
+		hexmaps[h].select = hexmaps[h].el.querySelector('select');
+		addEvent('change',hexmaps[h].select,{h:h},function(e){ updateHexmap(e.data.h); });
+	}
+
+	function updateHexmap(ab){
 		var min = 1e100;
 		var max = -1e100;
 		var cat = false;
 		var categories = {};
+		var field = hexmaps[ab].select.value;
 		for(var r in data){
-			if(typeof data[r][fields.value]==="string"){
+			if(typeof data[r][field]==="string"){
 				cat = true;
-				if(!categories[data[r][fields.value]]) categories[data[r][fields.value]] = 0;
-				categories[data[r][fields.value]]++;
+				if(!categories[data[r][field]]) categories[data[r][field]] = 0;
+				categories[data[r][field]]++;
 			}
 		}
-		console.log(cat,categories)
 		if(cat){
-			if(fields.value=="Rural Urban Classification"){
+			console.log(categories)
+			if(field=="LTLA"){
+				colours = {
+					'E08000016':'#67E767',
+					'E08000017':'#00B6FF',
+					'E08000018':'#E6007C',
+					'E08000019':'#08DEF9',
+					'E08000032':'#D73058',
+					'E08000033':'#0DBC37',
+					'E08000034':'#2254F4',
+					'E08000035':'#F9BC26',
+					'E08000036':'#722EA5',
+					'E06000010':'#178CFF',
+					'E06000011':'#1DD3A7',
+					'E06000012':'#EF3AAB',
+					'E06000013':'#FF6700',
+					'E06000014':'#0DBC37',
+					'E07000163':'#67E767',
+					'E07000164':'#F9BC26',
+					'E07000165':'#2254F4',
+					'E07000166':'#D73058',
+					'E07000167':'#00B6FF',
+					'E07000168':'#EF3AAB',
+					'E07000169':'#D60303'
+				}
+			}else if(field=="Rural Urban Classification"){
 				colours = {
 					'Rural village and dispersed in a sparse setting':'#67E767',
 					'Rural village and dispersed':'#67E767',
@@ -56,88 +90,91 @@ ODI.ready(function(){
 					'Urban major conurbation':'#E6007C'
 				};
 			}
-			hexmap.updateColours(function(r){ return colours[data[r][fields.value]]||'#444'; });
+			hexmaps[ab].map.updateColours(function(r){ return colours[data[r][field]]||'#444'; });
 		}else{
 			//Urban minor conurbation
 			for(var r in data){
-				min = Math.min(data[r][fields.value],min);
-				max = Math.max(data[r][fields.value],max);
+				min = Math.min(data[r][field],min);
+				max = Math.max(data[r][field],max);
 			}
-			console.log(fields.value+' min,max:',min,max);
 			// Update hex map colours
-			hexmap.updateColours(function(r){ return viridis.getValue(data[r][fields.value],min,max); });
+			hexmaps[ab].map.updateColours(function(r){ return viridis.getValue(data[r][field],min,max); });
 		}
 		// Update any tooltips
-		updateTip(region);
+		updateTips(region);
 	}
-	function updateTip(r){
-		if(!hex) return;
+	function updateTips(r){
 		if(r) region = r;
+		if(!r && region) r = region;
+		if(!r) return;
 
-		svg = hexmap.el;
-		// Get any existing tooltip for this hexmap
-		tip = svg.querySelector('.tooltip');
-		if(!tip){
-			// Add a new tooltip
-			tip = document.createElement('div');
-			tip.classList.add('tooltip');
-			svg.appendChild(tip);
+		var svg,hx,hex;
+
+		for(ab in hexmaps){
+			hx = hexmaps[ab];
+			svg = hx.map.el;
+			hex = hx.map.areas[r].hex;
+			// Get any existing tooltip for this hexmap
+			hx.tip = svg.querySelector('.tooltip');
+			if(!hx.tip){
+				// Add a new tooltip
+				hx.tip = document.createElement('div');
+				hx.tip.classList.add('tooltip');
+				svg.appendChild(hx.tip);
+			}
+			format = hx.select.options[hx.select.selectedIndex].getAttribute('data-format');
+			v = data[r][hx.select.value];
+			v = format.replace(/\{\{v\}\}/g,v);
+			for(f in data[r]){
+				regex = new RegExp("{{"+f+"}}","g");
+				v = v.replace(regex,data[r][f]);
+			}
+			// Update contents of tooltip
+			hx.tip.innerHTML = data[r].Name+'<br />'+v;
+			// Update position of tooltip
+			bb = hex.getBoundingClientRect();
+			bbo = svg.getBoundingClientRect();
+			hx.tip.style.left = Math.round(bb.left + bb.width/2 - bbo.left + svg.scrollLeft)+'px';
+			hx.tip.style.top = Math.round(bb.top + bb.height/2 - bbo.top)+'px';
 		}
-		format = fields.options[fields.selectedIndex].getAttribute('data-format');
-		v = data[r][fields.value];
-		v = format.replace(/\{\{v\}\}/g,v);
-		for(f in data[r]){
-			regex = new RegExp("{{"+f+"}}","g");
-			v = v.replace(regex,data[r][f]);
-		}
-		// Update contents of tooltip
-		tip.innerHTML = data[r].Name+'<br />'+v;
-		// Update position of tooltip
-		bb = hex.getBoundingClientRect();
-		bbo = svg.getBoundingClientRect();
-		tip.style.left = Math.round(bb.left + bb.width/2 - bbo.left + svg.scrollLeft)+'px';
-		tip.style.top = Math.round(bb.top + bb.height/2 - bbo.top)+'px';
+		return;
 	}
-	fields.addEventListener('change',function(e){ updateHexmap(); });
 
-	console.log(fields.value)
-	// Create the hexagon layout
-	hexmap = new ODI.hexmap(document.getElementById('hexmap'),{
-		// The HexJSON layout
-		'hexjson':'data/msoa_yorkshireandhumber.hexjson',
-		// Once we've loaded the map the ready function is called
-		'ready':function(){
-			// Load the data
-			ODI.ajax('data/msoa_lookup.csv',{
-				'this': this, // Set the context to the hexmap
-				'dataType':'text',
-				'success':function(d){
-					d = CSV2JSON(d);
-					for(i = 0; i < d.length; i++){
-						if(d[i].MSOA11CD){
-							if(!data[d[i].MSOA11CD]) data[d[i].MSOA11CD] = {};
-							for(p in d[i]){
-								v = d[i][p];
-								vf = parseFloat(d[i][p]);
-								if(v==vf+'') v = vf;
-								data[d[i].MSOA11CD][p] = v;
-							}
-						}
+	// Load the data
+	ODI.ajax('data/msoa_lookup.csv',{
+		'this': this, // Set the context to the hexmap
+		'dataType':'text',
+		'success':function(d){
+			d = CSV2JSON(d);
+			for(i = 0; i < d.length; i++){
+				if(d[i].MSOA11CD){
+					if(!data[d[i].MSOA11CD]) data[d[i].MSOA11CD] = {};
+					for(p in d[i]){
+						v = d[i][p];
+						vf = parseFloat(d[i][p]);
+						if(v==vf+'') v = vf;
+						data[d[i].MSOA11CD][p] = v;
 					}
-					updateHexmap();
-				},
-				'error':function(e,attr){ this.log('ERROR','Unable to load ',attr.url,attr); }
-			});
-		}
-	});
+				}
+			}
 
-	// Make a tooltip
-	hexmap.on('mouseover',function(e){
-		var svg,bb,bbo;
-		
-		svg = e.data.hexmap.el;
-		hex = e.target;
-		updateTip(e.data.region);
+			for(ab in hexmaps){
+				// Create the hexagon layout
+				hexmaps[ab].map = new ODI.hexmap(hexmaps[ab].el.querySelector('.hexmap'),{
+					// The HexJSON layout
+					'hexjson':'data/msoa_yorkshireandhumber.hexjson',
+					'ab': ab,
+					// Once we've loaded the map the ready function is called
+					'ready':function(attr){
+						updateHexmap(this._attr.ab);
+					}
+				});
+
+				// Make a tooltip
+				hexmaps[ab].map.on('mouseover',{'ab':ab},function(e){ updateTips(e.data.region); });
+			}
+		},
+		'error':function(e,attr){ this.log('ERROR','Unable to load ',attr.url,attr); }
 	});
 });
 
@@ -231,4 +268,18 @@ function CSV2JSON(data,format,start,end){
 		}
 	}
 	return newdata;
+}
+
+function addEvent(ev,el,attr,fn){
+	if(el){
+		if(el.tagName) el = [el];
+		if(typeof fn==="function"){
+			el.forEach(function(elem){
+				elem.addEventListener(ev,function(e){
+					e.data = attr;
+					fn.call(attr['this']||this,e);
+				});
+			});
+		}
+	}
 }
