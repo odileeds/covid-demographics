@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8" />
+	<title>MSOA map | Yorkshire and the Humber</title>
+	<link rel="StyleSheet" href="resources/style.css" type="text/css" />
+	<script src="resources/odi.hexmap.js"></script>
+	<script src="resources/msoa.js"></script>
+</head>
+<body class="b1-bg">
+
+	<header>
+		<div class="b1-bg padded">
+			<div class="holder" style="text-align:center;">
+				<a href="https://odileeds.org/" aria-label="ODI Leeds"><img src="https://odileeds.org/resources/images/odileeds.svg" alt="ODI Leeds" width="250px" height="91px" /></a>
+				<h1>Covid-19 MSOA data</h1>
+			</div>
+		</div>
+	</header>
+
+	<div id="main" class="b6-bg">
+		<div class="holder">
+			<select id="fields">
+				<optgroup label="Demographics">
+				</optgroup>
+				<optgroup label="Vaccines">
+					<option value="1st dose 0-24 %" data-format="{{v}}%" selected=selected>1st dose 0-24 %</option>
+					<option value="1st dose 25-29 %" data-format="{{v}}%" selected=selected>1st dose 25-29 %</option>
+					<option value="1st dose 30-34 %" data-format="{{v}}%" selected=selected>1st dose 30-34 %</option>
+					<option value="1st dose 35-39 %" data-format="{{v}}%" selected=selected>1st dose 35-39 %</option>
+					<option value="1st dose 40-44 %" data-format="{{v}}%" selected=selected>1st dose 40-44 %</option>
+					<option value="1st dose 45-49 %" data-format="{{v}}%" selected=selected>1st dose 45-49 %</option>
+					<option value="1st dose 50-54 %" data-format="{{v}}%" selected=selected>1st dose 50-54 %</option>
+					<option value="1st dose 55-59 %" data-format="{{v}}%" selected=selected>1st dose 55-59 %</option>
+					<option value="1st dose 60-64 %" data-format="{{v}}%" selected=selected>1st dose 60-64 %</option>
+					<option value="1st dose 65-69 %" data-format="{{v}}%" selected=selected>1st dose 65-69 %</option>
+					<option value="1st dose 70-74 %" data-format="{{v}}%" selected=selected>1st dose 70-74 %</option>
+					<option value="1st dose 75-79 %" data-format="{{v}}%" selected=selected>1st dose 75-79 %</option>
+					<option value="1st dose 80+ %" data-format="{{v}}%" selected=selected>1st dose 80+ %</option>
+				</optgroup>
+			</select>
+			<div id="hexmap" class="hexmap"></div>
+		</div>
+	</div>
+
+	<footer class="bottom doublepadded b1-bg">
+		<div class="holder">
+			<h2>About these maps</h2>
+			<p>These <a href="https://github.com/houseofcommonslibrary/uk-hex-cartograms-noncontiguous/blob/main/hexjson/msoa_hex_coords.hexjson">MSOA</a> <a href="https://github.com/odileeds/hexmaps">hex cartogram layouts</a> are created by the House of Commons Library. A hex cartogram gives each area the same visual weight on the map at the expense of geography. This helps make geographically compact (but often big in population) areas more easily visible than a geographic map.</p>
+		</div>
+	</footer>
+
+</body>
+</html>
+	
