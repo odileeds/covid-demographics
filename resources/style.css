@@ -36,7 +36,7 @@ html, body {
 	line-height: 1.44em;
 }
 h1 { font-size: 1.7em; font-weight: 600; }
-h2 { font-size: 1.4em; margin-top: 1.4285em; font-weight: 600; }
+h2 { font-size: 1.4em; font-weight: 600; }
 h3 { font-size: 1.2em; margin-top: 1.666em; }
 h1 + p, h2 + p, h3 + p { margin-top: 1em; }
 strong { font-weight: 700; }
@@ -83,6 +83,7 @@ a.button:hover, button:hover, button:focus, a.button:focus { background-color: #
 .padded { padding: 1em; }
 .padded-bottom { padding: 1em; margin-bottom: 1em; }
 .doublepadded { padding: 2em; }
+.tallpadded { padding: 1em 0; }
 
 
 /* Use CSS Grid */
@@ -112,6 +113,7 @@ path.hex.active {
 	width: 100%;
 	height: 500px;
 	position: relative;
+	margin-top: 1em;
 }
 .hexmap .hexmap-inner { position: relative; }
 .hexmap .tooltip { position: absolute; text-align: center; background: black; color: white; padding: 0.25em 0.5em; transform: translate3d(-50%,1.25em,0); transition: left 0.1s linear, top 0.1s linear; border-radius: 4px; }

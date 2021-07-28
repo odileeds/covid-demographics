@@ -68,14 +68,14 @@ function updateHexmap(ab){
 			}
 		}else if(field=="Rural Urban Classification"){
 			colours = {
-				'Rural village and dispersed in a sparse setting':'#67E767',
-				'Rural village and dispersed':'#67E767',
-				'Rural town and fringe in a sparse setting':'#1DD3A7',
-				'Rural town and fringe':'#1DD3A7',
-				'Urban minor conurbation':'#D73058',
-				'Urban city and town in a sparse setting':'#EF3AAB',
-				'Urban city and town':'#EF3AAB',
-				'Urban major conurbation':'#E6007C'
+				'Rural village and dispersed in a sparse setting':'#01665e',
+				'Rural village and dispersed':'#35978f',
+				'Rural town and fringe in a sparse setting':'#80cdc1',
+				'Rural town and fringe':'#c7eae5',
+				'Urban minor conurbation':'#f6e8c3',
+				'Urban city and town in a sparse setting':'#dfc27d',
+				'Urban city and town':'#bf812d',
+				'Urban major conurbation':'#8c510a'
 			};
 		}
 		hexmaps[ab].map.updateColours(function(r){ return colours[data[r][field]]||'#444'; });
