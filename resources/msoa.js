@@ -101,6 +101,7 @@ function updateTips(r){
 				delete hexmaps[ab].tip;
 			}
 		}
+		region = "";
 		return;
 	}
 	region = r;
