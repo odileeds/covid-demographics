@@ -6,6 +6,7 @@ on:
   push:
     paths:
       - .github/workflows/flat.yml
+      - ./scripts/extract-vaccination-sites.ts
 jobs:
   scheduled:
     runs-on: ubuntu-latest
@@ -21,3 +22,4 @@ jobs:
         with:
           http_url: https://www.england.nhs.uk/coronavirus/wp-content/uploads/sites/52/2021/01/list-of-vaccination-sites-21-July-2021.xlsx
           downloaded_filename: data/vaccination-sites.xlsx
+          postprocess: ./scripts/extract-vaccination-sites.ts
