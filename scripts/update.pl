@@ -14,6 +14,7 @@ use JSON::XS;
 $datadir = $dir."../data/";
 $hexjson = $datadir."msoa_hex_coords.hexjson";
 $hexjsonsmall = $datadir."msoa_yorkshireandhumber.hexjson";
+$hexjsonsmalldet = $datadir."msoa_yorkshireandhumber-details.hexjson";
 $traveltime = $datadir."temp/TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
 $datafile = $datadir."msoa_lookup.csv";
 $casesfile = $datadir."temp/cases-phe-msoa.csv";
@@ -33,10 +34,12 @@ close(FILE);
 
 %data;
 @output = "";
+@outputdet = "";
 for($i = 0; $i < @lines; $i++){
 	if($lines[$i] =~ /"msoa_code":"([^\"]*)"/){
 		$id = $1;
 		if($lines[$i] =~ /"region_nation":"Yorkshire and The Humber"/){
+			push(@outputdet,$lines[$i]);
 			$data{$id} = {};
 			if($lines[$i] =~ s/\,"ltla_code":"([^\"]*)"//){
 				$data{$id}{'ltla'} = $1;
@@ -68,16 +71,26 @@ for($i = 0; $i < @lines; $i++){
 		}
 	}else{
 		push(@output,$lines[$i]);
+		push(@outputdet,$lines[$i]);
 	}
 }
 
-# Save truncated HexJSON
-$str = join("",@output);
-$str =~ s/\,\n\}\}$/\n\}\}/;
-open(FILE,">",$hexjsonsmall);
-print FILE $str;
-close(FILE);
-
+# Only update if we haven't already got the processed versions
+if(!-e $hexjsonsmall){
+	# Save truncated HexJSON
+	$str = join("",@output);
+	$str =~ s/\,\n\}\}$/\n\}\}/;
+	open(FILE,">",$hexjsonsmall);
+	print FILE $str;
+	close(FILE);
+}
+if(!-e $hexjsonsmalldet){
+	$str = join("",@outputdet);
+	$str =~ s/\,\n\}\}$/\n\}\}/;
+	open(FILE,">",$hexjsonsmalldet);
+	print FILE $str;
+	close(FILE);
+}
 
 #################################
 # Population (NIMS)
