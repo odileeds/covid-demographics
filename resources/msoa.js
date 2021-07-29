@@ -5,9 +5,11 @@ function ColourScale(c){
 	s = c;
 	n = s.length;
 	// Get a colour given a value, and the range minimum/maximum
-	this.getValue = function(v,min,max,attr,r){
+	this.getValue = function(v,min,max,attr){
 		if(!attr) attr = {};
-		if(v=="" || typeof v!=="number") return attr.missing||'#999';
+		if(typeof v!=="number"){
+			return attr.missing||'#999';
+		}
 		if(min==max) return attr.norange||'#999';
 		var c,a,b;
 		v = (v-min)/(max-min);
@@ -139,7 +141,7 @@ function updateHexmap(ab){
 			}
 		}
 		// Update hex map colours
-		hexmaps[ab].map.updateColours(function(r){ return viridis.getValue(data[r][field],min,max,attr,r); });
+		hexmaps[ab].map.updateColours(function(r){ return viridis.getValue(data[r][field],min,max,attr); });
 	}
 	// Update any tooltips
 	updateTips(region);
@@ -186,7 +188,7 @@ function updateTips(r){
 	return;
 }
 function replacePattern(txt,v,props){
-	txt = txt.replace(/\{\{v\}\}/g,v||"?");
+	txt = txt.replace(/\{\{v\}\}/g,v);
 	for(f in props){
 		regex = new RegExp("{{"+f+"}}","g");
 		txt = txt.replace(regex,props[f]);
@@ -218,13 +220,14 @@ ODI.ready(function(){
 					if(!data[d[i].MSOA11CD]) data[d[i].MSOA11CD] = {};
 					for(p in d[i]){
 						v = d[i][p];
-						vf = parseFloat(d[i][p]);
-						if(v==vf+'' || v==vf+'.0') v = vf;
+						if(d[i][p]!=""){
+							vf = parseFloat(d[i][p]);
+							if(v==vf+'' || v==vf+'.0') v = vf;
+						}
 						data[d[i].MSOA11CD][p] = v;
 					}
 				}
 			}
-
 			for(ab in hexmaps){
 				// Create the hexagon layout
 				hexmaps[ab].map = new ODI.hexmap(hexmaps[ab].el.querySelector('.hexmap'),{

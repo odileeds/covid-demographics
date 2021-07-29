@@ -116,8 +116,7 @@ foreach $msoa (sort(keys(%vaccines))){
 			$r = $1;
 		}
 		if($r){
-			$vaccines{$msoa}{$key." %"} = sprintf("%0.1f",100*$vaccines{$msoa}{$key}/$nims{$msoa}{$r});
-			#print "$msoa - $key - $r - $nims{$msoa}{$r}\n";
+			$vaccines{$msoa}{$key." %"} = ($vaccines{$msoa}{$key} eq "" ? "" : sprintf("%0.1f",100*$vaccines{$msoa}{$key}/$nims{$msoa}{$r}));
 		}
 	}
 }
