@@ -60,9 +60,9 @@ var options = {
 	"2nd dose 75-79 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
 	"2nd dose 80+ %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
 	"Travel time by WALK":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999","range":[0,60]},
-	"Travel time by BICYCLE":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999"},
-	"Travel time by TRANSIT,WALK":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999"},
-	"Travel time by CAR":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999"}
+	"Travel time by BICYCLE":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999","range":[0,60]},
+	"Travel time by TRANSIT,WALK":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999","range":[0,60]},
+	"Travel time by CAR":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999","range":[0,60]}
 }
 
 function updateHexmap(ab){
