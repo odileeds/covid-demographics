@@ -105,7 +105,7 @@ ul.grid > li > a { display:block; height: 100%; padding: 1.5em; text-decoration:
 ul.grid > li.fullwidth { grid-column: auto / span 4; }
 ul.grid > li > a *:first-child { margin-top:0px; }
 ul.grid > li > a *:last-child { margin-bottom:0px; }
-svg { overflow: show; }
+svg { overflow: visible; }
 path.hex.active {
 	stroke: black;
 	stroke-width: 4;
@@ -124,7 +124,7 @@ path.hex.active {
 .hexmap .tooltip { position: absolute; filter: drop-shadow(0 0 2px rgba(255,255,255,0.6)); text-align: center; background: black; color: white; padding: 0.25em 0.5em; transform: translate3d(-50%,1.25em,0); transition: left 0.1s linear, top 0.1s linear; border-radius: 4px; }
 .hexmap .tooltip::after { content: ""; position: absolute; bottom: auto; width: 0; height: 0; border: 0.5em solid transparent; left: 50%; top: 0%; transform: translate3d(-50%,-100%,0); border-color: transparent; border-bottom-color: black; }
 .hexmap .tooltip a, .hexmap .tooltip a:visited { color: inherit; }
-input,select { font-size: 1em; height: 2em; }
+input,select { font-size: 1em; height: 2em; max-width: 100%; }
 .small { font-size: 0.7em; }
 
 .key .bar {
@@ -148,7 +148,7 @@ input,select { font-size: 1em; height: 2em; }
 }
 
 @media only screen and (max-width: 1080px) {
-	ul.grid { grid-template-columns: 1fr; }
+	ul.grid { grid-template-columns: 100%; }
 	.doublepadded { padding: 1em; }
 }
 
