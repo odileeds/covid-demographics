@@ -121,7 +121,7 @@ path.hex.active {
 	margin-top: 1em;
 }
 .hexmap .hexmap-inner { position: relative; }
-.hexmap .tooltip { position: absolute; text-align: center; background: black; color: white; padding: 0.25em 0.5em; transform: translate3d(-50%,1.25em,0); transition: left 0.1s linear, top 0.1s linear; border-radius: 4px; }
+.hexmap .tooltip { position: absolute; filter: drop-shadow(0 0 2px rgba(255,255,255,0.6)); text-align: center; background: black; color: white; padding: 0.25em 0.5em; transform: translate3d(-50%,1.25em,0); transition: left 0.1s linear, top 0.1s linear; border-radius: 4px; }
 .hexmap .tooltip::after { content: ""; position: absolute; bottom: auto; width: 0; height: 0; border: 0.5em solid transparent; left: 50%; top: 0%; transform: translate3d(-50%,-100%,0); border-color: transparent; border-bottom-color: black; }
 .hexmap .tooltip a, .hexmap .tooltip a:visited { color: inherit; }
 input,select { font-size: 1em; height: 2em; }
