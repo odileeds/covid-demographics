@@ -104,6 +104,8 @@ if(!-e $file || (time() - (stat $file)[9] >= 86400/2)){
 	`wget -q --no-check-certificate -O $file "$url"`;
 }
 %vaccines = getCSV($file,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD'}});
+$url = "https://raw.githubusercontent.com/odileeds/covid-19/main/vaccines/data/vaccinations-MSOA-latest.txt";
+$datevac = `wget -q --no-check-certificate -O- "$url"`;
 foreach $msoa (sort(keys(%vaccines))){
 	foreach $key (sort(keys(%{$vaccines{$msoa}}))){
 		$r = "";
@@ -189,7 +191,7 @@ foreach $msoa (keys(%data)){
 	$vacsites{$msoa} = 0;
 	$travel{$msoa} = {};
 	foreach $mode (keys(%modes)){
-		$travel{$msoa}{$mode} = 60;
+		$travel{$msoa}{$mode} = 1000;
 	}
 }
 foreach $line (@lines){
@@ -249,7 +251,7 @@ foreach $msoa (sort(keys(%data))){
 	#$csv .= "\,".$nims{$msoa}{'18-24 pc'};
 	$csv .= "\,".($vacsites{$msoa});
 	foreach $mode (keys(%modes)){
-		$csv .= "\,".($travel{$msoa}{$mode});
+		$csv .= "\,".($travel{$msoa}{$mode}==1000 ? '':$travel{$msoa}{$mode});
 	}
 	$csv .= "\n";
 }

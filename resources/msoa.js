@@ -1,10 +1,14 @@
 // Define a colour scale helper function
 function ColourScale(c){
+	// Version 1.1
 	var s,n;
 	s = c;
 	n = s.length;
 	// Get a colour given a value, and the range minimum/maximum
-	this.getValue = function(v,min,max){
+	this.getValue = function(v,min,max,attr,r){
+		if(!attr) attr = {};
+		if(v=="" || typeof v!=="number") return attr.missing||'#999';
+		if(min==max) return attr.norange||'#999';
 		var c,a,b;
 		v = (v-min)/(max-min);
 		if(v<0) return 'rgb('+s[0].rgb.join(',')+')';
@@ -23,9 +27,43 @@ function ColourScale(c){
 }
 
 // Define the Viridis colour scale
-viridis = new ColourScale([{'rgb':[68,1,84],v:0},{'rgb':[72,35,116],'v':0.1},{'rgb':[64,67,135],'v':0.2},{'rgb':[52,94,141],'v':0.3},{'rgb':[41,120,142],'v':0.4},{'rgb':[32,143,140],'v':0.5},{'rgb':[34,167,132],'v':0.6},{'rgb':[66,190,113],'v':0.7},{'rgb':[121,209,81],'v':0.8},{'rgb':[186,222,39],'v':0.9},{'rgb':[253,231,36],'v':1}]);
+viridis = new ColourScale([{'rgb':[68,1,84],v:0},{'rgb':[72,35,116],'v':0.1},{'rgb':[64,67,135],'v':0.2},{'rgb':[52,94,141],'v':0.3},{'rgb':[41,120,142],'v':0.4},{'rgb':[32,143,140],'v':0.5},{'rgb':[34,167,132],'v':0.6},{'rgb':[66,190,113],'v':0.7},{'rgb':[121,209,81],'v':0.8},{'rgb':[186,222,39],'v':0.9},{'rgb':[253,231,36],'v':1}],{missing:'#999'});
 var region,data,hexmaps,h;
 data = {};
+var options = {
+	"1st dose Under 18 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 18-24 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 25-29 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 30-34 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 35-39 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 40-44 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 45-49 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 50-54 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 55-59 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 60-64 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 65-69 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 70-74 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 75-79 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"1st dose 80+ %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose Under 18 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 18-24 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 25-29 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 30-34 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 35-39 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 40-44 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 45-49 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 50-54 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 55-59 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 60-64 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 65-69 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 70-74 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 75-79 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"2nd dose 80+ %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers" }else{ return "{{v}}% (as of {{Vac date}})" }},"range":[0,100]},
+	"Travel time by WALK":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999","range":[0,60]},
+	"Travel time by BICYCLE":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999"},
+	"Travel time by TRANSIT,WALK":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999"},
+	"Travel time by CAR":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999"}
+}
 
 function updateHexmap(ab){
 	var min = 1e100;
@@ -42,7 +80,8 @@ function updateHexmap(ab){
 		}
 		n++;
 	}
-	if(cat > 0){
+	// If more than half the values seem to be categories
+	if(cat > n/2){
 		console.log(categories,cat,n)
 		if(field=="LTLA"){
 			colours = {
@@ -87,8 +126,20 @@ function updateHexmap(ab){
 			min = Math.min(data[r][field],min);
 			max = Math.max(data[r][field],max);
 		}
+		attr = {};
+		if(options[field]){
+			if(options[field].missing){
+				attr.missing = options[field].missing;
+				attr.norange = options[field].missing;
+			}
+			// If we've specified a range we use that
+			if(options[field].range){
+				min = options[field].range[0];
+				max = options[field].range[1];
+			}
+		}
 		// Update hex map colours
-		hexmaps[ab].map.updateColours(function(r){ return (min!=max ? viridis.getValue(data[r][field],min,max) : '#444'); });
+		hexmaps[ab].map.updateColours(function(r){ return viridis.getValue(data[r][field],min,max,attr,r); });
 	}
 	// Update any tooltips
 	updateTips(region);
@@ -120,13 +171,10 @@ function updateTips(r){
 			hx.tip.classList.add('tooltip');
 			svg.appendChild(hx.tip);
 		}
-		format = hx.select.options[hx.select.selectedIndex].getAttribute('data-format');
-		v = data[r][hx.select.value];
-		v = format.replace(/\{\{v\}\}/g,v);
-		for(f in data[r]){
-			regex = new RegExp("{{"+f+"}}","g");
-			v = v.replace(regex,data[r][f]);
-		}
+		v = hx.select.options[hx.select.selectedIndex].getAttribute('data-format');
+		if(options[hx.select.value] && typeof options[hx.select.value].format==="function") v = options[hx.select.value].format;
+		if(typeof v==="function") v = v.call(this,data[r][hx.select.value],data[r]);
+		v = replacePattern(v,data[r][hx.select.value],data[r]);
 		// Update contents of tooltip
 		hx.tip.innerHTML = data[r].Name+'<br />'+v;
 		// Update position of tooltip
@@ -137,7 +185,14 @@ function updateTips(r){
 	}
 	return;
 }
-
+function replacePattern(txt,v,props){
+	txt = txt.replace(/\{\{v\}\}/g,v||"?");
+	for(f in props){
+		regex = new RegExp("{{"+f+"}}","g");
+		txt = txt.replace(regex,props[f]);
+	}
+	return txt;
+}
 
 ODI.ready(function(){
 	var h = 0;
