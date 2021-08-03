@@ -131,12 +131,11 @@
 			}
 		}
 
-
 		this.updateSelect = function(ab,v){
 			if(ab != "a" && ab != "b"){
 				console.error('AB is not valid',ab);
 			}else{
-				this.hexmaps[ab].select = v;
+				setOption(this.hexmaps[ab].select,v);
 				this.updateHexmap(ab);
 			}
 			return this;
@@ -237,31 +236,30 @@
 			}
 			this.region = r;
 			
-			var svg,hx,hex,v,bb,bbo;
+			var svg,hex,v,bb,bbo;
 
 			for(ab in this.hexmaps){
-				hx = this.hexmaps[ab];
-				svg = hx.map.el;
-				hex = hx.map.areas[r].hex;
+				svg = this.hexmaps[ab].map.el;
+				hex = this.hexmaps[ab].map.areas[r].hex;
 				// Get any existing tooltip for this hexmap
-				hx.tip = svg.querySelector('.tooltip');
-				if(!hx.tip){
+				this.hexmaps[ab].tip = svg.querySelector('.tooltip');
+				if(!this.hexmaps[ab].tip){
 					// Add a new tooltip
-					hx.tip = document.createElement('div');
-					hx.tip.classList.add('tooltip');
-					svg.appendChild(hx.tip);
+					this.hexmaps[ab].tip = document.createElement('div');
+					this.hexmaps[ab].tip.classList.add('tooltip');
+					svg.appendChild(this.hexmaps[ab].tip);
 				}
-				v = hx.select.options[hx.select.selectedIndex].getAttribute('data-format');
-				if(options[hx.select.value] && typeof options[hx.select.value].format==="function") v = options[hx.select.value].format;
-				if(typeof v==="function") v = v.call(this,data[r][hx.select.value],data[r]);
-				v = replacePattern(v,data[r][hx.select.value],data[r]);
+				v = this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].getAttribute('data-format');
+				if(options[this.hexmaps[ab].select.value] && typeof options[this.hexmaps[ab].select.value].format==="function") v = options[this.hexmaps[ab].select.value].format;
+				if(typeof v==="function") v = v.call(this,data[r][this.hexmaps[ab].select.value],data[r]);
+				v = replacePattern(v,data[r][this.hexmaps[ab].select.value],data[r]);
 				// Update contents of tooltip
-				hx.tip.innerHTML = data[r].Name+'<br />'+v;
+				this.hexmaps[ab].tip.innerHTML = data[r].Name+'<br />'+v;
 				// Update position of tooltip
 				bb = hex.getBoundingClientRect();
 				bbo = svg.getBoundingClientRect();
-				hx.tip.style.left = Math.round(bb.left + bb.width/2 - bbo.left + svg.scrollLeft)+'px';
-				hx.tip.style.top = Math.round(bb.top + bb.height/2 - bbo.top)+'px';
+				this.hexmaps[ab].tip.style.left = Math.round(bb.left + bb.width/2 - bbo.left + svg.scrollLeft)+'px';
+				this.hexmaps[ab].tip.style.top = Math.round(bb.top + bb.height/2 - bbo.top)+'px';
 			}
 			return;
 		};
@@ -387,6 +385,17 @@
 			}
 		}
 		return newdata;
+	}
+
+	function setOption(selectElement, value){
+		var options = selectElement.options;
+		for(var i = 0, optionsLength = options.length; i < optionsLength; i++){
+			if(options[i].value == value){
+				selectElement.selectedIndex = i;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	function addEvent(ev,el,attr,fn){
