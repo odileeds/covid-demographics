@@ -39,49 +39,50 @@
 	var viridis = new ColourScale([{'rgb':[68,1,84],v:0},{'rgb':[72,35,116],'v':0.1},{'rgb':[64,67,135],'v':0.2},{'rgb':[52,94,141],'v':0.3},{'rgb':[41,120,142],'v':0.4},{'rgb':[32,143,140],'v':0.5},{'rgb':[34,167,132],'v':0.6},{'rgb':[66,190,113],'v':0.7},{'rgb':[121,209,81],'v':0.8},{'rgb':[186,222,39],'v':0.9},{'rgb':[253,231,36],'v':1}],{missing:'#999'});
 	var data = {};
 	var options = {
-		"1st dose Under 18 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 18-24 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 25-29 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 30-34 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 35-39 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 40-44 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 45-49 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 50-54 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 55-59 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 60-64 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 65-69 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 70-74 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 75-79 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"1st dose 80+ %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose Under 18 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 18-24 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 25-29 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 30-34 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 35-39 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 40-44 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 45-49 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 50-54 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 55-59 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 60-64 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 65-69 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 70-74 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 75-79 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"2nd dose 80+ %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
-		"Travel time by WALK":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999","range":[0,60]},
-		"Travel time by BICYCLE":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999","range":[0,60]},
-		"Travel time by TRANSIT,WALK":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999","range":[0,60]},
-		"Travel time by CAR":{"format":function(v,props){ if(v==""){ return "At least 60 mins"; }else{ return "{{v}} mins"; } },"missing":"#999","range":[0,60]}
+		"1st dose Under 18 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 18-24 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 25-29 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 30-34 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 35-39 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 40-44 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 45-49 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 50-54 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 55-59 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 60-64 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 65-69 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 70-74 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 75-79 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"1st dose 80+ %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose Under 18 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 18-24 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 25-29 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 30-34 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 35-39 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 40-44 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 45-49 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 50-54 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 55-59 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 60-64 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 65-69 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 70-74 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 75-79 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"2nd dose 80+ %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
+		"Travel time by WALK":{"format":function(v,props){ if(v==""){ return "{{n}}<br />At least 60 mins"; }else{ return "{{n}}<br />{{v}} mins"; } },"missing":"#999","range":[0,60]},
+		"Travel time by BICYCLE":{"format":function(v,props){ if(v==""){ return "{{n}}<br />At least 60 mins"; }else{ return "{{n}}<br />{{v}} mins"; } },"missing":"#999","range":[0,60]},
+		"Travel time by TRANSIT,WALK":{"format":function(v,props){ if(v==""){ return "{{n}}<br />At least 60 mins"; }else{ return "{{n}}<br />{{v}} mins"; } },"missing":"#999","range":[0,60]},
+		"Travel time by CAR":{"format":function(v,props){ if(v==""){ return "{{n}}<br />At least 60 mins"; }else{ return "{{n}}<br />{{v}} mins"; } },"missing":"#999","range":[0,60]}
 	};
 	
 
 	function replacePattern(txt,v,props){
 		var f,regex;
-		txt = txt.replace(/\{\{v\}\}/g,v);
-		for(f in props){
-			regex = new RegExp("{{"+f+"}}","g");
-			txt = txt.replace(regex,props[f]);
-		}
+		txt = replaceProperty(txt,'v',v);
+		for(f in props) txt = replaceProperty(txt,f,props[f]);
 		return txt;
+	}
+	function replaceProperty(txt,k,v){
+		regex = new RegExp("{{"+k+"}}","g");
+		return txt.replace(regex,v);
 	}
 	function getQueryVariables(){
 		var query = window.location.search.substring(1);
@@ -215,7 +216,7 @@
 					}
 				}
 				// Update hex map colours
-				this.hexmaps[ab].map.updateColours(function(r){ return viridis.getValue(data[r][field],min,max,attr); });
+				this.hexmaps[ab].map.updateColours(function(r){ if(!data[r]){ return "#888"; } return viridis.getValue(data[r][field],min,max,attr); });
 			}
 			// Update any tooltips
 			this.updateTips(this.region);
@@ -251,8 +252,10 @@
 				if(options[this.hexmaps[ab].select.value] && typeof options[this.hexmaps[ab].select.value].format==="function") v = options[this.hexmaps[ab].select.value].format;
 				if(typeof v==="function") v = v.call(this,data[r][this.hexmaps[ab].select.value],data[r]);
 				v = replacePattern(v,data[r][this.hexmaps[ab].select.value],data[r]);
+				v = replaceProperty(v,'n',data[r].Name);
+				v = replaceProperty(v,'id',r);
 				// Update contents of tooltip
-				this.hexmaps[ab].tip.innerHTML = data[r].Name+'<br />'+v;
+				this.hexmaps[ab].tip.innerHTML = v;
 				// Update position of tooltip
 				bb = hex.getBoundingClientRect();
 				bbo = svg.getBoundingClientRect();
@@ -266,6 +269,8 @@
 	}
 
 	ODI.ready(function(){
+
+		ODI.msoa = new MSOA();
 
 		// Load the data
 		ODI.ajax('data/msoa_lookup.csv',{
@@ -287,7 +292,8 @@
 						}
 					}
 				}
-				ODI.msoa = new MSOA();
+				ODI.msoa.updateHexmap('a');
+				ODI.msoa.updateHexmap('b');
 			},
 			'error':function(e,attr){ this.log('ERROR','Unable to load ',attr.url,attr); }
 		});
