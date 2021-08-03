@@ -19,7 +19,9 @@ $hexjsonsmalldet = $datadir."msoa_yorkshireandhumber-details.hexjson";
 $traveltime = $tempdir."TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
 $datafile = $datadir."msoa_lookup.csv";
 $casesfile = $tempdir."cases-phe-msoa.csv";
+$testsfile = $tempdir."tests-ltla.csv";
 $nimsfile = $tempdir."NIMS-MSOA-population.csv";
+$nimsLAfile = $tempdir."NIMS-LTLA-population.csv";
 
 
 @keepvac = ('1st dose Under 18 %','1st dose 18-24 %','1st dose 25-29 %','1st dose 30-34 %','1st dose 35-39 %','1st dose 40-44 %','1st dose 45-49 %','1st dose 50-54 %','1st dose 55-59 %','1st dose 60-64 %','1st dose 65-69 %','1st dose 70-74 %','1st dose 75-79 %','1st dose 80+ %','2nd dose Under 18 %','2nd dose 18-24 %','2nd dose 25-29 %','2nd dose 30-34 %','2nd dose 35-39 %','2nd dose 40-44 %','2nd dose 45-49 %','2nd dose 50-54 %','2nd dose 55-59 %','2nd dose 60-64 %','2nd dose 65-69 %','2nd dose 70-74 %','2nd dose 75-79 %','2nd dose 80+ %');
@@ -36,7 +38,7 @@ if(!-d $tempdir){
 open(FILE,$hexjson);
 @lines = <FILE>;
 close(FILE);
-
+%ltlalookup = {};
 %data;
 @output = "";
 @outputdet = "";
@@ -47,7 +49,12 @@ for($i = 0; $i < @lines; $i++){
 			push(@outputdet,$lines[$i]);
 			$data{$id} = {};
 			if($lines[$i] =~ s/\,"ltla_code":"([^\"]*)"//){
-				$data{$id}{'ltla'} = $1;
+				$ltla = $1;
+				$data{$id}{'ltla'} = $ltla;
+				if(!$ltlalookup{$ltla}){
+					$ltlalookup{$ltla} = {};
+				}
+				$ltlalookup{$ltla}{$id} = 1;
 			}
 			if($lines[$i] =~ s/\,"ltla_name":"([^\"]*)"//){
 				$data{$id}{'ltla_name'} = $1;
@@ -98,20 +105,89 @@ if(!-e $hexjsonsmalldet){
 }
 
 #################################
-# Population (NIMS)
-$url = "https://raw.githubusercontent.com/odileeds/covid-19/main/vaccines/data/NIMS-MSOA-population.csv";
+# Population (NIMS) for MSOAs
 # If older than 3 days
 if(!-e $nimsfile || (time() - (stat $nimsfile)[9] >= 3*86400)){
+	$url = "https://raw.githubusercontent.com/odileeds/covid-19/main/vaccines/data/NIMS-MSOA-population.csv";
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $nimsfile "$url"`;
 }
+if(!-e $nimsLAfile || (time() - (stat $nimsLAfile)[9] >= 3*86400)){
+	$url = "https://raw.githubusercontent.com/odileeds/covid-19/main/vaccines/data/NIMS-LTLA-population.csv";
+	print "Getting $url\n";
+	`wget -q --no-check-certificate -O $nimsLAfile "$url"`;
+}
 %nims = getCSV($nimsfile,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD'}});
+%nimsLA = getCSV($nimsLAfile,{'id'=>'LADCD','map'=>{'LTLA Code'=>'LADCD'}});
 foreach $msoa (keys(%nims)){
 	$nims{$msoa}{'All'} = $nims{$msoa}{'Under 18'}+$nims{$msoa}{'18+'};
 	if(!$nims{$msoa}{'Under 25'}){
 		$nims{$msoa}{'Under 25'} = $nims{$msoa}{'Under 18'}+$nims{$msoa}{'18-24'};
 	}
 	$nims{$msoa}{'18-24 pc'} = sprintf("%0.2f",100*$nims{$msoa}{'18-24'}/$nims{$msoa}{'All'});
+}
+foreach $ltla (keys(%nimsLA)){
+	$nimsLA{$ltla}{'All'} = $nimsLA{$ltla}{'Under 18'}+$nimsLA{$ltla}{'18+'};
+}
+
+
+################################
+# Test data
+%testsLA;
+%tests;
+if(!-e $testsfile || (time() - (stat $testsfile)[9] >= 86400/2)){
+	$url = "https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=uniqueCasePositivityBySpecimenDateRollingSum&metric=uniquePeopleTestedBySpecimenDateRollingSum&metric=newLFDTests&format=csv";
+	print "Getting $url\n";
+	`wget -q --no-check-certificate -O $testsfile "$url"`;
+}
+open(FILE,$testsfile);
+while(<FILE>){
+	$line = $_;
+	$line =~ s/[\n\r]//g;
+	($areaCode,$areaName,$areaType,$date,$newLFDTests,$uniqueCasePositivityBySpecimenDateRollingSum,$uniquePeopleTestedBySpecimenDateRollingSum) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$line);
+	if(!$testsLA{$areaCode}){
+		$testsLA{$areaCode} = {'dates'=>{},'recent'=>{'PCR'=>'','LFD'=>''}};
+	}
+	if(!$testsLA{$areaCode}{'dates'}{$date}){
+		$testsLA{$areaCode}{'dates'}{$date} = {'LFD'=>-1,'PCR'=>-1,'positivity'=>-1};
+	}
+	if($newLFDTests ne ""){
+		$testsLA{$areaCode}{'dates'}{$date}{'LFD'} = $newLFDTests;
+		if($date gt $testsLA{$areaCode}{'recent'}{'LFD'}){
+			$testsLA{$areaCode}{'recent'}{'LFD'} = $date;
+		}
+	}
+	if($uniqueCasePositivityBySpecimenDateRollingSum ne ""){
+		$testsLA{$areaCode}{'dates'}{$date}{'positivity'} = $uniqueCasePositivityBySpecimenDateRollingSum;
+		if($date gt $testsLA{$areaCode}{'recent'}{'PCR'}){
+			$testsLA{$areaCode}{'recent'}{'PCR'} = $date;
+		}
+	}
+	if($uniquePeopleTestedBySpecimenDateRollingSum ne ""){
+		$testsLA{$areaCode}{'dates'}{$date}{'PCR'} = $uniquePeopleTestedBySpecimenDateRollingSum;
+		if($date gt $testsLA{$areaCode}{'recent'}{'PCR'}){
+			$testsLA{$areaCode}{'recent'}{'PCR'} = $date;
+		}
+	}
+}
+close(FILE);
+foreach $ltla (sort(keys(%testsLA))){
+	if($ltlalookup{$ltla}){
+		foreach $msoa (sort(keys(%{$ltlalookup{$ltla}}))){
+			$pcrdate = $testsLA{$ltla}{'recent'}{'PCR'};
+			$lfddate = $testsLA{$ltla}{'recent'}{'LFD'};
+			$tests{$msoa} = {
+				'LAD'=>$ltla,
+				'positivity'=>$testsLA{$ltla}{'dates'}{$pcrdate}{'positivity'},
+				'PCR'=>$testsLA{$ltla}{'dates'}{$pcrdate}{'PCR'},
+				'PCRper100k'=>sprintf("%0.1f",$testsLA{$ltla}{'dates'}{$pcrdate}{'PCR'}*1e5/$nimsLA{$ltla}{'All'}),
+				'PCRdate'=>$pcrdate,
+				'LFD'=>$testsLA{$ltla}{'dates'}{$lfddate}{'LFD'},
+				'LFDper100k'=>sprintf("%0.1f",$testsLA{$ltla}{'dates'}{$pcrdate}{'LFD'}*1e5/$nimsLA{$ltla}{'All'}),
+				'LFDdate'=>$lfddate
+			};
+		}
+	}
 }
 
 
@@ -150,8 +226,8 @@ foreach $msoa (sort(keys(%vaccines))){
 #################################
 # Cases data
 %cases;
-$url = "https://api.coronavirus.data.gov.uk/v2/data?areaType=msoa&areaCode=E12000003&metric=newCasesBySpecimenDateRollingRate&metric=newCasesBySpecimenDateChange&metric=newCasesBySpecimenDateRollingSum&format=csv";
 if(!-e $casesfile || (time() - (stat $casesfile)[9] >= 86400/2)){
+	$url = "https://api.coronavirus.data.gov.uk/v2/data?areaType=msoa&areaCode=E12000003&metric=newCasesBySpecimenDateRollingRate&metric=newCasesBySpecimenDateChange&metric=newCasesBySpecimenDateRollingSum&format=csv";
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $casesfile "$url"`;
 }
@@ -170,15 +246,13 @@ while(<FILE>){
 close(FILE);
 
 
-
-
 #################################
 # Travel times
 #OriginName,DestinationName,Mode,Minutes
 #E02002303,E02002604,CAR,60
 %traveltimes;
-$url = "https://github.com/odileeds/OpenJourneyTime/raw/master/TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
 if(!-e $traveltime){
+	$url = "https://github.com/odileeds/OpenJourneyTime/raw/master/TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $traveltime "$url"`;
 }
@@ -258,6 +332,8 @@ $csv .= ",Vaccination sites";
 foreach $mode (keys(%modes)){
 	$csv .= ",\"Travel time by $mode\"";
 }
+$csv .= "\,PCR date\,PCR - 7 days\,PCR per 100k - 7 days,PCR positivity % - 7 days";
+$csv .= "\,LFD date\,LFD\,LFD per 100k";
 $csv .= "\n";
 foreach $msoa (sort(keys(%data))){
 	$csv .= "$msoa,\"$data{$msoa}{'msoa_name_hcl'}\",$data{$msoa}{'ltla'},\"$data{$msoa}{'ltla_name'}\",$data{$msoa}{'utla'},$datevac";
@@ -276,6 +352,8 @@ foreach $msoa (sort(keys(%data))){
 	foreach $mode (keys(%modes)){
 		$csv .= "\,".($travel{$msoa}{$mode}==1000 ? '':$travel{$msoa}{$mode});
 	}
+	$csv .= "\,$tests{$msoa}{'PCRdate'}\,$tests{$msoa}{'PCR'}\,$tests{$msoa}{'PCRper100k'}\,$tests{$msoa}{'positivity'}";
+	$csv .= "\,$tests{$msoa}{'LFDdate'}\,$tests{$msoa}{'LFD'}\,$tests{$msoa}{'LFDper100k'}";
 	$csv .= "\n";
 }
 

@@ -37,8 +37,7 @@
 
 	// Define the Viridis colour scale
 	var viridis = new ColourScale([{'rgb':[68,1,84],v:0},{'rgb':[72,35,116],'v':0.1},{'rgb':[64,67,135],'v':0.2},{'rgb':[52,94,141],'v':0.3},{'rgb':[41,120,142],'v':0.4},{'rgb':[32,143,140],'v':0.5},{'rgb':[34,167,132],'v':0.6},{'rgb':[66,190,113],'v':0.7},{'rgb':[121,209,81],'v':0.8},{'rgb':[186,222,39],'v':0.9},{'rgb':[253,231,36],'v':1}],{missing:'#999'});
-	var data;
-	data = {};
+	var data = {};
 	var options = {
 		"1st dose Under 18 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
 		"1st dose 18-24 %":{"format":function(v,props){ if(v==""){ return "Figures suppressed due to small numbers"; }else{ return "{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
@@ -160,7 +159,6 @@
 			}
 			// If more than half the values seem to be categories
 			if(cat > n/2){
-				console.log(categories,cat,n);
 				if(field=="LTLA"){
 					colours = {
 						'E08000016':'#67E767',
