@@ -74,10 +74,8 @@
 	};
 	
 
-	function replacePattern(txt,v,props){
-		var f,regex;
-		txt = replaceProperty(txt,'v',v);
-		for(f in props) txt = replaceProperty(txt,f,props[f]);
+	function replacePattern(txt,props){
+		for(var f in props) txt = replaceProperty(txt,f,props[f]);
 		return txt;
 	}
 	function replaceProperty(txt,k,v){
@@ -251,9 +249,13 @@
 				v = this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].getAttribute('data-format');
 				if(options[this.hexmaps[ab].select.value] && typeof options[this.hexmaps[ab].select.value].format==="function") v = options[this.hexmaps[ab].select.value].format;
 				if(typeof v==="function") v = v.call(this,data[r][this.hexmaps[ab].select.value],data[r]);
-				v = replacePattern(v,data[r][this.hexmaps[ab].select.value],data[r]);
-				v = replaceProperty(v,'n',data[r].Name);
 				v = replaceProperty(v,'id',r);
+				if(data[r]){
+					v = replaceProperty(v,'v',data[r][this.hexmaps[ab].select.value]);
+					v = replaceProperty(v,'n',data[r].Name);
+					v = replacePattern(v,data[r]);
+				}
+
 				// Update contents of tooltip
 				this.hexmaps[ab].tip.innerHTML = v;
 				// Update position of tooltip
