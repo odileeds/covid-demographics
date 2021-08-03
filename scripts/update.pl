@@ -103,6 +103,9 @@ if(!-e $nimsfile || (time() - (stat $nimsfile)[9] >= 3*86400)){
 %nims = getCSV($nimsfile,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD'}});
 foreach $msoa (keys(%nims)){
 	$nims{$msoa}{'All'} = $nims{$msoa}{'Under 18'}+$nims{$msoa}{'18+'};
+	if(!$nims{$msoa}{'Under 25'}){
+		$nims{$msoa}{'Under 25'} = $nims{$msoa}{'Under 18'}+$nims{$msoa}{'18-24'};
+	}
 	$nims{$msoa}{'18-24 pc'} = sprintf("%0.2f",100*$nims{$msoa}{'18-24'}/$nims{$msoa}{'All'});
 }
 
@@ -129,6 +132,9 @@ foreach $msoa (sort(keys(%vaccines))){
 			$r = $1;
 		}
 		if($r){
+			if($nims{$msoa}{$r}==0){
+				print "$msoa / $r / $nims{$msoa}{$r}\n";
+			}
 			$vaccines{$msoa}{$key." %"} = ($vaccines{$msoa}{$key} eq "" ? "" : sprintf("%0.1f",100*$vaccines{$msoa}{$key}/$nims{$msoa}{$r}));
 		}
 	}
