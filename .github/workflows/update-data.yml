@@ -10,9 +10,9 @@ on:
   push:
     paths:
       - scripts/update.pl
-        data/msoa_hex_coords.hexjson
-        data/msoa_yorkshireandhumber.hexjson
-        .github/workflows/update-data.yml
+      - data/msoa_hex_coords.hexjson
+      - data/msoa_yorkshireandhumber.hexjson
+      - .github/workflows/update-data.yml
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch: {}
