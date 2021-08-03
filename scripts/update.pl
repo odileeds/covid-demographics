@@ -177,7 +177,7 @@ close(FILE);
 #OriginName,DestinationName,Mode,Minutes
 #E02002303,E02002604,CAR,60
 %traveltimes;
-$url = "https://github.com/odileeds/OpenJourneyTime/blob/master/TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
+$url = "https://github.com/odileeds/OpenJourneyTime/raw/master/TravelTimesNorthEngland_MSOAtoMSOA_NoLatLng__ToArriveBy_0830am_20191009.csv";
 if(!-e $traveltime){
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $traveltime "$url"`;
