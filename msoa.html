@@ -104,11 +104,11 @@
 						<option value="2nd dose 80+ %">2nd dose 80+ (%)</option>
 					</optgroup>
 					<optgroup label="Vaccination sites">
-						<option value="Vaccination sites" data-format="{{v}} sites (<a href='data/vaccination-centres.csv'>check the list</a>)">Vaccination sites (number)</option>
-						<option value="Travel time by WALK" data-format="{{v}} mins">Travel time by walking (minutes)</option>
-						<option value="Travel time by BICYCLE" data-format="{{v}} mins">Travel time by bicycle (minutes)</option>
-						<option value="Travel time by TRANSIT,WALK" data-format="{{v}} mins">Travel time by transit/walking (minutes)</option>
-						<option value="Travel time by CAR" data-format="{{v}} mins">Travel time by car (minutes)</option>
+						<option value="Vaccination sites" data-format="{{n}}<br />{{v}} sites (<a href='data/vaccination-centres.csv'>check the list</a>)">Vaccination sites (number)</option>
+						<option value="Travel time by WALK" data-format="{{n}}<br />{{v}} mins">Travel time by walking (minutes)</option>
+						<option value="Travel time by BICYCLE" data-format="{{n}}<br />{{v}} mins">Travel time by bicycle (minutes)</option>
+						<option value="Travel time by TRANSIT,WALK" data-format="{{n}}<br />{{v}} mins">Travel time by transit/walking (minutes)</option>
+						<option value="Travel time by CAR" data-format="{{n}}<br />{{v}} mins">Travel time by car (minutes)</option>
 					</optgroup>
 					</select>
 					<div class="hexmap"></div>
@@ -117,37 +117,37 @@
 					<label for="fields">View map 2 by</label>: <select id="fields2">
 					<option value="LTLA" data-format="{{LTLA name}}">Local Authority</option>
 					<optgroup label="Demographics - Deprivation">
-						<option value="Rural Urban Classification" data-format="{{v}}">Rural Urban Classification</option>
-						<option value="IMD Score, 2019" data-format="{{v}}">IMD Score, 2019</option>
-						<option value="Income deprivation, English Indices of Deprivation, 2019" data-format="{{v}} %">Income deprivation, English Indices of Deprivation, 2019 (%)</option>
-						<option value="Income Deprivation, Number of people" data-format="{{v}}">Income Deprivation, Number of people</option>
-						<option value="Unemployment" data-format="{{v}}%">Unemployment (%)</option>
-						<option value="Long term unemployment" data-format="{{v}} per 1000">Long term unemployment (per 1000)</option>
-						<option value="Fuel Poverty, 2018" data-format="{{v}}%">Fuel Poverty, 2018 (%)</option>
-						<option value="Proportion of households in poverty" data-format="{{v}}%">Proportion of households in poverty (%)</option>
-						<option value="Overcrowded houses, 2011" data-format="{{v}}%">Overcrowded houses, 2011 (%)</option>
-						<option value="Older people living alone" data-format="{{v}}%">Older people living alone (%)</option>
-						<option value="Older People in Deprivation, Number of older people" data-format="{{v}}">Older People in Deprivation, Number of older people</option>
-						<option value="Older People in Deprivation, English Indices of Deprivation, 2019" data-format="{{v}}%">Older People in Deprivation, English Indices of Deprivation, 2019 (%)</option>
-						<option value="Child Poverty, English Indices of Deprivation, 2019" data-format="{{v}}%">Child Poverty, English Indices of Deprivation, 2019 (%)</option>
-						<option value="Child Poverty, Number of children" data-format="{{v}}%">Child Poverty, Number of children (%)</option>
+						<option value="Rural Urban Classification" data-format="{{n}}<br />{{v}}">Rural Urban Classification</option>
+						<option value="IMD Score, 2019" data-format="{{n}}<br />{{v}}">IMD Score, 2019</option>
+						<option value="Income deprivation, English Indices of Deprivation, 2019" data-format="{{n}}<br />{{v}} %">Income deprivation, English Indices of Deprivation, 2019 (%)</option>
+						<option value="Income Deprivation, Number of people" data-format="{{n}}<br />{{v}}">Income Deprivation, Number of people</option>
+						<option value="Unemployment" data-format="{{n}}<br />{{v}}%">Unemployment (%)</option>
+						<option value="Long term unemployment" data-format="{{n}}<br />{{v}} per 1000">Long term unemployment (per 1000)</option>
+						<option value="Fuel Poverty, 2018" data-format="{{n}}<br />{{v}}%">Fuel Poverty, 2018 (%)</option>
+						<option value="Proportion of households in poverty" data-format="{{n}}<br />{{v}}%">Proportion of households in poverty (%)</option>
+						<option value="Overcrowded houses, 2011" data-format="{{n}}<br />{{v}}%">Overcrowded houses, 2011 (%)</option>
+						<option value="Older people living alone" data-format="{{n}}<br />{{v}}%">Older people living alone (%)</option>
+						<option value="Older People in Deprivation, Number of older people" data-format="{{n}}<br />{{v}}">Older People in Deprivation, Number of older people</option>
+						<option value="Older People in Deprivation, English Indices of Deprivation, 2019" data-format="{{n}}<br />{{v}}%">Older People in Deprivation, English Indices of Deprivation, 2019 (%)</option>
+						<option value="Child Poverty, English Indices of Deprivation, 2019" data-format="{{n}}<br />{{v}}%">Child Poverty, English Indices of Deprivation, 2019 (%)</option>
+						<option value="Child Poverty, Number of children" data-format="{{n}}<br />{{v}}%">Child Poverty, Number of children (%)</option>
 					</optgroup>
 					<optgroup label="Demographics - Population">
-						<option value="Total population" data-format="{{v}}">Total population - mid 2019 est</option>
-						<option value="Population density" data-format="{{v}} people per square km">Population density (people/km&sup2;)</option>
-						<option value="Population aged 0 to 4 years" data-format="{{v}}%">Population aged 0 to 4 years - mid 2019 est (%)</option>
-						<option value="Population aged 0 to 15 years" data-format="{{v}}%">Population aged 0 to 15 years - mid 2019 est  (%)</option>
-						<option value="Population aged 5 to 15 years" data-format="{{v}}%">Population aged 5 to 15 years - mid 2019 est  (%)</option>
-						<option value="Population aged 16 to 24 years" data-format="{{v}}%">Population aged 16 to 24 years - mid 2019 est  (%)</option>
-						<option value="Population aged 25 to 64 years" data-format="{{v}}%">Population aged 25 to 64 years - mid 2019 est  (%)</option>
-						<option value="Population aged between 50 and 64 years" data-format="{{v}}%">Population aged between 50 and 64 years - mid 2019 est  (%)</option>
-						<option value="Population aged 65 years and over" data-format="{{v}}%">Population aged 65 years and over - mid 2019 est  (%)</option>
-						<option value="Population aged 85 years and over" data-format="{{v}}%">Population aged 85 years and over - mid 2019 est  (%)</option>
+						<option value="Total population" data-format="{{n}}<br />{{v}}">Total population - mid 2019 est</option>
+						<option value="Population density" data-format="{{n}}<br />{{v}} people per square km">Population density (people/km&sup2;)</option>
+						<option value="Population aged 0 to 4 years" data-format="{{n}}<br />{{v}}%">Population aged 0 to 4 years - mid 2019 est (%)</option>
+						<option value="Population aged 0 to 15 years" data-format="{{n}}<br />{{v}}%">Population aged 0 to 15 years - mid 2019 est  (%)</option>
+						<option value="Population aged 5 to 15 years" data-format="{{n}}<br />{{v}}%">Population aged 5 to 15 years - mid 2019 est  (%)</option>
+						<option value="Population aged 16 to 24 years" data-format="{{n}}<br />{{v}}%">Population aged 16 to 24 years - mid 2019 est  (%)</option>
+						<option value="Population aged 25 to 64 years" data-format="{{n}}<br />{{v}}%">Population aged 25 to 64 years - mid 2019 est  (%)</option>
+						<option value="Population aged between 50 and 64 years" data-format="{{n}}<br />{{v}}%">Population aged between 50 and 64 years - mid 2019 est  (%)</option>
+						<option value="Population aged 65 years and over" data-format="{{n}}<br />{{v}}%">Population aged 65 years and over - mid 2019 est  (%)</option>
+						<option value="Population aged 85 years and over" data-format="{{n}}<br />{{v}}%">Population aged 85 years and over - mid 2019 est  (%)</option>
 					</optgroup>
 					<optgroup label="Demographics - Ethnicity">
-						<option value="Black and Minority Ethnic Population" data-format="{{v}}%">Black and Minority Ethnic Population (%)</option>
-						<option value="Population whose ethnicity is not 'White UK'" data-format="{{v}}%">Population whose ethnicity is not 'White UK' (%)</option>
-						<option value="Population who cannot speak English well or at all" data-format="{{v}}%">Population who cannot speak English well or at all (%)</option>
+						<option value="Black and Minority Ethnic Population" data-format="{{n}}<br />{{v}}%">Black and Minority Ethnic Population (%)</option>
+						<option value="Population whose ethnicity is not 'White UK'" data-format="{{n}}<br />{{v}}%">Population whose ethnicity is not 'White UK' (%)</option>
+						<option value="Population who cannot speak English well or at all" data-format="{{n}}<br />{{v}}%">Population who cannot speak English well or at all (%)</option>
 					</optgroup>
 					<optgroup label="Tests - by Local Authority">
 						<option value="PCR - 7 days" data-format="{{LTLA name}}: {{v}}<br />7 days to {{PCR date}}">PCR tests conducted (7 days)</option>
