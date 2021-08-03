@@ -1,6 +1,6 @@
 /**
 	ODI Leeds hex map in SVG
-	Version 0.5.4
+	Version 0.5.5
  */
 (function(root){
 
@@ -50,7 +50,7 @@
 	//      size: the size of a hexagon in pixels
 	function HexMap(el,attr){
 
-		this.version = "0.5.4";
+		this.version = "0.5.5";
 		if(!attr) attr  = {};
 		this._attr = attr;
 		this.title = "ODI HexMap";
@@ -427,6 +427,7 @@
 					if(this.mapping.hexes[r].colour) fill = this.mapping.hexes[r].colour;					
 					if(typeof attr.colours==="string") fill = attr.colours;
 					if(typeof fn==="function") fill = fn.call(this,r);
+					else if(typeof fn==="object") fill = fn[r];
 					this.areas[r].fillcolour = fill;
 					this.setHexStyle(r);
 				}

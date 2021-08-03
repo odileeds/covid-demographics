@@ -96,21 +96,24 @@
 	function MSOA(){
 		this.version = "0.1.1";
 		this.hexmaps = {
-			'a':{ 'el':document.getElementById('a') },
-			'b':{ 'el':document.getElementById('b') }
+			'a':{ 'el':document.getElementById('a'),'select':document.querySelector('#a select') },
+			'b':{ 'el':document.getElementById('b'),'select':document.querySelector('#b select') }
 		};
+		var ab;
 		var config = getQueryVariables();
-		for(var h in this.hexmaps){
-			if(this.hexmaps[h]){
-				this.hexmaps[h].select = this.hexmaps[h].el.querySelector('select');
+		for(ab in this.hexmaps){
+			if(this.hexmaps[ab].select){
 				// Update select value if provided in query string
-				if(config['map-'+h]) this.hexmaps[h].select.value = config['map-'+h];
-				addEvent('change',this.hexmaps[h].select,{h:h,me:this},function(e){ e.data.me.updateHexmap(e.data.h); });
-				addEvent('mouseleave',this.hexmaps[h].el,{me:this},function(e){ e.data.me.updateTips(); });
+				if(config['map-'+ab]) this.hexmaps[ab].select.value = config['map-'+ab];
+				addEvent('change',this.hexmaps[ab].select,{ab:ab,me:this},function(e){
+					e.data.me.updateHexmap(e.data.ab);
+					if(e.data.me.hexmaps.correlation) e.data.me.updateHexmap('correlation');
+				});
+				addEvent('mouseleave',this.hexmaps[ab].el,{me:this},function(e){ e.data.me.updateTips(); });
 			}
 		}
 
-		for(var ab in this.hexmaps){
+		for(ab in this.hexmaps){
 			if(this.hexmaps[ab]){
 				// Create the hexagon layout
 				this.hexmaps[ab].map = new ODI.hexmap(this.hexmaps[ab].el.querySelector('.hexmap'),{
@@ -139,83 +142,107 @@
 			return this;
 		};
 
+		function setValues(ab,field){
+			for(r in data){
+				if(typeof field==="number") data[r][ab] = field;
+				else if(typeof field==="string") data[r][ab] = data[r][field];
+			}
+			return;
+		}
+
 		this.updateHexmap = function(ab){
-			var r,colours,attr;
+			var r,colours,attr,n,field;
 			var min = 1e100;
 			var max = -1e100;
 			var cat = 0;
 			var categories = {};
-			var field = this.hexmaps[ab].select.value;
-			console.log('Update '+ab+': '+field);
-			var n = 0;
-			for(r in data){
-				if(typeof data[r][field]==="string" && data[r][field].length > 0){
-					cat++;
-					if(!categories[data[r][field]]) categories[data[r][field]] = 0;
-					categories[data[r][field]]++;
-				}
-				n++;
-			}
-			// If more than half the values seem to be categories
-			if(cat > n/2){
-				if(field=="LTLA"){
-					colours = {
-						'E08000016':'#67E767',
-						'E08000017':'#00B6FF',
-						'E08000018':'#E6007C',
-						'E08000019':'#08DEF9',
-						'E08000032':'#D73058',
-						'E08000033':'#0DBC37',
-						'E08000034':'#2254F4',
-						'E08000035':'#F9BC26',
-						'E08000036':'#722EA5',
-						'E06000010':'#178CFF',
-						'E06000011':'#1DD3A7',
-						'E06000012':'#EF3AAB',
-						'E06000013':'#FF6700',
-						'E06000014':'#0DBC37',
-						'E07000163':'#67E767',
-						'E07000164':'#F9BC26',
-						'E07000165':'#2254F4',
-						'E07000166':'#D73058',
-						'E07000167':'#00B6FF',
-						'E07000168':'#EF3AAB',
-						'E07000169':'#D60303'
-					};
-				}else if(field=="Rural Urban Classification"){
-					colours = {
-						'Rural village and dispersed in a sparse setting':'#01665e',
-						'Rural village and dispersed':'#35978f',
-						'Rural town and fringe in a sparse setting':'#80cdc1',
-						'Rural town and fringe':'#c7eae5',
-						'Urban minor conurbation':'#f6e8c3',
-						'Urban city and town in a sparse setting':'#dfc27d',
-						'Urban city and town':'#bf812d',
-						'Urban major conurbation':'#8c510a'
-					};
-				}
-				this.hexmaps[ab].map.updateColours(function(r){ return colours[data[r][field]]||'#444'; });
-			}else{
-				//Urban minor conurbation
+			var temp = {};
+			if(this.hexmaps[ab].select){
+				field = this.hexmaps[ab].select.value;
+				console.log('Update '+ab+': '+field);
+				n = 0;
 				for(r in data){
-					min = Math.min(data[r][field],min);
-					max = Math.max(data[r][field],max);
-				}
-				attr = {};
-				if(options[field]){
-					if(options[field].missing){
-						attr.missing = options[field].missing;
-						attr.norange = options[field].missing;
+					if(typeof data[r][field]==="string" && data[r][field].length > 0){
+						cat++;
+						if(!categories[data[r][field]]) categories[data[r][field]] = 0;
+						categories[data[r][field]]++;
 					}
-					// If we've specified a range we use that
-					if(options[field].range){
-						min = options[field].range[0];
-						max = options[field].range[1];
-					}
+					n++;
 				}
-				// Update hex map colours
-				this.hexmaps[ab].map.updateColours(function(r){ if(!data[r]){ return "#888"; } return viridis.getValue(data[r][field],min,max,attr); });
+				// If more than half the values seem to be categories
+				if(cat > n/2){
+					if(field=="LTLA"){
+						colours = {
+							'E08000016':'#67E767',
+							'E08000017':'#00B6FF',
+							'E08000018':'#E6007C',
+							'E08000019':'#08DEF9',
+							'E08000032':'#D73058',
+							'E08000033':'#0DBC37',
+							'E08000034':'#2254F4',
+							'E08000035':'#F9BC26',
+							'E08000036':'#722EA5',
+							'E06000010':'#178CFF',
+							'E06000011':'#1DD3A7',
+							'E06000012':'#EF3AAB',
+							'E06000013':'#FF6700',
+							'E06000014':'#0DBC37',
+							'E07000163':'#67E767',
+							'E07000164':'#F9BC26',
+							'E07000165':'#2254F4',
+							'E07000166':'#D73058',
+							'E07000167':'#00B6FF',
+							'E07000168':'#EF3AAB',
+							'E07000169':'#D60303'
+						};
+					}else if(field=="Rural Urban Classification"){
+						colours = {
+							'Rural village and dispersed in a sparse setting':'#01665e',
+							'Rural village and dispersed':'#35978f',
+							'Rural town and fringe in a sparse setting':'#80cdc1',
+							'Rural town and fringe':'#c7eae5',
+							'Urban minor conurbation':'#f6e8c3',
+							'Urban city and town in a sparse setting':'#dfc27d',
+							'Urban city and town':'#bf812d',
+							'Urban major conurbation':'#8c510a'
+						};
+					}
+					setValues(ab,0);
+					for(r in data) temp[r] = colours[data[r][field]]||'#444';
+				}else{
+					setValues(ab,field);
+					
+					for(r in data){
+						min = Math.min(data[r][ab],min);
+						max = Math.max(data[r][ab],max);
+					}
+					attr = {};
+					if(options[field]){
+						if(options[field].missing){
+							attr.missing = options[field].missing;
+							attr.norange = options[field].missing;
+						}
+						// If we've specified a range we use that
+						if(options[field].range){
+							min = options[field].range[0];
+							max = options[field].range[1];
+						}
+					}
+					// Update hex map colours
+					for(r in data) temp[r] = (!data[r] ? '#888' : viridis.getValue(data[r][ab],min,max,attr));
+				}
+			}else{
+				for(r in data){
+					data[r][ab] = (typeof data[r].a==="number" ? data[r].a : 0) * (typeof data[r].b==="number" ? data[r].b : 0);
+					min = Math.min(data[r][ab],min);
+					max = Math.max(data[r][ab],max);
+				}
+				for(r in data){
+					temp[r] = (!data[r] ? '#888' : viridis.getValue(data[r][ab],min,max,attr));
+				}
 			}
+			console.log(ab,temp);
+			this.hexmaps[ab].map.updateColours(temp);
 			// Update any tooltips
 			this.updateTips(this.region);
 		};
@@ -246,18 +273,23 @@
 					this.hexmaps[ab].tip.classList.add('tooltip');
 					svg.appendChild(this.hexmaps[ab].tip);
 				}
-				v = this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].getAttribute('data-format');
-				if(options[this.hexmaps[ab].select.value] && typeof options[this.hexmaps[ab].select.value].format==="function") v = options[this.hexmaps[ab].select.value].format;
-				if(typeof v==="function") v = v.call(this,data[r][this.hexmaps[ab].select.value],data[r]);
-				v = replaceProperty(v,'id',r);
-				if(data[r]){
-					v = replaceProperty(v,'v',data[r][this.hexmaps[ab].select.value]);
-					v = replaceProperty(v,'n',data[r].Name);
-					v = replacePattern(v,data[r]);
-				}
+				if(this.hexmaps[ab].select){
 
-				// Update contents of tooltip
-				this.hexmaps[ab].tip.innerHTML = v;
+					v = this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].getAttribute('data-format');
+					if(options[this.hexmaps[ab].select.value] && typeof options[this.hexmaps[ab].select.value].format==="function") v = options[this.hexmaps[ab].select.value].format;
+					if(typeof v==="function") v = v.call(this,data[r][ab],data[r]);
+					v = replaceProperty(v,'id',r);
+					if(data[r]){
+						v = replaceProperty(v,'v',data[r][this.hexmaps[ab].select.value]);
+						v = replaceProperty(v,'n',data[r].Name);
+						v = replacePattern(v,data[r]);
+					}
+
+					// Update contents of tooltip
+					this.hexmaps[ab].tip.innerHTML = v;
+				}else{
+					this.hexmaps[ab].tip.innerHTML = data[r].Name+'<br />'+data[r][ab];
+				}
 				// Update position of tooltip
 				bb = hex.getBoundingClientRect();
 				bbo = svg.getBoundingClientRect();
@@ -294,8 +326,7 @@
 						}
 					}
 				}
-				ODI.msoa.updateHexmap('a');
-				ODI.msoa.updateHexmap('b');
+				for(ab in ODI.msoa.hexmaps) ODI.msoa.updateHexmap(ab);
 			},
 			'error':function(e,attr){ this.log('ERROR','Unable to load ',attr.url,attr); }
 		});
