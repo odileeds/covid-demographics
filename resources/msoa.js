@@ -193,6 +193,27 @@
 		}
 		function buildScale(scale,min,max){
 			return '<div class="range"><div class="bar" style="'+scales[scale].makeGradient()+';"><div class="min">'+min+'</div><div class="max">'+max+'</div></span></div>';
+		}		
+		function copyLink() {
+			// Get the text field
+			var copyText = document.getElementById("link");
+			// Select the text field
+			copyText.select();
+			// For mobile devices
+			copyText.setSelectionRange(0, 99999);
+			// Copy the text inside the text field
+			document.execCommand("copy");
+		}
+		addEvent('click',document.getElementById('copy-link'),{},copyLink);
+		this.updateLink = function(){
+			if(document.getElementById('link')){
+				lnk = '';
+				for(var ab in this.hexmaps){
+					lnk += (lnk ? '&':'')+'map-'+ab+'='+encodeURI(this.hexmaps[ab].select.value);
+				}
+				document.getElementById('link').value = location.pathname+'?'+lnk;
+			}
+			return this;
 		}
 		this.updateHexmap = function(ab){
 			var r,colours,attr,n,field;
@@ -310,6 +331,9 @@
 
 			// Update any tooltips
 			this.updateTips(this.region);
+
+			this.updateLink();
+			return this;
 		};
 
 		this.updateTips = function(r){
@@ -395,6 +419,8 @@
 			},
 			'error':function(e,attr){ this.log('ERROR','Unable to load ',attr.url,attr); }
 		});
+		
+		
 	});
 
 	// Return array of string values, or NULL if CSV string not well formed.
