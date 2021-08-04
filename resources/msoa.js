@@ -32,13 +32,55 @@
 				}
 			}
 		};
+		this.makeGradient = function(){
+			var grad = '';
+			for(var i = 0; i < n;i++) grad += (grad ? ', ':'')+'rgb('+s[i].rgb.join(',')+') '+(s[i].v*100).toFixed(3).replace(/\.0+$/,"")+'%';
+			return 'background: -moz-linear-gradient(left, '+grad+');background: -webkit-linear-gradient(left, '+grad+');background: linear-gradient(to right, '+grad+');';
+		}
 		return this;
 	}
 
 	// Define the Viridis colour scale
-	var viridis = new ColourScale([{'rgb':[68,1,84],v:0},{'rgb':[72,35,116],'v':0.1},{'rgb':[64,67,135],'v':0.2},{'rgb':[52,94,141],'v':0.3},{'rgb':[41,120,142],'v':0.4},{'rgb':[32,143,140],'v':0.5},{'rgb':[34,167,132],'v':0.6},{'rgb':[66,190,113],'v':0.7},{'rgb':[121,209,81],'v':0.8},{'rgb':[186,222,39],'v':0.9},{'rgb':[253,231,36],'v':1}],{missing:'#999'});
+	var scales = {
+		'viridis': new ColourScale([{'rgb':[68,1,84],v:0},{'rgb':[72,35,116],'v':0.1},{'rgb':[64,67,135],'v':0.2},{'rgb':[52,94,141],'v':0.3},{'rgb':[41,120,142],'v':0.4},{'rgb':[32,143,140],'v':0.5},{'rgb':[34,167,132],'v':0.6},{'rgb':[66,190,113],'v':0.7},{'rgb':[121,209,81],'v':0.8},{'rgb':[186,222,39],'v':0.9},{'rgb':[253,231,36],'v':1}],{missing:'#999'}),
+		'diverging': new ColourScale([{'rgb':[202, 88, 0],v:0},{'rgb':[253, 191, 17],'v':0.125},{'rgb':[253, 216, 112],'v':0.25},{'rgb':[255, 242, 207],'v':0.375},{'rgb':[248, 248, 248],'v':0.5},{'rgb':[207, 232, 243],'v':0.625},{'rgb':[115, 191, 226],'v':0.75},{'rgb':[22, 150, 210],'v':0.875},{'rgb':[10, 76, 106],'v':1}],{missing:'#999'}),
+		'divergingreverse': new ColourScale([{'rgb':[10, 76, 106],'v':0},{'rgb':[22, 150, 210],'v':0.125},{'rgb':[115, 191, 226],'v':0.25},{'rgb':[207, 232, 243],'v':0.375},{'rgb':[248, 248, 248],'v':0.5},{'rgb':[255, 242, 207],'v':0.625},{'rgb':[253, 216, 112],'v':0.75},{'rgb':[253, 191, 17],'v':0.875},{'rgb':[202, 88, 0],v:1},],{missing:'#999'})
+	};
 	var data = {};
 	var options = {
+		"IMD Score, 2019":{"range":[0,100]},
+		"Income deprivation, English Indices of Deprivation, 2019":{"range":[0,null]},
+		"Unemployment":{"range":[0,null]},
+		"Long term unemployment":{"range":[0,null]},
+		"Fuel Poverty, 2018":{"range":[0,null]},
+		"Proportion of households in poverty":{"range":[0,null]},
+		"Overcrowded houses, 2011":{"range":[0,null]},
+		"Older people living alone":{"range":[0,null]},
+		"Older People in Deprivation, Number of older people":{"range":[0,null]},
+		"Older People in Deprivation, English Indices of Deprivation, 2019":{"range":[0,null]},
+		"Child Poverty, English Indices of Deprivation, 2019":{"range":[0,null]},
+		"Child Poverty, Number of children":{"range":[0,null]},
+		"Total population":{"range":[0,null]},
+		"Population density":{"range":[0,null]},
+		"Population aged 0 to 4 years":{"range":[0,null]},
+		"Population aged 0 to 15 years":{"range":[0,null]},
+		"Population aged 5 to 15 years":{"range":[0,null]},
+		"Population aged 16 to 24 years":{"range":[0,null]},
+		"Population aged 25 to 64 years":{"range":[0,null]},
+		"Population aged between 50 and 64 years":{"range":[0,null]},
+		"Population aged 65 years and over":{"range":[0,null]},
+		"Population aged 85 years and over":{"range":[0,null]},
+		"Black and Minority Ethnic Population":{"range":[0,100]},
+		"Population whose ethnicity is not 'White UK'":{"range":[0,100]},
+		"Population who cannot speak English well or at all":{"range":[0,null]},
+		"newCasesBySpecimenDateRollingSum":{"range":[0,null]},
+		"newCasesBySpecimenDateChange":{"range":"symmetric","scale":"divergingreverse"},
+		"newCasesBySpecimenDateRollingRate":{"range":[0,null]},
+		"PCR - 7 days":{"range":[0,null]},
+		"PCR per 100k - 7 days":{"range":[0,null]},
+		"PCR positivity % - 7 days":{"range":[0,null]},
+		"LFD":{"range":[0,null]},
+		"LFD per 100k":{"range":[0,null]},
 		"1st dose Under 18 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
 		"1st dose 18-24 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
 		"1st dose 25-29 %":{"format":function(v,props){ if(v==""){ return "{{n}}<br />Figures suppressed due to small numbers"; }else{ return "{{n}}<br />{{v}}% (as of {{Vac date}})"; }},"range":[0,100]},
@@ -96,8 +138,8 @@
 	function MSOA(){
 		this.version = "0.1.1";
 		this.hexmaps = {
-			'a':{ 'el':document.getElementById('a'),'select':document.querySelector('#a select') },
-			'b':{ 'el':document.getElementById('b'),'select':document.querySelector('#b select') }
+			'a':{ 'el':document.getElementById('a'),'select':document.querySelector('#a select'),'key':document.querySelector('#a .key') },
+			'b':{ 'el':document.getElementById('b'),'select':document.querySelector('#b select'),'key':document.querySelector('#b .key') }
 		};
 		var ab;
 		var config = getQueryVariables();
@@ -149,7 +191,9 @@
 			}
 			return;
 		}
-
+		function buildScale(scale,min,max){
+			return '<div class="range"><div class="bar" style="'+scales[scale].makeGradient()+';"><div class="min">'+min+'</div><div class="max">'+max+'</div></span></div>';
+		}
 		this.updateHexmap = function(ab){
 			var r,colours,attr,n,field;
 			var min = 1e100;
@@ -157,6 +201,7 @@
 			var cat = 0;
 			var categories = {};
 			var temp = {};
+			var scale = 'viridis';
 			if(this.hexmaps[ab].select){
 				field = this.hexmaps[ab].select.value;
 				console.log('Update '+ab+': '+field);
@@ -209,6 +254,10 @@
 					}
 					setValues(ab,0);
 					for(r in data) temp[r] = colours[data[r][field]]||'#444';
+					// Update the key
+					if(this.hexmaps[ab].key){
+						this.hexmaps[ab].key.innerHTML = '';
+					}
 				}else{
 					setValues(ab,field);
 					
@@ -224,12 +273,24 @@
 						}
 						// If we've specified a range we use that
 						if(options[field].range){
-							min = options[field].range[0];
-							max = options[field].range[1];
+							if(typeof options[field].range==="object"){
+								if(options[field].range[0]!=null) min = options[field].range[0];
+								if(options[field].range[1]!=null) max = options[field].range[1];
+							}else if(typeof options[field].range==="string"){
+								if(options[field].range=="symmetric"){
+									minmax = Math.max(Math.abs(min),Math.abs(max));
+									max = minmax;
+									min = -minmax;
+									console.log(minmax);
+								}
+							}
 						}
 					}
+					if(options[field] && options[field].scale) scale = options[field].scale;
 					// Update hex map colours
-					for(r in data) temp[r] = (!data[r] ? '#888' : viridis.getValue(data[r][ab],min,max,attr));
+					for(r in data) temp[r] = (!data[r] ? '#888' : scales[scale].getValue(data[r][ab],min,max,attr));
+					// Update the key
+					if(this.hexmaps[ab].key) this.hexmaps[ab].key.innerHTML = buildScale(scale,min,max);
 				}
 			}else{
 				for(r in data){
@@ -237,12 +298,16 @@
 					min = Math.min(data[r][ab],min);
 					max = Math.max(data[r][ab],max);
 				}
+				if(options[field] && options[field].scale) scale = options[field].scale;
 				for(r in data){
-					temp[r] = (!data[r] ? '#888' : viridis.getValue(data[r][ab],min,max,attr));
+					temp[r] = (!data[r] ? '#888' : scales[scale].getValue(data[r][ab],min,max,attr));
 				}
+				// Update the key
+				if(this.hexmaps[ab].key) this.hexmaps[ab].key.innerHTML = buildScale(scale,min,max);
 			}
-			console.log(ab,temp);
+
 			this.hexmaps[ab].map.updateColours(temp);
+
 			// Update any tooltips
 			this.updateTips(this.region);
 		};
