@@ -329,7 +329,7 @@ for($k = 0; $k < @keepcases; $k++){
 }
 #$csv .= ",Population 18-24 (%)";
 $csv .= ",Vaccination sites";
-foreach $mode (keys(%modes)){
+foreach $mode (sort(keys(%modes))){
 	$csv .= ",\"Travel time by $mode\"";
 }
 $csv .= "\,PCR date\,PCR - 7 days\,PCR per 100k - 7 days,PCR positivity % - 7 days";
