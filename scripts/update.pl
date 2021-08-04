@@ -349,7 +349,7 @@ foreach $msoa (sort(keys(%data))){
 	}
 	#$csv .= "\,".$nims{$msoa}{'18-24 pc'};
 	$csv .= "\,".($vacsites{$msoa});
-	foreach $mode (keys(%modes)){
+	foreach $mode (sort(keys(%modes))){
 		$csv .= "\,".($travel{$msoa}{$mode}==1000 ? '':$travel{$msoa}{$mode});
 	}
 	$csv .= "\,$tests{$msoa}{'PCRdate'}\,$tests{$msoa}{'PCR'}\,$tests{$msoa}{'PCRper100k'}\,$tests{$msoa}{'positivity'}";
