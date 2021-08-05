@@ -211,7 +211,7 @@
 				for(var ab in this.hexmaps){
 					lnk += (lnk ? '&':'')+'map-'+ab+'='+encodeURI(this.hexmaps[ab].select.value);
 				}
-				document.getElementById('link').value = location.pathname+'?'+lnk;
+				document.getElementById('link').value = location.origin+location.pathname+'?'+lnk;
 			}
 			return this;
 		}
