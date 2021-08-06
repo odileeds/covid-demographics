@@ -204,6 +204,17 @@ if(!-e $file || (time() - (stat $file)[9] >= 86400/2)){
 $url = "https://raw.githubusercontent.com/odileeds/covid-19/main/vaccines/data/vaccinations-MSOA-latest.txt";
 $datevac = `wget -q --no-check-certificate -O- "$url"`;
 foreach $msoa (sort(keys(%vaccines))){
+	@msoas = ($msoa);
+	if($msoa !~ /^[ENSW][0-9]{8}$/){
+		print "MSOA does not look valid - $msoa\n";
+		# On 5th August 2021 NHS England started combining two MSOAs
+		# e.g. "E02000001/E02000371" so we copy the data to them
+		@msoas = split(/\//,$msoa);
+		for($m = 0; $m < @msoas;$m++){
+			print "\t$msoa -> $msoas[$m]\n";
+			$vaccines{$msoas[$m]} = $vaccines{$msoa};
+		}
+	}
 	foreach $key (sort(keys(%{$vaccines{$msoa}}))){
 		$r = "";
 		if($key =~ /dose (Under [0-9]+)/){
@@ -213,10 +224,13 @@ foreach $msoa (sort(keys(%vaccines))){
 			$r = $1;
 		}
 		if($r){
-			if($nims{$msoa}{$r}==0){
-				print "$msoa / $r / $nims{$msoa}{$r}\n";
+			for($m = 0; $m < @msoas;$m++){
+				if($nims{$msoas[$m]}{$r}==0){
+					print "$msoas[$m] / $r / $nims{$msoas[$m]}{$r}\n";
+				}
+#				print "$msoa -> ($m) $msoas[$m] ($key)\n";
+				$vaccines{$msoas[$m]}{$key." %"} = ($vaccines{$msoas[$m]}{$key} eq "" ? "" : sprintf("%0.1f",100*$vaccines{$msoas[$m]}{$key}/$nims{$msoas[$m]}{$r}));
 			}
-			$vaccines{$msoa}{$key." %"} = ($vaccines{$msoa}{$key} eq "" ? "" : sprintf("%0.1f",100*$vaccines{$msoa}{$key}/$nims{$msoa}{$r}));
 		}
 	}
 }
