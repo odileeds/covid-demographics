@@ -199,13 +199,13 @@ if(!-e $file || (time() - (stat $file)[9] >= 86400/2)){
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $file "$url"`;
 }
-%vaccines = getCSV($file,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD'}});
+%vaccines = getCSV($file,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD','MSOA code'=>'MSOA11CD'}});
 $url = "https://raw.githubusercontent.com/odileeds/covid-19/main/vaccines/data/vaccinations-MSOA-latest.txt";
 $datevac = `wget -q --no-check-certificate -O- "$url"`;
 foreach $msoa (sort(keys(%vaccines))){
 	@msoas = ($msoa);
 	if($msoa !~ /^[ENSW][0-9]{8}$/){
-		print "MSOA does not look valid - $msoa\n";
+		print "WARNING: MSOA does not look valid - $msoa\n";
 		# On 5th August 2021 NHS England started combining two MSOAs
 		# e.g. "E02000001/E02000371" so we copy the data to them
 		@msoas = split(/\//,$msoa);
