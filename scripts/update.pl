@@ -9,7 +9,6 @@ BEGIN {
 }
 use lib $lib;
 use Data::Dumper;
-use JSON::XS;
 
 $datadir = $dir."../data/";
 $tempdir = $datadir."temp/";
@@ -117,8 +116,8 @@ if(!-e $nimsLAfile || (time() - (stat $nimsLAfile)[9] >= 3*86400)){
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $nimsLAfile "$url"`;
 }
-%nims = getCSV($nimsfile,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD'}});
-%nimsLA = getCSV($nimsLAfile,{'id'=>'LADCD','map'=>{'LTLA Code'=>'LADCD'}});
+%nims = getCSV($nimsfile,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD','MSOA code'=>'MSOA11CD'}});
+%nimsLA = getCSV($nimsLAfile,{'id'=>'LADCD','map'=>{'LTLA Code'=>'LADCD','LTLA code'=>'LADCD'}});
 foreach $msoa (keys(%nims)){
 	$nims{$msoa}{'All'} = $nims{$msoa}{'Under 18'}+$nims{$msoa}{'18+'};
 	if(!$nims{$msoa}{'Under 25'}){
