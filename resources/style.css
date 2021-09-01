@@ -157,6 +157,7 @@ input,select { font-size: 1em; height: 2em; max-width: 100%; }
 
 @media only screen and (max-width: 1080px) {
 	ul.grid { grid-template-columns: 100%; }
+	.twocol { grid-column: span 1; }
 	.doublepadded { padding: 1em; }
 }
 
