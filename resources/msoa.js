@@ -239,7 +239,7 @@
 			for(ab in this.hexmaps){
 				a = (ab=='a' ? 'y':'x');
 				axes[a] = {
-					'title':{'label':this.hexmaps[ab].select.value},
+					'title':{'label':this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].innerHTML},
 					'labels': this.correlation.labels[ab]
 				}
 			}
@@ -274,7 +274,7 @@
 				});
 				this.correlation.chart.draw();
 			}else{
-				//this.correlation.chart.setProperties({'axis':axes});
+				this.correlation.chart.setProperties({'axis':axes});
 				this.correlation.chart.series[0].setData(corr);
 				this.correlation.chart.draw();
 			}
