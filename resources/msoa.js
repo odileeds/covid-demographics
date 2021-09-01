@@ -231,9 +231,9 @@
 				else bad++;
 				nr++;
 			}
-			// If we have empty values we escape
-			if(bad > 0 || nr==0){
-				//console.error('Missing values',bad);
+			// If we have lots of empty values we escape
+			if(bad == nr || nr==0){
+				//console.error('Missing values',bad,nr);
 				return this;
 			}
 			for(ab in this.hexmaps){
