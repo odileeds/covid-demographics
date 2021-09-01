@@ -141,6 +141,11 @@
 			'a':{ 'el':document.getElementById('a'),'select':document.querySelector('#a select'),'key':document.querySelector('#a .key') },
 			'b':{ 'el':document.getElementById('b'),'select':document.querySelector('#b select'),'key':document.querySelector('#b .key') }
 		};
+		this.correlation = {
+			'el':document.getElementById('chart'),
+			'data':{},
+			'labels':{}
+		};
 		var ab;
 		var config = getQueryVariables();
 		for(ab in this.hexmaps){
@@ -149,7 +154,6 @@
 				if(config['map-'+ab]) this.hexmaps[ab].select.value = config['map-'+ab];
 				addEvent('change',this.hexmaps[ab].select,{ab:ab,me:this},function(e){
 					e.data.me.updateHexmap(e.data.ab);
-					if(e.data.me.hexmaps.correlation) e.data.me.updateHexmap('correlation');
 				});
 				addEvent('mouseleave',this.hexmaps[ab].el,{me:this},function(e){ e.data.me.updateTips(); });
 			}
@@ -215,8 +219,70 @@
 			}
 			return this;
 		}
+		this.updateCorrelation = function(){
+			var nr,r,d,ab,i,corr,init,bad,axes;
+			corr = [];
+			init = (this.correlation.chart ? true : false);
+			bad = 0;
+			axes = {};
+			nr = 0;
+			for(r in this.correlation.data){
+				if(typeof this.correlation.data[r].x==="number" && typeof this.correlation.data[r].y==="number") corr.push(this.correlation.data[r]);
+				else bad++;
+				nr++;
+			}
+			// If we have empty values we escape
+			if(bad > 0 || nr==0){
+				//console.error('Missing values',bad);
+				return this;
+			}
+			for(ab in this.hexmaps){
+				a = (ab=='a' ? 'y':'x');
+				axes[a] = {
+					'title':{'label':this.hexmaps[ab].select.value},
+					'labels': this.correlation.labels[ab]
+				}
+			}
+
+			if(!init){
+				this.correlation.chart = ODI.linechart(this.correlation.el,{
+					'left':32,
+					'right':0,
+					'top':0,
+					'bottom':32,
+					'axis':axes
+				});
+				this.correlation.chart.on('showtooltip',{this:this},function(e){
+					var i,region;
+					i = 0;
+					region = "";
+					for(r in data){
+						if(i==e.i) region = r;
+						i++;
+					}
+					if(region) this.updateTips(region,true);
+				});
+				this.correlation.chart.addSeries(corr,{
+					'title': 'Correlation',
+					'points':{ 'size':4, 'color': '#722EA5' },
+					'line':{ 'show': false },
+					'tooltip':{
+						'label': function(d){
+							return d.data.name+'\n'+d.data.xlabel+': '+d.data.x+'\n'+d.data.ylabel+': '+(d.data.yvalue||d.data.y);
+						}
+					}
+				});
+				this.correlation.chart.draw();
+			}else{
+				//this.correlation.chart.setProperties({'axis':axes});
+				this.correlation.chart.series[0].setData(corr);
+				this.correlation.chart.draw();
+			}
+			return this;
+		}
+
 		this.updateHexmap = function(ab){
-			var r,colours,attr,n,field;
+			var r,colours,attr,n,field,i,c,range;
 			var min = 1e100;
 			var max = -1e100;
 			var cat = 0;
@@ -225,16 +291,45 @@
 			var scale = 'viridis';
 			if(this.hexmaps[ab].select){
 				field = this.hexmaps[ab].select.value;
-				console.log('Update '+ab+': '+field);
 				n = 0;
+				// Set empty correlation values
+				if(this.correlation){
+					for(r in data){
+						if(!this.correlation.data[r]) this.correlation.data[r] = {};
+						this.correlation.data[r].msoa = r;
+						this.correlation.data[r].name = data[r].Name;
+					}
+				}
+				this.hexmaps[ab].numeric = true;
 				for(r in data){
 					if(typeof data[r][field]==="string" && data[r][field].length > 0){
 						cat++;
 						if(!categories[data[r][field]]) categories[data[r][field]] = 0;
 						categories[data[r][field]]++;
+						this.hexmaps[ab].numeric = false;
+					}else{
+						if(this.correlation){
+							this.correlation.data[r][(ab=='a'?'y':'x')] = data[r][field];
+							this.correlation.data[r][(ab=='a'?'y':'x')+'label'] = this.hexmaps[ab].select.value;
+						}
 					}
 					n++;
 				}
+				// If it is a category-based array we use the category integer value
+				if(!this.hexmaps[ab].numeric && this.correlation){
+					i = 0;
+					for(c in categories){
+						for(r in data){
+							if(data[r][field]==c){
+								this.correlation.data[r][ab=='a'?'y':'x'] = i;
+								this.correlation.data[r][(ab=='a'?'y':'x')+'label'] = this.hexmaps[ab].select.value;
+								this.correlation.data[r][(ab=='a'?'y':'x')+'value'] = data[r]['LTLA name'];
+							}
+						}
+						i++;
+					}
+				}
+
 				// If more than half the values seem to be categories
 				if(cat > n/2){
 					if(field=="LTLA"){
@@ -281,7 +376,7 @@
 					}
 				}else{
 					setValues(ab,field);
-					
+
 					for(r in data){
 						min = Math.min(data[r][ab],min);
 						max = Math.max(data[r][ab],max);
@@ -326,6 +421,7 @@
 				// Update the key
 				if(this.hexmaps[ab].key) this.hexmaps[ab].key.innerHTML = buildScale(scale,min,max);
 			}
+			
 
 			this.hexmaps[ab].map.updateColours(temp);
 
@@ -333,10 +429,14 @@
 			this.updateTips(this.region);
 
 			this.updateLink();
+			
+			if(this.correlation){
+				this.correlation.labels[ab] = {};
+				this.updateCorrelation();
+			}
 			return this;
 		};
-
-		this.updateTips = function(r){
+		this.updateTips = function(r,noupdate){
 			if(!r){
 				for(ab in this.hexmaps){
 					if(this.hexmaps[ab].tip){
@@ -345,11 +445,12 @@
 					}
 				}
 				this.region = "";
+				if(this.correlation && this.correlation.chart) this.correlation.chart.series[0].selectItem(-1);
 				return;
 			}
 			this.region = r;
 			
-			var svg,hex,v,bb,bbo;
+			var svg,hex,v,bb,bbo,i;
 
 			for(ab in this.hexmaps){
 				svg = this.hexmaps[ab].map.el;
@@ -385,6 +486,17 @@
 				this.hexmaps[ab].tip.style.left = Math.round(bb.left + bb.width/2 - bbo.left + svg.scrollLeft)+'px';
 				this.hexmaps[ab].tip.style.top = Math.round(bb.top + bb.height/2 - bbo.top)+'px';
 			}
+			
+			i = 0;
+			selected = -1;
+			for(r2 in data){
+				if(r==r2){
+					selected = i;
+					break;
+				}
+				i++;
+			}
+			if(!noupdate && this.correlation && this.correlation.chart) this.correlation.chart.series[0].selectItem(selected);
 			return;
 		};
 
@@ -417,7 +529,7 @@
 				}
 				for(ab in ODI.msoa.hexmaps) ODI.msoa.updateHexmap(ab);
 			},
-			'error':function(e,attr){ this.log('ERROR','Unable to load ',attr.url,attr); }
+			'error':function(e,attr){ console.error('Unable to load ',attr.url,attr); }
 		});
 		
 		
@@ -494,7 +606,7 @@
 								try {
 									datum[key] = new Date(line[j]);
 								}catch(err){
-									this.log.warning('Invalid date '+line[j]);
+									console.warn('Invalid date '+line[j]);
 									datum[key] = new Date('0001-01-01');
 								}
 							}else datum[key] = null;

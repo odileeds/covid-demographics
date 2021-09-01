@@ -145,6 +145,9 @@ input,select { font-size: 1em; height: 2em; max-width: 100%; }
 #link-area { margin-top: 1em; }
 #c { grid-column: span 2; }
 #c .hexmap { height: 640px; }
+.twocol { grid-column: span 2; }
+#chart { height: 400px; position: relative; margin-top: 1em; animation-duration: 0s; }
+#chart .linechart-tooltip { position: absolute; z-index: 1001; }
 
 @media only screen and (max-width: 1400px) {
 	ul.grid {
