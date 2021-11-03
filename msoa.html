@@ -3,8 +3,8 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8" />
-	<link rel="icon" href="resources/favicon.svg" />
 	<title>MSOA map | Yorkshire and the Humber</title>
+	<link rel="icon" href="https://open-innovations.org/resources/images/logos/oi-square-8.svg" />
 	<link rel="StyleSheet" href="resources/style.css" type="text/css" />
 	<script src="resources/odi.linechart.js"></script>
 	<script src="resources/odi.hexmap.js"></script>
@@ -15,7 +15,7 @@
 	<header>
 		<div class="b1-bg padded">
 			<div class="holder" style="text-align:center;">
-				<a href="https://odileeds.org/" aria-label="ODI Leeds"><img src="resources/odileeds.svg" alt="ODI Leeds" width="250px" height="91px" /></a>
+				<a href="https://open-innovations.org/" aria-label="Open Innovations"><img src="https://open-innovations.org/resources/images/logos/oi-square-8.svg" alt="Open Innovations" width="100px" height="100px" /></a>
 				<h1>Covid-19 MSOA data</h1>
 			</div>
 		</div>
@@ -215,7 +215,7 @@
 	<footer class="bottom doublepadded b1-bg">
 		<div class="holder">
 			<h2>About these maps</h2>
-			<p>This visualisation was created by <a href="https://odileeds.org/">ODI Leeds</a> and uses <a href="https://github.com/odileeds/hexmaps">hex cartograms</a>. A hex cartogram gives each area the same visual weight on the map at the expense of accurate geography. This helps make geographically compact (but often big in population) areas more easily visible than a geographic map. Using consistent shapes (hexagons) also makes it easier to spot outliers.</p>
+			<p>This visualisation was created by <a href="https://open-innovations.org/">Open Innovations</a> and uses <a href="https://github.com/odileeds/hexmaps">hex cartograms</a>. A hex cartogram gives each area the same visual weight on the map at the expense of accurate geography. This helps make geographically compact (but often big in population) areas more easily visible than a geographic map. Using consistent shapes (hexagons) also makes it easier to spot outliers.</p>
 			<p>The travel time values are calculated by finding the minimum travel time by each mode to an MSOA with a vaccination site from the current MSOA. Times in the source data are <em>limited to 60 minutes</em>.</p>
 			<h2>Data sources</h2>
 			<ul>
@@ -225,14 +225,14 @@
 				<li>Testing data: obtained from <a href="https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=uniqueCasePositivityBySpecimenDateRollingSum&metric=uniquePeopleTestedBySpecimenDateRollingSum&metric=newLFDTests&format=csv">PHE testing data</a> (<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>)</li>
 				<li>Vaccination data: obtained from <a href="https://www.england.nhs.uk/statistics/statistical-work-areas/covid-19-vaccinations/">NHS England</a> (<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>) via <a href="https://github.com/odileeds/covid-19/blob/main/vaccines/data/vaccinations-MSOA-latest.csv">extracted MSOA data</a>.</li>
 				<li>Vaccination sites: <a href="https://www.england.nhs.uk/coronavirus/publication/vaccination-sites/">vaccinations sites listed by NHS England</a> (<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>) via <a href="data/vaccination-centres.csv">processed CSV file of sites</a>.</li>
-				<li>Travel time data: created by <a href="https://github.com/odileeds/OpenJourneyTime">Tom Forth &amp; ODI Leeds</a> (CC-BY 4.0) using data from public transport timetables (<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>) and OpenStreetMap (<a href=" CC-BY 4.0. Please credit Tom Forth at ODILeeds and ODILeeds.">ODbL</a>).</li>
+				<li>Travel time data: created by <a href="https://github.com/odileeds/OpenJourneyTime">Tom Forth &amp; Open Innovations</a> (CC-BY 4.0) using data from public transport timetables (<a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>) and OpenStreetMap (<a href=" CC-BY 4.0. Please credit Tom Forth at Open Innovations and Open Innovations.">ODbL</a>).</li>
 			</ul>
 			<p>To power the visualisation we compile all the <a href="data/msoa_lookup.csv">data by MSOA in a single CSV file</a>.</p>
 		</div>
 	</footer>
-	<script src="https://odileeds.org/resources/odi.log.js"></script>
+	<script src="https://open-innovations.org/resources/oi.log.js"></script>
 	<script>
-	ODI.log.setup({'id':'odileeds','target':['odileeds.github.io']}).add('action=view');
+	OI.log.setup({'id':'open-innovations','target':['odileeds.github.io']}).add('action=view');
 	</script>
 </body>
 </html>
