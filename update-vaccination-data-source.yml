@@ -1,0 +1,37 @@
+name: Update vaccination source file
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  update:
+    name: Update flat data workflow  
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+
+      - name: Setup Deno
+        # uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@004814556e37c54a2f6e31384c9e18e9833173669
+        with:
+          deno-version: v1.x
+
+      - name: Check latest version of Vaccination sheet
+        run: deno run --allow-net --allow-read --allow-write scripts/get-latest-spreadsheet.ts
+
+      - name: Check in any changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .github/workflows/flat.yml
+          git commit -m "Update Excel Vaccination Sites file" || exit 0
+          - name: Push changes
+  
+      - name: Push any changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
