@@ -1,4 +1,6 @@
 name: data
+env:
+  VACCINATION_SITES: 'https://www.england.nhs.uk/coronavirus/wp-content/uploads/sites/52/2021/01/List-of-vaccination-sites-17-November-2021.xlsx'
 on:
   schedule:
     - cron: 0 0 * * *
@@ -20,6 +22,6 @@ jobs:
       - name: Fetch data
         uses: githubocto/flat@v3
         with:
-          http_url: https://www.england.nhs.uk/coronavirus/wp-content/uploads/sites/52/2021/01/List-of-vaccination-sites-17-November-2021.xlsx
+          http_url: '${{ env.VACCINATION_SITES }}'
           downloaded_filename: data/vaccination-sites.xlsx
           postprocess: ./scripts/extract-vaccination-sites.ts
