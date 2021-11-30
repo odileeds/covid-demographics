@@ -8,8 +8,8 @@ const workbook = await readXLSX(filename);
 const lookups = [
   {
     sheet: 'Vaccination Centres',
-    name: 'Name',
-    postcode: 'Postcode',
+    name: 'Name ',
+    postcode: 'Postcode ',
   },
   {
     sheet: 'Pharmacies',
@@ -30,13 +30,12 @@ const lookups = [
 
 const getData = async (sheetName: string) => {
   const lookup: any = lookups.find(x => x.sheet === sheetName);
-
   const formatData = (row: any) => ({
     type: sheetName,
-    name: row[lookup.name].replace(/[\r\n]+/, ', ', 'g'),
+    name: row[lookup.name].toString().replace(/[\r\n]+/, ', ', 'g'),
     postcode: row[lookup.postcode],
   });
-  return (await xlsx.utils.sheet_to_json(workbook.Sheets[sheetName])).map(formatData);
+  return (await xlsx.utils.sheet_to_json(workbook.Sheets[sheetName])).map(formatData).filter((x: any) => x);
 }
 
 const data = (await Promise.all(workbook.SheetNames.map(getData)))
@@ -47,7 +46,7 @@ const postcodes = [...(new Set(data.map((row: any) => row.postcode)))];
 const postcodeData = await bulkPostcodeLookup(postcodes);
 
 const vaccinationCentreData = data.map((row: any) => {
-  const location = postcodeData.find(p => p.postcode === row.postcode.trim());
+  const location = postcodeData.find(p => row.postcode ? p.postcode === row.postcode.trim() : undefined);
   return {
     ...row,
     ...location,
