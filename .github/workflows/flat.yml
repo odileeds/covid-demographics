@@ -1,4 +1,4 @@
-name: data
+name: Get vaccination site data
 env:
   VACCINATION_SITES: 'https://www.england.nhs.uk/coronavirus/wp-content/uploads/sites/52/2021/01/List-of-vaccination-sites-17-November-2021.xlsx'
 on:
