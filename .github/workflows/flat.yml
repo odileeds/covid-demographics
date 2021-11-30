@@ -10,7 +10,8 @@ on:
       - .github/workflows/flat.yml
       - ./scripts/extract-vaccination-sites.ts
 jobs:
-  scheduled:
+  get_data:
+    name: Get latest vaccination data
     runs-on: ubuntu-latest
     steps:
       - name: Setup deno
