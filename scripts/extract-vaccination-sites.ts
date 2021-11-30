@@ -8,22 +8,22 @@ const workbook = await readXLSX(filename);
 const lookups = [
   {
     sheet: 'Vaccination Centres',
-    name: 'Site Name',
+    name: 'Name',
     postcode: 'Postcode',
   },
   {
     sheet: 'Pharmacies',
-    name: 'Site Name',
+    name: 'Name',
     postcode: 'Postcode',
   },
   {
     sheet: 'GP-led vaccination services',
-    name: 'Site Name',
+    name: 'Name',
     postcode: 'Postcode',
   },
   {
     sheet: 'Hospital Hubs',
-    name: 'Trust or Site Name',
+    name: 'Hospital Hub',
     postcode: 'Postcode',
   }
 ];
