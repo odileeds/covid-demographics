@@ -21,7 +21,7 @@ $casesfile = $tempdir."cases-phe-msoa.csv";
 $testsfile = $tempdir."tests-ltla.csv";
 $nimsfile = $tempdir."NIMS-MSOA-population.csv";
 $nimsLAfile = $tempdir."NIMS-LTLA-population.csv";
-
+$onsfile = $datadir."ons-msoa-2020-SAPE23DT4.csv";
 
 @keepvac = ('1st dose Under 18 %','1st dose 18-24 %','1st dose 25-29 %','1st dose 30-34 %','1st dose 35-39 %','1st dose 40-44 %','1st dose 45-49 %','1st dose 50-54 %','1st dose 55-59 %','1st dose 60-64 %','1st dose 65-69 %','1st dose 70-74 %','1st dose 75-79 %','1st dose 80+ %','2nd dose Under 18 %','2nd dose 18-24 %','2nd dose 25-29 %','2nd dose 30-34 %','2nd dose 35-39 %','2nd dose 40-44 %','2nd dose 45-49 %','2nd dose 50-54 %','2nd dose 55-59 %','2nd dose 60-64 %','2nd dose 65-69 %','2nd dose 70-74 %','2nd dose 75-79 %','2nd dose 80+ %','Vaccine notes');
 @keeplocalhealth = ('Older People in Deprivation, Number of older people','Rural Urban Classification','IMD Score, 2019','Income deprivation, English Indices of Deprivation, 2019','Fuel Poverty, 2018','Older people living alone','Population aged 0 to 15 years','Population aged 0 to 4 years','Population aged 5 to 15 years','Population aged 16 to 24 years','Population aged 25 to 64 years','Population aged between 50 and 64 years','Population aged 65 years and over','Population aged 85 years and over','Black and Minority Ethnic Population',"Population whose ethnicity is not 'White UK'",'Population who cannot speak English well or at all','Child Poverty, English Indices of Deprivation, 2019','Older People in Deprivation, English Indices of Deprivation, 2019','Overcrowded houses, 2011','Proportion of households in poverty','Unemployment','Long term unemployment','Total population','Population aged 65 years and over','Income Deprivation, Number of people','Child Poverty, Number of children','Population density');
@@ -116,6 +116,7 @@ if(!-e $nimsLAfile || (time() - (stat $nimsLAfile)[9] >= 3*86400)){
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $nimsLAfile "$url"`;
 }
+%ons = getCSV($onsfile,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD','MSOA code'=>'MSOA11CD'}});
 %nims = getCSV($nimsfile,{'id'=>'MSOA11CD','map'=>{'MSOA Code'=>'MSOA11CD','MSOA code'=>'MSOA11CD'}});
 %nimsLA = getCSV($nimsLAfile,{'id'=>'LADCD','map'=>{'LTLA Code'=>'LADCD','LTLA code'=>'LADCD'}});
 foreach $msoa (keys(%nims)){
@@ -224,12 +225,37 @@ foreach $msoa (sort(keys(%vaccines))){
 			$r = $1;
 		}
 		if($r){
-			for($m = 0; $m < @msoas;$m++){
-				if($nims{$msoas[$m]}{$r}==0){
-					print "$msoas[$m] / $r / $nims{$msoas[$m]}{$r}\n";
+			$lower = 0;
+			$upper = 0;
+			if($r =~ s/Under ([0-9]+)//g){
+				$lower = 0;
+				$upper = ($1-1);
+			}elsif($r =~ /([0-9]+)-([0-9]+)/){
+				$lower = $1;
+				$upper = $2;
+			}elsif($r =~ /([0-9]+)\+/){
+				$lower = $1;
+				$upper = 90;
+			}
+			if($upper > 0){
+				for($m = 0; $m < @msoas;$m++){
+#					if($nims{$msoas[$m]}{$r}==0){
+#						print "$msoas[$m] / $r / $nims{$msoas[$m]}{$r}\n";
+#					}
+
+					$p = $nims{$msoas[$m]}{$r};
+					if($p == 0){
+						$p = getONSPopulation($msoas[$m],$lower,$upper);
+					}
+					if($p > 0){
+						if($msoas[$m] eq "E02005782"){
+							print "$key - $vaccines{$msoas[$m]}{$key} / $p / $lower / $upper\n";
+						}
+						$vaccines{$msoas[$m]}{$key." %"} = ($vaccines{$msoas[$m]}{$key} eq "" ? "" : sprintf("%0.1f",100*$vaccines{$msoas[$m]}{$key}/$p));
+					}else{
+						print "No population value for $key in either NIMS or ONS\n";
+					}
 				}
-#				print "$msoa -> ($m) $msoas[$m] ($key)\n";
-				$vaccines{$msoas[$m]}{$key." %"} = ($vaccines{$msoas[$m]}{$key} eq "" ? "" : sprintf("%0.1f",100*$vaccines{$msoas[$m]}{$key}/$nims{$msoas[$m]}{$r}));
 			}
 		}
 	}
@@ -429,4 +455,27 @@ sub getCSV {
 	}else{
 		return @data;
 	}
+}
+
+sub getONSPopulation {
+	my ($msoa,$lower,$upper) = @_;
+	my ($heading,$t,$v,$max);
+	
+	$t = 0;
+	foreach $heading (sort(keys(%{$ons{$msoa}}))){
+		$v = $heading;
+		$v =~ s/\+//;
+		if($v =~ /\D/){
+			# Ignore non-number-based columns
+		}else{
+			if($v > $max){ $max = $v; }
+			if($v >= $lower && $v <= $upper){
+				$t += $ons{$msoa}{$heading};
+			}
+		}
+	}
+	if($lower > $max || $upper > $max){
+		print "You've gone beyond the age range in the ONS data.\n";
+	}
+	return $t;
 }
