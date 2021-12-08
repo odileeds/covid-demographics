@@ -1,10 +1,10 @@
 /**
-  ODI Leeds MSOA Yorkshire and Humber data
+  Open Innovations MSOA Yorkshire and Humber data
   Version 0.1.1
 **/
 (function(root){
 	
-	var ODI = root.ODI || {};
+	var OI = root.OI || {};
 	// Define a colour scale helper function
 	function ColourScale(c){
 		// Version 1.1
@@ -169,7 +169,7 @@
 		for(ab in this.hexmaps){
 			if(this.hexmaps[ab]){
 				// Create the hexagon layout
-				this.hexmaps[ab].map = new ODI.hexmap(this.hexmaps[ab].el.querySelector('.hexmap'),{
+				this.hexmaps[ab].map = new OI.hexmap(this.hexmaps[ab].el.querySelector('.hexmap'),{
 					// The HexJSON layout
 					'hexjson':'data/msoa_yorkshireandhumber.hexjson',
 					'ab': ab,
@@ -227,7 +227,7 @@
 			return this;
 		}
 		this.updateCorrelation = function(){
-			var nr,r,d,ab,i,corr,init,bad,axes;
+			var nr,r,d,ab,i,corr,init,bad,axes,v;
 			corr = [];
 			init = (this.correlation.chart ? true : false);
 			bad = 0;
@@ -250,13 +250,14 @@
 					'labels': this.correlation.labels[ab]
 				}
 				// Check if a range is defined. If it is, use it.
-				if(options[this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].value].range){
-					axes[a].min = options[this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].value].range[0];
-					axes[a].max = options[this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].value].range[1];
+				v = this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].value;
+				if(options[v] && options[v].range){
+					axes[a].min = options[v].range[0];
+					axes[a].max = options[v].range[1];
 				}
 			}
 			if(!init){
-				this.correlation.chart = ODI.linechart(this.correlation.el,{
+				this.correlation.chart = OI.linechart(this.correlation.el,{
 					'left':32,
 					'right':0,
 					'top':0,
@@ -279,7 +280,7 @@
 					'line':{ 'show': false },
 					'tooltip':{
 						'label': function(d){
-							return d.data.name+'\n'+d.data.xlabel+': '+d.data.x+'\n'+d.data.ylabel+': '+(d.data.y||d.data.yvalue);
+							return d.data.name+'\n'+d.data.xlabel+': '+d.data.x+'\n'+d.data.ylabel+': '+(d.data.y||d.data.yvalue||0);
 						}
 					}
 				});
@@ -514,12 +515,12 @@
 		return this;
 	}
 
-	ODI.ready(function(){
+	OI.ready(function(){
 
-		ODI.msoa = new MSOA();
+		OI.msoa = new MSOA();
 
 		// Load the data
-		ODI.ajax('data/msoa_lookup.csv',{
+		OI.ajax('data/msoa_lookup.csv',{
 			'this': this, // Set the context to the hexmap
 			'dataType':'text',
 			'success':function(d){
@@ -538,7 +539,7 @@
 						}
 					}
 				}
-				for(ab in ODI.msoa.hexmaps) ODI.msoa.updateHexmap(ab);
+				for(ab in OI.msoa.hexmaps) OI.msoa.updateHexmap(ab);
 			},
 			'error':function(e,attr){ console.error('Unable to load ',attr.url,attr); }
 		});
@@ -556,7 +557,7 @@
 		text.replace(re_value, // "Walk" the string using replace with callback.
 			function(m0, m1, m2, m3) {
 				// Remove backslash from \' in single quoted values.
-				if	  (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+				if (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
 				// Remove backslash from \" in double quoted values.
 				else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
 				else if (m3 !== undefined) a.push(m3);

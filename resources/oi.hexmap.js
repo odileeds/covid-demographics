@@ -1,12 +1,12 @@
 /**
-	ODI Leeds hex map in SVG
+	Open Innovations hex map in SVG
 	Version 0.5.5
  */
 (function(root){
 
-	var ODI = root.ODI || {};
-	if(!ODI.ready){
-		ODI.ready = function(fn){
+	var OI = root.OI || {};
+	if(!OI.ready){
+		OI.ready = function(fn){
 			// Version 1.1
 			if(document.readyState != 'loading') fn();
 			else document.addEventListener('DOMContentLoaded', fn);
@@ -36,7 +36,7 @@
 		req.send();
 		return this;
 	}
-	if(!ODI.ajax) ODI.ajax = AJAX;
+	if(!OI.ajax) OI.ajax = AJAX;
 
 	// Input structure:
 	//    el: the element to attach to
@@ -53,7 +53,7 @@
 		this.version = "0.5.5";
 		if(!attr) attr  = {};
 		this._attr = attr;
-		this.title = "ODI HexMap";
+		this.title = "Open Innovations HexMap";
 		this.logging = (location.search.indexOf('debug=true') >= 0);
 		this.log = function(){
 			// Version 1.1
@@ -154,7 +154,7 @@
 			}
 			if(typeof file==="string"){
 				this.log('INFO','Loading '+file,prop,fn);
-				ODI.ajax(file,{
+				OI.ajax(file,{
 					'this': this,
 					'dataType':'json',
 					'success': function(data){ done(data); },
@@ -539,7 +539,7 @@
 		return this;
 	
 	}
-	ODI.hexmap = HexMap;
+	OI.hexmap = HexMap;
 
 	// Helper functions
 	var ns = 'http://www.w3.org/2000/svg';
@@ -572,6 +572,6 @@
 		return str;
 	}
 
-	root.ODI = ODI;
+	root.OI = OI;
 
 })(window || this);
