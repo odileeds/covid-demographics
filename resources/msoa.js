@@ -222,7 +222,7 @@
 				for(var ab in this.hexmaps){
 					lnk += (lnk ? '&':'')+'map-'+ab+'='+encodeURI(this.hexmaps[ab].select.value);
 				}
-				document.getElementById('link').value = location.origin+location.pathname+'?'+lnk;
+				document.getElementById('link').value = (location.origin!=="null" ? location.origin : 'file://')+location.pathname+'?'+lnk;
 			}
 			return this;
 		}
@@ -249,8 +249,12 @@
 					'title':{'label':this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].innerHTML},
 					'labels': this.correlation.labels[ab]
 				}
+				// Check if a range is defined. If it is, use it.
+				if(options[this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].value].range){
+					axes[a].min = options[this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].value].range[0];
+					axes[a].max = options[this.hexmaps[ab].select.options[this.hexmaps[ab].select.selectedIndex].value].range[1];
+				}
 			}
-
 			if(!init){
 				this.correlation.chart = ODI.linechart(this.correlation.el,{
 					'left':32,
@@ -275,7 +279,7 @@
 					'line':{ 'show': false },
 					'tooltip':{
 						'label': function(d){
-							return d.data.name+'\n'+d.data.xlabel+': '+d.data.x+'\n'+d.data.ylabel+': '+(d.data.yvalue||d.data.y);
+							return d.data.name+'\n'+d.data.xlabel+': '+d.data.x+'\n'+d.data.ylabel+': '+(d.data.y||d.data.yvalue);
 						}
 					}
 				});
