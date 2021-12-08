@@ -136,7 +136,7 @@ foreach $ltla (keys(%nimsLA)){
 %testsLA;
 %tests;
 if(!-e $testsfile || (time() - (stat $testsfile)[9] >= 86400/2)){
-	$url = "https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=uniqueCasePositivityBySpecimenDateRollingSum&metric=uniquePeopleTestedBySpecimenDateRollingSum&metric=newLFDTests&format=csv";
+	$url = "https://api.coronavirus.data.gov.uk/v2/data?areaType=ltla&metric=uniqueCasePositivityBySpecimenDateRollingSum&metric=uniquePeopleTestedBySpecimenDateRollingSum&metric=newLFDTestsBySpecimenDate&format=csv";
 	print "Getting $url\n";
 	`wget -q --no-check-certificate -O $testsfile "$url"`;
 }
@@ -144,6 +144,7 @@ open(FILE,$testsfile);
 while(<FILE>){
 	$line = $_;
 	$line =~ s/[\n\r]//g;
+	#areaCode,areaName,areaType,date,uniqueCasePositivityBySpecimenDateRollingSum,uniquePeopleTestedBySpecimenDateRollingSum
 	($areaCode,$areaName,$areaType,$date,$newLFDTests,$uniqueCasePositivityBySpecimenDateRollingSum,$uniquePeopleTestedBySpecimenDateRollingSum) = split(/,(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/,$line);
 	if(!$testsLA{$areaCode}){
 		$testsLA{$areaCode} = {'dates'=>{},'recent'=>{'PCR'=>'','LFD'=>''}};
