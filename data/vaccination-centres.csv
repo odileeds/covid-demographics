@@ -9,7 +9,7 @@ Pharmacies,Arlesey Pharmacy,SG15 6RA,52.006387,-0.265348,E06000056,E02003608,E01
 Pharmacies,Asda - Watford,WD24 7RS,51.679479,-0.389936,E07000103,E02004972,E01023896
 Pharmacies,Asda Pharmacy - Basildon,SS14 3AF,51.581143,0.443534,E07000066,E02004438,E01021268
 Pharmacies,Asda Pharmacy - Bury St Edmunds,IP33 3SP,52.251824,0.690697,E07000245,E02006279,E01030124
-Pharmacies,Asda Pharmacy - Dunstable,LU5 4JD,51.891376,-0.520377,E06000056,E02003647,E01017570
+Pharmacies,Asda Pharmacy - Dunstable,LU5 4JD,51.889129,-0.520436,E06000056,E02003647,E01017570
 Pharmacies,Asda Pharmacy - Great Yarmouth,NR30 1SF,52.613554,1.718818,E07000145,E02005542,E01026597
 Pharmacies,Asda Pharmacy - Milton Keynes,MK1 1QB,52.00701,-0.730974,E06000042,E02003481,E01033498
 Pharmacies,Asda Pharmacy - Peterborough,PE1 1ET,52.569009,-0.244113,E06000031,E02003250,E01015599
@@ -90,7 +90,7 @@ Pharmacies,Hutt Pharmacy,CO2 9EB,51.87127,0.872677,E07000071,E02004520,E01021711
 Pharmacies,Imed Pharmacy,AL1 3FY,51.747468,-0.326496,E07000240,E02004935,E01023729
 Pharmacies,Island Pharmacy - Colchester,CO5 8QT,51.777955,0.914923,E07000071,E02004526,E01021732
 Pharmacies,Ixworth Pharmacy,IP31 2HD,52.303312,0.830849,E07000245,E02006274,E01030121
-Pharmacies,Janssens Pharmacy,MK42 9HG,52.126817,-0.470426,E06000055,E02003630,E01017474
+Pharmacies,Janssens Pharmacy,MK42 9HG,52.126894,-0.470519,E06000055,E02003630,E01017474
 Pharmacies,Jardines Pharmacy - Brooklands,MK10 7LN,52.045305,-0.673851,E06000042,E02003475,E01033509
 Pharmacies,Jardines Pharmacy - Leagrave,LU4 9QD,51.901123,-0.462903,E06000032,E02003268,E01015750
 Pharmacies,Jardines Pharmacy - Oakridge Park,MK14 6GL,52.068655,-0.777853,E06000042,E02003460,E01016760
@@ -125,7 +125,7 @@ Pharmacies,Morrisons Pharmacy - Ipswich,IP1 5AS,52.065527,1.1188,E07000202,E0200
 Pharmacies,Murray Miller Pharmacy - Southend On Sea,SS2 5PW,51.552857,0.71597,E06000033,E02003284,E01015874
 Pharmacies,Netteswell Pharmacy - Harlow,CM20 3NG,51.768801,0.112319,E07000073,E02004546,E01021852
 Pharmacies,North Street Pharmacy,CO10 1RF,52.040209,0.730874,E07000200,E02006233,E01029920
-Pharmacies,Nu-Cross Chemist - Hitchin,SG5 1BS,51.949775,-0.276378,E07000099,E02004918,E01023601
+Pharmacies,Nu-Cross Chemist - Hitchin,SG5 1BS,51.94972,-0.2764,E07000099,E02004918,E01023601
 Pharmacies,Old Registry Office - Biggleswade (Jardine's Pharmacy),SG18 8EL,52.083271,-0.252198,E06000056,E02003604,E01017382
 Pharmacies,Over Healthcare - Cambridge,CB24 5NZ,52.314809,0.012018,E07000012,E02003775,E01018305
 Pharmacies,Peak Pharmacy - Milton Keynes,MK3 6PB,52.00595,-0.748798,E06000042,E02003485,E01016741
@@ -209,7 +209,7 @@ Pharmacies,Blackwells Chemists - Beckenham,BR3 3PS,51.402657,-0.036827,E09000006
 Pharmacies,Blakeberry Pharmacy,E6 6EN,51.531475,0.055765,E09000025,E02000731,E01003526
 Pharmacies,Boots - Armada Way,E6 7FB,51.511751,0.078831,E09000025,E02000746,E01003482
 Pharmacies,Boots - Canary Wharf,E14 5NY,51.50307,-0.018583,E09000030,E02006854,E01032771
-Pharmacies,Boots - Fleet Street,EC4A 2BE,51.514357,-0.105665,E09000001,E02000001,E01032740
+Pharmacies,Boots - Fleet Street,EC4A 2BE,51.514308,-0.105436,E09000001,E02000001,E01032740
 Pharmacies,Boots - Kingston upon Thames,KT1 1RP,51.409735,-0.305404,E09000021,E02000606,E01002968
 Pharmacies,Boots - London Kew,TW9 4AD,51.478312,-0.278864,E09000027,E02000787,E01033570
 Pharmacies,Boots - Uxbridge (The Chimes),UB8 1GA,51.545585,-0.476712,E09000017,E02000508,E01002515
@@ -480,7 +480,7 @@ Pharmacies,Boots - Buxton,SK17 6BZ,53.259197,-1.910302,E07000037,E02004102,E0101
 Pharmacies,Boots - Fosse Park,LE19 1HJ,52.597088,-1.18026,E07000129,E02005338,E01025627
 Pharmacies,Boots - Intu Derby,DE1 2AH,52.920062,-1.47354,E06000015,E02002808,E01013479
 Pharmacies,Boots - Intu Nottingham,NG1 3QS,52.955524,-1.146587,E06000018,E02002890,E01033409
-Pharmacies,Boots - Lower Precinct Coventry,CV1 1DS,52.407944,-1.514387,E08000026,E02001988,E01009642
+Pharmacies,Boots - Lower Precinct Coventry,CV1 1DS,52.408033,-1.514371,E08000026,E02001988,E01009642
 Pharmacies,Boots - Newark,NG24 1AT,53.076254,-0.810546,E07000175,E02005899,E01028310
 Pharmacies,Boots - Wolverhampton,WV1 3EX,52.584725,-2.126797,E08000031,E02002168,E01010521
 Pharmacies,Bradley Methodist Church,WV14 8TH,52.552863,-2.072809,E08000031,E02002181,E01010410
@@ -492,10 +492,10 @@ Pharmacies,Broadway Pharmacy - Walsall,WS1 3HG,52.568187,-1.978903,E08000030,E02
 Pharmacies,Bromyard Pharmacy - Bromyard,HR7 4AE,52.18954,-2.507925,E06000019,E02002909,E01014005
 Pharmacies,Brownsover Community Centre (Lister Chemists),CV21 1JF,52.390542,-1.241431,E07000220,E02006493,E01031137
 Pharmacies,Brutons Pharmacy - Moxley,WS10 8RT,52.560284,-2.052559,E08000030,E02002147,E01010314
-Pharmacies,Burslem Cricket Club (Raven Pharmacy),ST6 3LQ,53.03495,-2.18954,E06000021,E02002959,E01014255
+Pharmacies,Burslem Cricket Club (Raven Pharmacy),ST6 3LQ,53.034102,-2.191565,E06000021,E02002965,E01014285
 Pharmacies,Car Show Room (VW) (Pharmacy2U),PE9 2EX,52.655257,-0.462057,E07000141,E02005491,E01026350
 Pharmacies,Carrington Pharmacy - Nottingham,NG5 2DA,52.972476,-1.152508,E06000018,E02002882,E01013972
-Pharmacies,Carters Chemist - West Bromwich,B70 9LW,52.523833,-2.003892,E08000028,E02002059,E01010103
+Pharmacies,Carters Chemist - West Bromwich,B70 9LW,52.523857,-2.003959,E08000028,E02002059,E01010103
 Pharmacies,Central (& Woods) Methodist Church T/A The Wesley Centre (Jubilee Pharmacy),WS10 9AD,52.552599,-2.017522,E08000028,E02002047,E01010091
 Pharmacies,Central Hall Methodist Church (Dudley Road Pharmacy),WS1 2EQ,52.583757,-1.975531,E08000030,E02002139,E01010368
 Pharmacies,Church Pharmacy - Bilston,WV14 0AX,52.565411,-2.076488,E08000031,E02002175,E01010414
@@ -532,7 +532,7 @@ Pharmacies,Fallings Park Pharmacy - Wolverhampton,WV10 0NT,52.602284,-2.103468,E
 Pharmacies,Fortnams - Lutterworth,LE17 4AD,52.455046,-1.200312,E07000131,E02005376,E01025792
 Pharmacies,Friar Park Pharmacy,WS10 0EB,52.552834,-1.996446,E08000028,E02002046,E01009962
 Pharmacies,Ghausia Jamia Welfare Association (Day Night Pharmacy),DY9 8JT,52.45846,-2.116876,E08000027,E02002036,E01009836
-Pharmacies,Gilbert and Armstrong Pharmacy (Whitwell),S80 4NN,53.283979,-1.208035,E07000033,E02004046,E01019524
+Pharmacies,Gilbert and Armstrong Pharmacy (Whitwell),S80 4NN,53.284201,-1.207596,E07000033,E02004046,E01019524
 Pharmacies,Great Bridge Pharmacy,DY4 7EW,52.529977,-2.033079,E08000028,E02002058,E01009979
 Pharmacies,Green Lane Mosque (Masters Pharmacy),B9 5DB,52.47323,-1.862734,E08000025,E02006900,E01009332
 Pharmacies,Greens Norton Community Centre (Jardines Pharmacy),NN12 8BL,52.143726,-1.022585,E06000062,E02005684,E01027289
@@ -565,7 +565,7 @@ Pharmacies,Jhoots Pharmacy - Northampton,NN4 5DW,52.18967,-0.887097,E06000062,E0
 Pharmacies,Jhoots Pharmacy - Oakengates,TF2 6ED,52.694874,-2.451645,E06000020,E02002941,E01014153
 Pharmacies,Jhoots Pharmacy - Ward End,B8 2NB,52.493454,-1.81987,E08000025,E02001870,E01009481
 Pharmacies,Jhoots Pharmacy - Wigston,LE18 4PB,52.579808,-1.132006,E07000135,E02005415,E01025989
-Pharmacies,Job Skills Building (Nechells Pharmacy),B5 5JU,52.482226,-1.888882,E08000025,E02001876,E01033617
+Pharmacies,Job Skills Building (Nechells Pharmacy),B5 5JU,52.481857,-1.888662,E08000025,E02001876,E01033617
 Pharmacies,Jubilee Hall (All Saints Church),DE65 5EL,52.865893,-1.68145,E07000039,E02004118,E01019846
 Pharmacies,Kasli Pharmacy,CV10 8BW,52.52158,-1.490934,E07000219,E02006480,E01031060
 Pharmacies,Knights Bilsthorpe Pharmacy - Newark,NG22 8QR,53.140478,-1.034409,E07000175,E02005897,E01028297
@@ -747,12 +747,12 @@ Pharmacies,AD Phillips - Trimdon Village,TS29 6PY,54.699934,-1.428453,E06000047,
 Pharmacies,Allerton Pharmacy,BD15 7WA,53.79889,-1.826298,E08000032,E02002218,E01010802
 Pharmacies,Allied Pharmacy - Middlesborough,TS7 9PD,54.550014,-1.181275,E06000002,E02002502,E01012017
 Pharmacies,Ancora Healthcare Limited,DN16 2AB,53.570914,-0.655287,E06000013,E02002760,E01013316
-Pharmacies,Asda Pharmacy - Benton,NE12 9SJ,55.019748,-1.537323,E08000022,E02001755,E01008501
+Pharmacies,Asda Pharmacy - Benton,NE12 9SJ,55.02059,-1.536813,E08000022,E02001755,E01008501
 Pharmacies,Asda Pharmacy - Bilton Hull,HU11 4AL,53.778404,-0.253637,E06000010,E02002660,E01012835
 Pharmacies,Asda Pharmacy - Boldon Colliery,NE35 9AR,54.948379,-1.460985,E08000023,E02001788,E01008613
 Pharmacies,Asda Pharmacy - Bradford,BD4 7SR,53.772189,-1.732609,E08000032,E02002235,E01010615
 Pharmacies,Asda Pharmacy - Darlington,DL1 3RB,54.545355,-1.523104,E06000005,E02002561,E01012329
-Pharmacies,Asda Pharmacy - Dewsbury,WF12 9AE,53.687166,-1.630594,E08000034,E02002294,E01011257
+Pharmacies,Asda Pharmacy - Dewsbury,WF12 9AE,53.688379,-1.633324,E08000034,E02002294,E01011257
 Pharmacies,Asda Pharmacy - Gateshead,NE11 9YA,54.959886,-1.67786,E08000037,E02001690,E01008262
 Pharmacies,Asda Pharmacy - Gosforth,NE3 5BU,55.012569,-1.618235,E08000021,E02001712,E01008351
 Pharmacies,Asda Pharmacy - Halifax,HX1 4JT,53.723107,-1.886211,E08000033,E02002255,E01010964
@@ -763,7 +763,7 @@ Pharmacies,Asda Pharmacy - Middlesborough,TS6 6AB,54.582228,-1.17656,E06000003,E
 Pharmacies,Asda Pharmacy - Newcastle upon Tyne,NE6 2XP,54.979875,-1.574514,E08000021,E02001733,E01008392
 Pharmacies,Asda Pharmacy - Peterlee,SR8 5HA,54.760798,-1.331405,E06000047,E02004325,E01020758
 Pharmacies,Asda Pharmacy - Rotherham,S65 3SW,53.443538,-1.319164,E08000018,E02001587,E01007721
-Pharmacies,Asda Pharmacy - Sheffield Chaucer Rd,S5 8NH,53.426919,-1.486885,E08000019,E02001619,E01008118
+Pharmacies,Asda Pharmacy - Sheffield Chaucer Rd,S5 8NH,53.428125,-1.487202,E08000019,E02001619,E01008118
 Pharmacies,Asda Pharmacy - South Shields,NE33 1AZ,54.99663,-1.435847,E08000023,E02001769,E01008667
 Pharmacies,Asda Pharmacy - South Terrace,SR7 7HN,54.836693,-1.331974,E06000047,E02004321,E01020784
 Pharmacies,Asda Pharmacy - Stockton-On-Tees,TS18 2PB,54.570739,-1.285021,E06000004,E02002548,E01012266
@@ -776,7 +776,7 @@ Pharmacies,Bellingham Masonic Hall (Parkside Pharmacy),NE48 2AS,55.14322,-2.2556
 Pharmacies,Belmont Pharmacy - Durham,DH1 1AR,54.787464,-1.529198,E06000047,E02004312,E01020691
 Pharmacies,Billingham Shopping Centre (Pharmacy2U),TS23 2NX,54.607498,-1.29444,E06000004,E02002536,E01012276
 Pharmacies,"Birkwood Pharmacy, Primary Care Centre",DN34 5DX,53.557415,-0.105207,E06000012,E02002740,E01013211
-Pharmacies,Bishopside & Bewerley Memorial Hall (Pateley Bridge Pharmacy),HG3 5JS,54.086622,-1.760051,E07000165,E02005766,E01027702
+Pharmacies,Bishopside & Bewerley Memorial Hall (Pateley Bridge Pharmacy),HG3 5JS,54.086672,-1.760071,E07000165,E02005766,E01027702
 Pharmacies,Boots - Berwick upon Tweed,TD15 1BN,55.770191,-2.00424,E06000057,E02005706,E01027377
 Pharmacies,Boots - Brampton,S73 0TB,53.507304,-1.389281,E08000018,E02001578,E01007695
 Pharmacies,Boots - Carlisle,CA3 8JU,54.893183,-2.934544,E07000028,E02003992,E01019206
@@ -856,7 +856,7 @@ Pharmacies,Gosforth Private Clinic (Health Hut Pharmacy & Clinic),NE3 4BP,55.001
 Pharmacies,Gringley on the Hill Community Centre (Wellfield Pharmacy),DN10 4QY,53.408556,-0.89955,E07000171,E02005837,E01028023
 Pharmacies,Guidepost Scouts HQ (Lobley Hill Pharmacy),NE62 5DF,55.160153,-1.602405,E06000057,E02005739,E01027534
 Pharmacies,Harraby Community Centre (Wellfield Pharmacy),CA1 3SN,54.88108,-2.890999,E07000028,E02003997,E01019221
-Pharmacies,Harrogate Pharmacy - Harrogate,HG1 5BG,53.994651,-1.5357,E07000165,E02005779,E01027656
+Pharmacies,Harrogate Pharmacy - Harrogate,HG1 5BG,53.994666,-1.535721,E07000165,E02005779,E01027656
 Pharmacies,Haydon Bridge Pharmacy,NE47 6JG,54.974051,-2.247768,E06000057,E02005733,E01027488
 Pharmacies,Health Hut Pharmacy & Clinic,NE61 2BD,55.163245,-1.700537,E06000057,E02005723,E01033718
 Pharmacies,Heeley Parish Church (1 A S T Pharmacy),S2 3AE,53.360181,-1.466921,E08000019,E02001661,E01007975
@@ -909,11 +909,11 @@ Pharmacies,Monkseaton Methodist Church (Lobley Hill Pharmacy),NE25 8AQ,55.041131
 Pharmacies,Moorclose Pharmacy - Workington,CA14 3RW,54.629466,-3.551969,E07000026,E02003974,E01019108
 Pharmacies,Morrisons - Wakefield (Pharmacy2U),WF2 9BY,53.678366,-1.525213,E08000036,E02002459,E01011919
 Pharmacies,Morrisons Pharmacy - Morrisons Beverley,HU17 8XE,53.824564,-0.446404,E06000011,E02002703,E01013044
-Pharmacies,Morrisons Pharmacy - Scarborough,YO11 3YN,54.239054,-0.416528,E07000168,E02005807,E01027859
+Pharmacies,Morrisons Pharmacy - Scarborough,YO11 3YN,54.237482,-0.418675,E07000168,E02005807,E01027859
 Pharmacies,Mountbatten Shopping Centre (Pharmacy2U),NE31 1LF,54.973119,-1.519126,E08000023,E02001777,E01008641
 Pharmacies,Neil Pharmacy - Jarrow,NE32 4LZ,54.954968,-1.477826,E08000023,E02001787,E01008628
 Pharmacies,Neil Pharmacy - South Shields,NE34 9BD,54.969886,-1.45328,E08000023,E02001779,E01008672
-Pharmacies,New Marske Pharmacy - New Marske,TS11 8ES,54.580165,-1.036582,E06000003,E02002520,E01012140
+Pharmacies,New Marske Pharmacy - New Marske,TS11 8ES,54.580174,-1.036551,E06000003,E02002520,E01012140
 Pharmacies,Northumbria University - Coach Lane Campus (Wellfield Pharmacy),NE7 7XA,55.003283,-1.574001,E08000021,E02001714,E01008323
 Pharmacies,"Old Top Shop Retail Unit, Dunmail Park Centre (Pharmacy2U)",CA14 1NQ,54.657005,-3.552724,E07000026,E02003972,E01019122
 Pharmacies,Orchard 2000 Pharmacy,HU6 9BS,53.786372,-0.370022,E06000010,E02002654,E01012875
@@ -921,7 +921,7 @@ Pharmacies,Oxenhope Pharmacy - Keighley,BD22 9JJ,53.811008,-1.950926,E08000032,E
 Pharmacies,Page Hall Pharmacy,S4 8GS,53.409127,-1.447641,E08000019,E02001632,E01007944
 Pharmacies,Pavillion Shopping Centre (Coulby Newham Pharmacy),TS17 9FF,54.539869,-1.291125,E06000004,E02002554,E01012284
 Pharmacies,Penrith Auction Mart (iPharma-C),CA11 0DN,54.652809,-2.764266,E07000030,E02004010,E01019335
-Pharmacies,Penrith Conference Centre (Wellfield Pharmacy),CA11 8RQ,54.65913,-2.734684,E07000030,E02004011,E01019326
+Pharmacies,Penrith Conference Centre (Wellfield Pharmacy),CA11 8RQ,54.658606,-2.732179,E07000030,E02004011,E01019326
 Pharmacies,Periville Pharmacy,DN37 9DR,53.569917,-0.128107,E06000012,E02002734,E01013147
 Pharmacies,Pharmacy World - Stockton On Tees,TS19 9BX,54.588048,-1.341989,E06000004,E02002542,E01012249
 Pharmacies,Pharmacy2U King Street South Shields Ne33 (Pharmacy2U),NE33 1DP,54.997745,-1.436189,E08000023,E02001769,E01008667
@@ -942,12 +942,12 @@ Pharmacies,Rowlands Pharmacy - Darlington,DL2 2GL,54.54726,-1.586555,E06000005,E
 Pharmacies,Rowlands Pharmacy - Halifax,HX2 9LL,53.754239,-1.893907,E08000033,E02002245,E01010914
 Pharmacies,Rowlands Pharmacy - Shipley,BD18 1QB,53.835412,-1.764925,E08000032,E02002202,E01010782
 Pharmacies,Rowlands Pharmacy - Sunderland,SR4 7JA,54.901326,-1.404962,E08000024,E02001808,E01008833
-Pharmacies,Rowlands Pharmacy - Wath-Upon-Dearne,S63 7QY,53.502492,-1.345947,E08000018,E02001579,E01007822
+Pharmacies,Rowlands Pharmacy - Wath-Upon-Dearne,S63 7QY,53.502502,-1.346083,E08000018,E02001579,E01007822
 Pharmacies,Sacriston Pharmacy,DH7 6JX,54.818607,-1.626396,E06000047,E02004296,E01020620
 Pharmacies,Saltburn Pharmacy,TS12 1AE,54.582842,-0.974009,E06000003,E02002521,E01012161
 Pharmacies,SE Gill Chemist - Cleadon,SR6 7PG,54.954379,-1.402398,E08000023,E02001789,E01008619
 Pharmacies,Seacliffe Pharmacy,CA28 9PG,54.533824,-3.597764,E07000029,E02004004,E01019291
-Pharmacies,Seascale Pharmacy,CA20 1PR,54.396328,-3.480414,E07000029,E02004006,E01019304
+Pharmacies,Seascale Pharmacy,CA20 1PR,54.396101,-3.480621,E07000029,E02004006,E01019303
 Pharmacies,Seaton Burn Pharmacy,NE13 6EN,55.056961,-1.627126,E08000022,E02001741,E01008582
 Pharmacies,Seven Hills Pharmacy,S5 6AZ,53.418053,-1.438061,E08000019,E02001623,E01007848
 Pharmacies,Shelf Pharmacy - Halifax,HX3 7QY,53.756462,-1.809104,E08000033,E02002246,E01010932
@@ -963,7 +963,7 @@ Pharmacies,St Pauls Elim Pentecostal Church (Conran Late Night Pharmacy),CA1 1BJ
 Pharmacies,St Pauls House (Willington Quay Pharmacy),NE28 6NQ,54.991896,-1.493692,E08000022,E02001765,E01008542
 Pharmacies,St Philip's Community Centre (Medicare Chemists),HD3 3NL,53.66539,-1.82368,E08000034,E02002300,E01011209
 Pharmacies,Stocksbridge Community Leisure Centre (Chain Lane Pharmacy),S36 1EG,53.481025,-1.606118,E08000019,E02001611,E01008150
-Pharmacies,Superdrug - Chester Le Street,DH3 3BD,54.857337,-1.573781,E06000047,E02004294,E01020595
+Pharmacies,Superdrug - Chester Le Street,DH3 3BD,54.857283,-1.573794,E06000047,E02004294,E01020595
 Pharmacies,Superdrug - Harrogate,HG1 1NS,53.993566,-1.540974,E07000165,E02005775,E01027678
 Pharmacies,Superdrug - Leeds,LS2 8NG,53.80163,-1.544048,E08000035,E02006875,E01033010
 Pharmacies,Superdrug - Newcastle,NE1 7DF,54.975843,-1.612397,E08000021,E02001731,E01008397
@@ -1026,7 +1026,7 @@ Pharmacies,Well Pharmacy - Horbury,WF4 5BY,53.660001,-1.54984,E08000036,E0200246
 Pharmacies,Well Pharmacy - Hoyland,S74 9AF,53.499821,-1.43772,E08000016,E02001538,E01007391
 Pharmacies,Well Pharmacy - Hunslet,LS10 2AP,53.778887,-1.52869,E08000035,E02006876,E01011467
 Pharmacies,Well Pharmacy - Lincoln Green Road,LS9 7SU,53.802111,-1.526152,E08000035,E02002393,E01033035
-Pharmacies,Well Pharmacy - Middlesbrough,TS1 2NW,54.574698,-1.236609,E06000002,E02002496,E01012068
+Pharmacies,Well Pharmacy - Middlesbrough,TS1 2NW,54.574896,-1.236559,E06000002,E02002496,E01012068
 Pharmacies,Well Pharmacy - Ossett,WF5 9HQ,53.682658,-1.576533,E08000036,E02002458,E01011828
 Pharmacies,Well Pharmacy - Ravensthorpe,WF13 3HL,53.678866,-1.664711,E08000034,E02002293,E01011134
 Pharmacies,Well Pharmacy - Rotherham,S66 2JQ,53.422309,-1.279671,E08000018,E02001596,E01007686
@@ -1056,7 +1056,7 @@ Pharmacies,Aintree Vaccination Centre (Tiffenbergs Chemist),L9 7AS,53.460228,-2.
 Pharmacies,Allied Pharmacies,WA9 4TU,53.429928,-2.680134,E08000013,E02001427,E01006898
 Pharmacies,Alsager Pharmacy,ST7 2AA,53.09682,-2.302728,E06000049,E02003823,E01018389
 Pharmacies,Andrews Pharmacy,SK10 3DE,53.268464,-2.153014,E06000049,E02003867,E01018620
-Pharmacies,Appleton Village Pharmacy,WA8 6EQ,53.370772,-2.729316,E06000006,E02002580,E01012367
+Pharmacies,Appleton Village Pharmacy,WA8 6EQ,53.37078,-2.729331,E06000006,E02002580,E01012367
 Pharmacies,As Facer (Longton),PR4 5PB,53.727105,-2.782062,E07000126,E02005296,E01025439
 Pharmacies,Asda Pharmacy - Aintree,L10 3LN,53.491564,-2.950437,E08000014,E02001449,E01007038
 Pharmacies,Asda Pharmacy - Ashton-Under-Lyne,OL6 7DP,53.483772,-2.09737,E08000008,E02001241,E01005948
@@ -1072,7 +1072,7 @@ Pharmacies,Asda Pharmacy - Longsight,M12 4NH,53.457804,-2.199358,E08000003,E0200
 Pharmacies,Asda Pharmacy - Manchester,M22 5HZ,53.378563,-2.262437,E08000003,E02001094,E01005291
 Pharmacies,Asda Pharmacy - Radcliffe,M26 3DA,53.557332,-2.328694,E08000002,E02001036,E01005013
 Pharmacies,Asda Pharmacy - Rochdale,OL12 6XT,53.615987,-2.164911,E08000005,E02001141,E01005482
-Pharmacies,AshaEve - Southport,PR8 3HW,53.602403,-3.03882,E08000014,E02001439,E01006927
+Pharmacies,AshaEve - Southport,PR8 3HW,53.602422,-3.038714,E08000014,E02001439,E01006927
 Pharmacies,Ashton Primary Care Centre Pharmacy - Ashton-Under-Lyme,OL6 7SR,53.485827,-2.099981,E08000008,E02001241,E01005948
 Pharmacies,Aspire Pharmacy – Ormskirk,L39 2DN,53.567689,-2.883682,E07000127,E02005310,E01025518
 Pharmacies,Aston Chemists - Blackburn,BB1 2AF,53.748427,-2.45426,E06000008,E02002622,E01012576
@@ -1140,7 +1140,7 @@ Pharmacies,McCanns Chemist - Liverpool,L17 7BP,53.37967,-2.951566,E08000012,E020
 Pharmacies,Medichem Pharmacy,SK6 1RJ,53.426162,-2.101211,E08000007,E02001191,E01005746
 Pharmacies,Medichem Pharmacy - Manchester,M14 4EP,53.45306,-2.23671,E08000003,E02001069,E01005242
 Pharmacies,MMC College (Wellfield Pharmacy),M8 9JR,53.511665,-2.241742,E08000003,E02001052,E01005149
-Pharmacies,Morrisons Pharmacy - Morrisons Rochdale,OL16 4AT,53.613309,-2.136045,E08000005,E02001143,E01005568
+Pharmacies,Morrisons Pharmacy - Morrisons Rochdale,OL16 4AT,53.612168,-2.135588,E08000005,E02001143,E01005569
 Pharmacies,Nantwich Masonic Lodge (Hollowoods Chemist),CW5 7ER,53.063469,-2.478712,E06000049,E02003838,E01018508
 Pharmacies,Newbury Place Pharmacy,M7 4NX,53.506995,-2.26047,E08000006,E02001172,E01005612
 Pharmacies,Northwich Vaccination Centre (Leftwich Pharmacy),CW8 3AB,53.250561,-2.542967,E06000050,E02003883,E01018691
@@ -1203,7 +1203,7 @@ Pharmacies,Well Pharmacy - Barnton,CW8 4LF,53.27167,-2.544179,E06000050,E0200387
 Pharmacies,Well Pharmacy - Chadderton,OL9 7SB,53.534632,-2.139053,E08000004,E02006860,E01005460
 Pharmacies,Well Pharmacy - Chorlton-Cum-Hardy,M21 8HA,53.43186,-2.268652,E08000003,E02001081,E01005082
 Pharmacies,Well Pharmacy - Congleton,CW12 3DN,53.161868,-2.204472,E06000049,E02003818,E01018405
-Pharmacies,Well Pharmacy - Hyde,SK14 2AD,53.452323,-2.080838,E08000008,E02001256,E01006028
+Pharmacies,Well Pharmacy - Hyde,SK14 2AD,53.45226,-2.080868,E08000008,E02001256,E01006028
 Pharmacies,Well Pharmacy - Radcliffe,M26 2SP,53.560143,-2.323706,E08000002,E02001034,E01005008
 Pharmacies,Well Pharmacy - Sandbach,CW11 1EG,53.144882,-2.361776,E06000049,E02003821,E01018435
 Pharmacies,Well Pharmacy - St Helens,WA11 8HE,53.501187,-2.787786,E08000013,E02001406,E01006883
@@ -1217,7 +1217,7 @@ Pharmacies,A R Pharmacy,SO40 8WU,50.916828,-1.514066,E07000091,E02004781,E010230
 Pharmacies,"Army Reserve Barracks, Tunbridge Wells - Pharmacy2U",TN4 9UU,51.14748,0.261052,E07000116,E02005163,E01024837
 Pharmacies,Asda Pharmacy - Brighton (Hollingbury),BN1 8AS,50.867954,-0.123885,E06000043,E02003491,E01016926
 Pharmacies,Asda Pharmacy - Brighton (Marina),BN2 5UT,50.81293,-0.105721,E06000043,E02003522,E01016957
-Pharmacies,Asda Pharmacy - Eastleigh,SO53 3YJ,50.967521,-1.389688,E07000086,E02004717,E01022677
+Pharmacies,Asda Pharmacy - Eastleigh,SO53 3YJ,50.965477,-1.390897,E07000086,E02004717,E01022677
 Pharmacies,Asda Pharmacy - Fareham,PO14 1TT,50.833704,-1.183966,E07000087,E02004739,E01032877
 Pharmacies,Asda Pharmacy - High Wycombe,HP12 4NU,51.611458,-0.78047,E06000060,E02003712,E01017845
 Pharmacies,Ashley Pharmacy - New Milton,BH25 5BS,50.757581,-1.63832,E07000091,E02004799,E01022988
@@ -1358,7 +1358,7 @@ Pharmacies,Ashley Heath Pharmacy,BH24 2HP,50.840877,-1.837986,E06000059,E0200424
 Pharmacies,Avicenna Pharmacy - Swindon,SN3 1JE,51.547745,-1.760314,E06000030,E02003235,E01015533
 Pharmacies,Avonmouth Pharmacy,BS11 9EG,51.499187,-2.69563,E06000023,E02003019,E01014496
 Pharmacies,Baden House Pharmacy - Marazion,TR17 0AP,50.123655,-5.473169,E06000052,E02003946,E01018990
-Pharmacies,Badham Mobility (Badham Pharmacy),GL50 4BJ,51.906057,-2.082393,E07000078,E02004603,E01022152
+Pharmacies,Badham Mobility (Badham Pharmacy),GL50 4BJ,51.906012,-2.082305,E07000078,E02004603,E01022152
 Pharmacies,Badham Pharmacy,GL52 8LR,51.947456,-2.060696,E07000083,E02004670,E01022436
 Pharmacies,Badhams Pharmacy (London Road),GL1 3NE,51.867164,-2.239658,E07000081,E02004637,E01022311
 Pharmacies,Beaminster Town Hall (Beaminster Pharmacy),DT8 3EF,50.809919,-2.738506,E06000059,E02004271,E01020495
@@ -1415,7 +1415,7 @@ Pharmacies,Memorial Hall Ludgershall (The Pharmacy),SP11 9LZ,51.255093,-1.620419
 Pharmacies,Minster Pharmacy - Ilminster,TA19 0DH,50.926512,-2.911109,E07000189,E02006093,E01029193
 Pharmacies,Morrab Pharmacy,TR18 4EL,50.116924,-5.538987,E06000052,E02003949,E01018995
 Pharmacies,Pharmacy2U - Dorchester,DT1 1UW,50.715084,-2.438853,E06000059,E02004277,E01032644
-Pharmacies,Pharmaxo Pharmacy Services,SN13 9RG,51.423728,-2.222871,E06000054,E02006659,E01031890
+Pharmacies,Pharmaxo Pharmacy Services,SN13 9RG,51.423675,-2.222569,E06000054,E02006659,E01031890
 Pharmacies,Plymouth Albion – Pool Earth Vaccination Clinic,PL1 4JZ,50.369991,-4.167875,E06000026,E02003147,E01015047
 Pharmacies,Prayerhouse Chickerell (Day Lewis Pharmacy),DT3 4DT,50.624439,-2.500863,E06000059,E02004280,E01020514
 Pharmacies,Preddy Newco - Bath,BA2 3PN,51.377012,-2.378261,E06000022,E02002998,E01014435
@@ -1443,7 +1443,7 @@ Pharmacies,Tesco Pharmacy - Seaton,EX12 2PB,50.70459,-3.068651,E07000040,E020041
 Pharmacies,Tesco Pharmacy - Trowbridge,BA14 7AQ,51.316685,-2.202769,E06000054,E02006687,E01032094
 Pharmacies,The Church Rooms (Combe Down Pharmacy),BA2 5EE,51.359774,-2.346608,E06000022,E02003002,E01014389
 Pharmacies,The Grove Pharmacy,BH23 2FQ,50.7445,-1.79086,E06000058,E02004237,E01020359
-Pharmacies,The Hindu Temple (Shaunaks Pharmacy),BS5 9LA,51.458814,-2.557847,E06000023,E02003040,E01014567
+Pharmacies,The Hindu Temple (Shaunaks Pharmacy),BS5 9LA,51.458859,-2.557618,E06000023,E02003040,E01014567
 Pharmacies,The Old Post Office- Yeovil (Pharmacy2U),BA20 1PZ,50.940941,-2.632809,E07000189,E02006089,E01029234
 Pharmacies,The Pharmacy - Commercial Road,SN1 5PL,51.558933,-1.784189,E06000030,E02003230,E01015496
 Pharmacies,Tout's Pharmacy - Street,BA16 0EN,51.126511,-2.740744,E07000187,E02006060,E01029070
@@ -1619,7 +1619,7 @@ GP-led vaccination services,Dr Azim and Partners,NW4 3EB,51.579655,-0.225729,E09
 GP-led vaccination services,Elliott Hall Medical Centre,HA5 4EA,51.608476,-0.362526,E09000015,E02000438,E01002150
 GP-led vaccination services,Essex House Surgery,SW13 0LW,51.472541,-0.247469,E09000027,E02000786,E01003854
 GP-led vaccination services,Essex Lodge,E13 0AS,51.527915,0.026685,E09000025,E02000739,E01003607
-GP-led vaccination services,Evergreen Surgery,N9 0TW,51.623836,-0.060238,E09000010,E02000306,E01001429
+GP-led vaccination services,Evergreen Surgery,N9 0TW,51.623784,-0.059836,E09000010,E02000306,E01001429
 GP-led vaccination services,Fairhill Medical Practice,KT1 2EE,51.403273,-0.303163,E09000021,E02000606,E01002965
 GP-led vaccination services,Feltham Assembly Hall,TW14 9DN,51.451615,-0.406888,E09000018,E02000549,E01002593
 GP-led vaccination services,Fullwell Cross Medical Centre,IG6 2HG,51.594621,0.083782,E09000026,E02000756,E01003700
@@ -1681,7 +1681,7 @@ GP-led vaccination services,The Dominion Centre,UB2 4BQ,51.502484,-0.381796,E090
 GP-led vaccination services,The Greenwood Centre,TW12 1QL,51.425848,-0.360288,E09000027,E02000802,E01003815
 GP-led vaccination services,The Hammersmith Surgery,W6 9DU,51.490966,-0.227071,E09000013,E02000384,E01001893
 GP-led vaccination services,The Junction Health Centre,SW11 2NU,51.465228,-0.170756,E09000032,E02000929,E01004537
-GP-led vaccination services,The Nelson Health Centre,SW20 8DA,51.409967,-0.210281,E09000024,E02000699,E01003423
+GP-led vaccination services,The Nelson Health Centre,SW20 8DA,51.40983,-0.2102,E09000024,E02000699,E01003423
 GP-led vaccination services,The Practice @188,NW11 9AY,51.576422,-0.204669,E09000003,E02000060,E01000220
 GP-led vaccination services,The Waldron Health Centre,SE14 6LD,51.476288,-0.03191,E09000023,E02006798,E01003303
 GP-led vaccination services,The Wallace Health Centre,SE8 3BX,51.481506,-0.01864,E09000011,E02006928,E01033728
@@ -1698,7 +1698,7 @@ GP-led vaccination services,Violet Melchett,SW3 5RR,51.486814,-0.166929,E0900002
 GP-led vaccination services,Walthamstow Central Library,E17 7JN,51.584476,-0.021061,E09000031,E02000911,E01004397
 GP-led vaccination services,Watling Medical Centre,HA8 0NR,51.603291,-0.262021,E09000003,E02000047,E01000129
 GP-led vaccination services,Wembley Centre for Health and Care,HA0 4UZ,51.549713,-0.306785,E09000005,E02000111,E01000612
-GP-led vaccination services,West Kensington Tenants Association Hall,SW6 1TN,51.486415,-0.199224,E09000013,E02000386,E01001912
+GP-led vaccination services,West Kensington Tenants Association Hall,SW6 1TN,51.486399,-0.199325,E09000013,E02000386,E01001912
 GP-led vaccination services,West Wickham & Shirley Baptist Church,CR0 8EH,51.377664,-0.027048,E09000008,E02000218,E01001135
 GP-led vaccination services,Westbury Road Medical Practice,E7 8BU,51.545786,0.030191,E09000025,E02000721,E01003570
 GP-led vaccination services,Westwood Mason Hall,DA16 3RD,51.464557,0.09602,E09000004,E02006785,E01000400
@@ -1740,7 +1740,7 @@ GP-led vaccination services,Chelmsley Wood,B37 5BU,52.480569,-1.753633,E08000029
 GP-led vaccination services,Church Farm Ripley,DE5 3TH,53.042198,-1.402822,E07000032,E02004036,E01019458
 GP-led vaccination services,Cliff Villages Medical Practice,LN5 9NX,53.165957,-0.535454,E07000139,E02005456,E01026185
 GP-led vaccination services,Codsall Satellite Clinic,WV8 2ER,52.624348,-2.195589,E07000196,E02006182,E01029629
-GP-led vaccination services,Collingham Medical Centre,NG23 7LB,53.145703,-0.760437,E07000175,E02005896,E01028315
+GP-led vaccination services,Collingham Medical Centre,NG23 7LB,53.145783,-0.760405,E07000175,E02005896,E01028315
 GP-led vaccination services,Community Health Centre,LE2 0GU,52.632387,-1.113421,E06000016,E02002848,E01013751
 GP-led vaccination services,Cotgrave Surgery,NG12 3UQ,52.910659,-1.035865,E07000176,E02005914,E01028370
 GP-led vaccination services,Coton Centre,B79 9AA,52.651002,-1.704017,E07000194,E02006153,E01029517
@@ -1823,7 +1823,7 @@ GP-led vaccination services,Nene Valley Surgery,NN14 4QL,52.400076,-0.536766,E06
 GP-led vaccination services,Newhall Surgery,DE11 0HU,52.785181,-1.573891,E07000039,E02004125,E01019861
 GP-led vaccination services,Newholme Hospital,DE45 1AD,53.218791,-1.67234,E07000035,E02004070,E01019599
 GP-led vaccination services,North Wingfield Resource Centre,S42 5PW,53.184293,-1.385571,E07000038,E02004113,E01019808
-GP-led vaccination services,Northway Medical Practice,DY3 3QY,52.547949,-2.13102,E08000027,E02002002,E01009902
+GP-led vaccination services,Northway Medical Practice,DY3 3QY,52.548048,-2.131006,E08000027,E02002002,E01009902
 GP-led vaccination services,Oadby Racecourse,LE2 4AL,52.603308,-1.098318,E07000135,E02005412,E01025977
 GP-led vaccination services,Oak Park Leisure Centre,WS9 9BH,52.630269,-1.932136,E08000030,E02002113,E01010249
 GP-led vaccination services,Oaklands Village and Community Care Centre,DE11 8LH,52.774854,-1.549963,E07000039,E02004126,E01019877
@@ -1836,7 +1836,7 @@ GP-led vaccination services,Polesworth Health Centre,B78 1DU,52.620138,-1.612629
 GP-led vaccination services,Poplars Surgery,B24 9JN,52.528641,-1.832005,E08000025,E02001849,E01033632
 GP-led vaccination services,Portland Medical Practice,LN5 7LB,53.22372,-0.539074,E07000138,E02005447,E01026176
 GP-led vaccination services,Portway Lifestyle Centre,B69 1HE,52.497603,-2.030323,E08000028,E02002064,E01010080
-GP-led vaccination services,Prajapati Hall,LE4 6BY,52.645045,-1.115788,E06000016,E02002836,E01013720
+GP-led vaccination services,Prajapati Hall,LE4 6BY,52.644622,-1.113255,E06000016,E02002836,E01013720
 GP-led vaccination services,Priory Gate Practice,CV1 4FS,52.414667,-1.505256,E08000026,E02001972,E01009574
 GP-led vaccination services,Prospect View Medical Centre,WR14 2GP,52.113538,-2.30878,E07000235,E02006716,E01032203
 GP-led vaccination services,Quay House Surgery,HR4 0JF,52.058812,-2.740699,E06000019,E02002917,E01014078
@@ -1900,7 +1900,7 @@ GP-led vaccination services,Welton Family Health Centre,LN2 3JH,53.306584,-0.484
 GP-led vaccination services,West Bromwich Partnerships for Health,B70 8PG,52.517891,-2.000605,E08000028,E02002061,E01009986
 GP-led vaccination services,West Heath Surgery,B31 3HB,52.401797,-1.96202,E08000025,E02001952,E01009210
 GP-led vaccination services,Westcotes Health Centre,LE3 0LP,52.631332,-1.153587,E06000016,E02002849,E01013782
-GP-led vaccination services,Western Favell HC,NN3 8DW,52.258099,-0.834897,E06000062,E02005656,E01027198
+GP-led vaccination services,Western Favell HC,NN3 8DW,52.26834,-0.841253,E06000062,E02005653,E01027249
 GP-led vaccination services,Whitefields Surgery,NN4 9UW,52.221394,-0.926285,E06000062,E02005675,E01027252
 GP-led vaccination services,Whiteheath Medical Centre,B69 1EJ,52.493127,-2.034877,E08000028,E02002069,E01009934
 GP-led vaccination services,Whitmore Reans HC,WV6 0QL,52.595729,-2.142522,E08000031,E02002161,E01010525
@@ -2012,7 +2012,7 @@ GP-led vaccination services,One Life,TS24 7PW,54.682342,-1.214164,E06000001,E020
 GP-led vaccination services,Open Door,DN32 7DL,53.572249,-0.068703,E06000012,E02002727,E01013139
 GP-led vaccination services,Orchard House Surgery,CA14 2ED,54.645006,-3.549927,E07000026,E02003972,E01019122
 GP-led vaccination services,Oxford Centre,NE12 8LT,55.011631,-1.58647,E08000022,E02001756,E01032650
-GP-led vaccination services,Pallion Health Centre,SR4 7XF,54.908604,-1.414195,E08000024,E02001801,E01008701
+GP-led vaccination services,Pallion Health Centre,SR4 7XF,54.904182,-1.410345,E08000024,E02001801,E01008704
 GP-led vaccination services,Pelton & Fellrose Medical Group,DH2 2NH,54.858325,-1.60829,E06000047,E02004293,E01020618
 GP-led vaccination services,Penrith Hospital,CA11 8HX,54.656994,-2.743275,E07000030,E02004010,E01019332
 GP-led vaccination services,Peterlee Community Hospital,SR8 5UQ,54.754067,-1.333039,E06000047,E02004329,E01020746
@@ -2061,7 +2061,7 @@ GP-led vaccination services,The Flowers Health Centre,S5 6AZ,53.418053,-1.438061
 GP-led vaccination services,The Galtres Centre,YO61 3AD,54.121886,-1.19157,E07000164,E02005759,E01027596
 GP-led vaccination services,The Glen Primary Care Centre,NE31 1NU,54.97385,-1.52187,E08000023,E02001777,E01008641
 GP-led vaccination services,The Grange Medical Centre,LS14 6NX,53.820604,-1.459168,E08000035,E02002364,E01011661
-GP-led vaccination services,The Health Care Surgery,S5 8GS,53.42172,-1.487911,E08000019,E02001622,E01008090
+GP-led vaccination services,The Health Care Surgery,S5 8GS,53.421719,-1.487866,E08000019,E02001622,E01008090
 GP-led vaccination services,The Mathews Practice (priority 1),S2 4UJ,53.366594,-1.471815,E08000019,E02001652,E01008109
 GP-led vaccination services,The Old Exchange,DL3 7DR,54.526245,-1.56013,E06000005,E02002566,E01033484
 GP-led vaccination services,The Ridge,BD7 3JX,53.78091,-1.779859,E08000032,E02002233,E01010735
@@ -2165,7 +2165,7 @@ GP-led vaccination services,Lunesdale Surgery,LA6 2HQ,54.200573,-2.602213,E07000
 GP-led vaccination services,Lytham PCC,FY8 5DZ,53.73956,-2.95037,E07000119,E02005211,E01025022
 GP-led vaccination services,Middleton Health Centre,M24 4EL,53.548242,-2.201051,E08000005,E02001155,E01005548
 GP-led vaccination services,Moor Park Health and Leisure Centre,FY2 0JG,53.849555,-3.033503,E06000009,E02002636,E01012705
-GP-led vaccination services,Morecambe Football Club Mazuma Arena,LA4 4TB,54.06105,-2.867232,E07000121,E02005230,E01025171
+GP-led vaccination services,Morecambe Football Club Mazuma Arena,LA4 4TB,54.060283,-2.867598,E07000121,E02005230,E01025171
 GP-led vaccination services,Moreton Cross Group Practice,CH46 8SA,53.403551,-3.111975,E08000015,E02001475,E01007207
 GP-led vaccination services,Neston Medical Centre,CH64 3RA,53.291818,-3.064349,E06000050,E02003841,E01018534
 GP-led vaccination services,Newton Heath Health Centre,M40 2JF,53.500995,-2.181199,E08000003,E02001055,E01005256
@@ -2191,13 +2191,13 @@ GP-led vaccination services,Silverdale Medical Practice,M27 8HP,53.518793,-2.331
 GP-led vaccination services,Site 1 - Victoria Hall,CW10 9AS,53.189956,-2.442853,E06000049,E02003813,E01018426
 GP-led vaccination services,South Reddish Medical Centre,SK5 7QU,53.422309,-2.156517,E08000007,E02001193,E01005915
 GP-led vaccination services,South Shore Primary Care Centre,FY4 1TJ,53.781401,-3.047383,E06000009,E02002651,E01012725
-GP-led vaccination services,Southport Centre for Health and Wellbeing,PR9 0PQ,53.649305,-2.998882,E08000014,E02001432,E01006969
+GP-led vaccination services,Southport Centre for Health and Wellbeing,PR9 0PQ,53.649514,-2.998524,E08000014,E02001432,E01006969
 GP-led vaccination services,Speke Neighbourhood Health Centre,L24 2SF,53.340911,-2.838793,E08000012,E02001405,E01006755
 GP-led vaccination services,Spencer House,WA3 7PG,53.414117,-2.527537,E06000007,E02002594,E01012459
 GP-led vaccination services,St Catherine's Surgery,CH42 0LQ,53.380029,-3.026531,E08000015,E02001487,E01007292
 GP-led vaccination services,St Peter's Centre,BB11 2DL,53.791263,-2.238947,E07000117,E02005178,E01024877
 GP-led vaccination services,St Peter's Pavillion,WN2 3DN,53.53699,-2.585826,E08000010,E02001299,E01006272
-GP-led vaccination services,Stalybridge Labour Club,SK15 2JR,53.482282,-2.051346,E08000008,E02001243,E01006022
+GP-led vaccination services,Stalybridge Labour Club,SK15 2JR,53.482128,-2.051842,E08000008,E02001243,E01006022
 GP-led vaccination services,Stockton Health Medical Centre,WA4 6HJ,53.37195,-2.582161,E06000007,E02002612,E01012557
 GP-led vaccination services,The Brindley,WA7 1BG,53.340639,-2.73134,E06000006,E02002585,E01012431
 GP-led vaccination services,The Grange Community Centre,M11 3TQ,53.479671,-2.200666,E08000003,E02001059,E01033669
@@ -2223,14 +2223,14 @@ GP-led vaccination services,Woodchurch Leisure Centre,CH49 8EU,53.37936,-3.08291
 GP-led vaccination services,Woodhouse Park Lifestyle Centre,M22 1QW,53.373911,-2.273337,E08000003,E02001097,E01005315
 GP-led vaccination services,Yarnspinners PHCC,BB9 7SR,53.838042,-2.21885,E07000122,E02005250,E01025230
 GP-led vaccination services,Adams Park,HP12 4HJ,51.631583,-0.795977,E06000060,E02003707,E01017914
-GP-led vaccination services,Adelaide Health Centre,SO16 4XE,50.924655,-1.447788,E06000045,E02003567,E01017208
+GP-led vaccination services,Adelaide Health Centre,SO16 4XE,50.92524,-1.446031,E06000045,E02003563,E01017207
 GP-led vaccination services,Amersham Health Centre,HP6 5AY,51.675036,-0.604186,E06000060,E02003681,E01017742
 GP-led vaccination services,Amherst Medical Practice,TN13 3AQ,51.276616,0.186703,E07000111,E02005098,E01024469
 GP-led vaccination services,Angmering Community Centre,BN16 4FU,50.82483,-0.481134,E07000224,E02006546,E01031389
 GP-led vaccination services,Applemore Health Centre,SO45 5TN,50.86642,-1.425712,E07000091,E02004786,E01023007
 GP-led vaccination services,Archers Practice,SO50 9AG,50.970948,-1.353169,E07000086,E02004718,E01022666
 GP-led vaccination services,Artington Park and Ride,GU3 1LP,51.219255,-0.580104,E07000209,E02006360,E01030478
-GP-led vaccination services,Avicenna Medical Centre,ME19 5PU,51.301845,0.425339,E07000115,E02005151,E01024782
+GP-led vaccination services,Avicenna Medical Centre,ME19 5PU,51.301226,0.424417,E07000115,E02005151,E01024782
 GP-led vaccination services,Badger Farm Community Centre,SO22 4QB,51.045775,-1.340202,E07000094,E02004837,E01023243
 GP-led vaccination services,Barton Neighbourhood Centre,OX3 9LS,51.767787,-1.196523,E07000178,E02005944,E01028513
 GP-led vaccination services,Beacon Shopping Centre,BN21 3NW,50.769278,0.284661,E07000061,E02004365,E01020911
@@ -2255,7 +2255,7 @@ GP-led vaccination services,Charing Surgery,TN27 0AW,51.20971,0.791374,E07000105
 GP-led vaccination services,Chertsey Hall,KT16 9DR,51.389572,-0.505523,E07000212,E02006398,E01030653
 GP-led vaccination services,Chess Medical Centre,HP5 3EZ,51.713277,-0.608226,E06000060,E02003678,E01017781
 GP-led vaccination services,Chessel Avenue Surgery,SO19 4AA,50.913606,-1.365269,E06000045,E02003572,E01017223
-GP-led vaccination services,Chipping Norton Health Centre,OX7 5FA,51.945069,-1.536749,E07000181,E02005993,E01028780
+GP-led vaccination services,Chipping Norton Health Centre,OX7 5FA,51.945593,-1.535071,E07000181,E02005993,E01028780
 GP-led vaccination services,Christs Hospital - Blue Coats,RH13 0YB,51.04516,-0.360798,E07000227,E02006595,E01031679
 GP-led vaccination services,Church Lane Surgery,TN28 8ER,50.984187,0.941162,E07000112,E02005113,E01024539
 GP-led vaccination services,Circuit Lane Surgery,RG30 3AN,51.442909,-1.006781,E06000038,E02003403,E01016419
@@ -2305,7 +2305,7 @@ GP-led vaccination services,Langley Health Centre,SL3 8LE,51.495313,-0.541284,E0
 GP-led vaccination services,Long Catlis Road Surgery,ME8 9PR,51.348325,0.595579,E06000035,E02003349,E01016105
 GP-led vaccination services,Maidenhead Town Hall,SL6 1RF,51.521951,-0.718662,E06000040,E02003425,E01032733
 GP-led vaccination services,Malthouse Surgery,OX14 3JY,51.672058,-1.282973,E07000180,E02005983,E01033306
-GP-led vaccination services,Mandeville Stadium,HP21 9PP,51.800965,-0.799908,E06000060,E02003670,E01017689
+GP-led vaccination services,Mandeville Stadium,HP21 9PP,51.800932,-0.800214,E06000060,E02003670,E01017687
 GP-led vaccination services,Marcham Road Family Health Centre,OX14 1BT,51.66958,-1.302953,E07000180,E02005983,E01028698
 GP-led vaccination services,Marden Medical Centre,TN12 9HP,51.17415,0.49227,E07000110,E02005085,E01024381
 GP-led vaccination services,Medwyn Surgery,RH4 1SD,51.234788,-0.324402,E07000210,E02006371,E01030537
@@ -2371,7 +2371,7 @@ GP-led vaccination services,The Charmandean Centre,BN14 9HS,50.833215,-0.373914,
 GP-led vaccination services,The Glebe Medical Centre,ME17 1AP,51.244274,0.681024,E07000110,E02005078,E01024363
 GP-led vaccination services,The Glebe Surgery,RH20 4FR,50.918032,-0.458843,E07000227,E02006600,E01031630
 GP-led vaccination services,The Harlington Centre,GU51 4BY,51.27974,-0.844127,E07000089,E02004755,E01022862
-GP-led vaccination services,The Hart Surgery,RG9 2DR,51.53874,-0.907912,E07000179,E02005973,E01028652
+GP-led vaccination services,The Hart Surgery,RG9 2DR,51.538741,-0.90797,E07000179,E02005973,E01028652
 GP-led vaccination services,"The Kings Church, Hastings",TN34 2SA,50.886764,0.569875,E07000062,E02004369,E01020986
 GP-led vaccination services,The Leys Health Centre,OX4 7EX,51.717529,-1.197009,E07000178,E02005957,E01028568
 GP-led vaccination services,The Meads Medical Centre,TN22 1BA,50.969686,0.091624,E07000065,E02004411,E01021219
@@ -2388,7 +2388,7 @@ GP-led vaccination services,Waitrose Sports Hall,RG12 8FB,51.409397,-0.767172,E0
 GP-led vaccination services,Wallingford Community Hospital,OX10 9DU,51.595495,-1.128258,E07000179,E02005969,E01028617
 GP-led vaccination services,Wantage Health Centre,OX12 9BN,51.598763,-1.425847,E07000180,E02005988,E01028722
 GP-led vaccination services,Waterlooville Health Centre,PO7 6AJ,50.891899,-1.033601,E07000090,E02004764,E01022976
-GP-led vaccination services,"West Wight Sport And Community Centre, Freshwater",PO40 9XH,50.681093,-1.524463,E06000046,E02003592,E01017312
+GP-led vaccination services,"West Wight Sport And Community Centre, Freshwater",PO40 9XH,50.681225,-1.523698,E06000046,E02003592,E01017312
 GP-led vaccination services,Westridge Leisure Centre,PO33 1QS,50.710613,-1.140713,E06000046,E02003590,E01017351
 GP-led vaccination services,Westway Commuity Centre,CR3 5PG,51.286077,-0.093043,E07000215,E02006432,E01030848
 GP-led vaccination services,Winchester Holiday Inn,SO21 1HZ,51.059366,-1.265336,E07000094,E02004830,E01023236
@@ -2399,7 +2399,7 @@ GP-led vaccination services,Woodhatch Place,RH2 8EF,51.227857,-0.199335,E0700021
 GP-led vaccination services,Woodlands Family Practice,ME7 2BU,51.378417,0.566642,E06000035,E02003326,E01016043
 GP-led vaccination services,Woodley Centre Surgery,RG5 4JA,51.453485,-0.904023,E06000041,E02003443,E01016616
 GP-led vaccination services,Wycombe Town Hall,HP11 1BG,51.627445,-0.750174,E06000060,E02003710,E01017839
-GP-led vaccination services,"Abbey Surgery, Tavistock",PL19 8BU,50.546904,-4.150401,E07000047,E02004233,E01020334
+GP-led vaccination services,"Abbey Surgery, Tavistock",PL19 8BU,50.546967,-4.150305,E07000047,E02004233,E01020334
 GP-led vaccination services,Ammonite Health Partnership,DT6 5BN,50.734243,-2.768036,E06000059,E02004276,E01020503
 GP-led vaccination services,Aspen Medical Practice,GL1 3PX,51.865969,-2.225797,E07000081,E02004637,E01022312
 GP-led vaccination services,Barnstaple Leisure,EX31 2AP,51.075722,-4.058998,E07000043,E02004183,E01020124
@@ -2408,7 +2408,7 @@ GP-led vaccination services,Beaufort Road Surgery,BH6 5AJ,50.728148,-1.814841,E0
 GP-led vaccination services,Beeches Green Health Centre,GL5 4BH,51.747294,-2.217194,E07000082,E02004656,E01022365
 GP-led vaccination services,Bodriggy Surgery,TR27 4PB,50.187071,-5.41284,E06000052,E02003944,E01018984
 GP-led vaccination services,Bottreaux Surgery,PL35 0BG,50.684001,-4.69177,E06000052,E02003933,E01018969
-GP-led vaccination services,Bourne Retail Park,SP1 2QQ,51.063469,-1.774142,E06000054,E02006671,E01032021
+GP-led vaccination services,Bourne Retail Park,SP1 2QQ,51.063722,-1.774497,E06000054,E02006671,E01032021
 GP-led vaccination services,Brockway Medical Centre,BS48 1BZ,51.43306,-2.755364,E06000024,E02003073,E01014779
 GP-led vaccination services,Camelford Medical Centre,PL32 9YT,50.624027,-4.676789,E06000052,E02003934,E01033291
 GP-led vaccination services,Carlyon Health Hub (Branch Surgery Of St.Austell Healthcare),PL25 4EG,50.338836,-4.78357,E06000052,E02003963,E01019041
@@ -2473,7 +2473,7 @@ GP-led vaccination services,Rosebank Surgery,GL1 5JQ,51.852611,-2.242194,E070000
 GP-led vaccination services,Rowcroft Medical Centre,GL5 3BE,51.745726,-2.219388,E07000082,E02004656,E01022365
 GP-led vaccination services,Rowden Medical Partnership,SN15 2SB,51.453853,-2.125101,E06000054,E02006654,E01031912
 GP-led vaccination services,Salisbury Medical Practice,SP2 7FD,51.072451,-1.809038,E06000054,E02006670,E01032003
-GP-led vaccination services,"Salisbury Plain Health Centre, Larkhill",SP4 8QY,51.197709,-1.82124,E06000054,E02006661,E01031998
+GP-led vaccination services,"Salisbury Plain Health Centre, Larkhill",SP4 8QY,51.197443,-1.820758,E06000054,E02006661,E01031998
 GP-led vaccination services,Seaton,EX12 2UU,50.711803,-3.071506,E07000040,E02004138,E01019948
 GP-led vaccination services,Severnview Family Practice,BS35 1DP,51.612861,-2.517723,E06000025,E02003090,E01014986
 GP-led vaccination services,Shape Mendip,BA4 5BT,51.18705,-2.547333,E07000187,E02006052,E01029064
@@ -2520,7 +2520,7 @@ Vaccination Centres,Bedford Heights,MK41 7PH,52.150811,-0.474699,E06000055,E0200
 Vaccination Centres,Colchester Football Club,CO4 5UP,51.923322,0.896991,E07000071,E02004509,E01021680
 Vaccination Centres,Hemel Hempstead Hospital,HP2 4AD,51.750846,-0.468578,E07000096,E02004870,E01023398
 Vaccination Centres,Watford Town Hall,WD17 3EX,51.659225,-0.403051,E07000103,E02004975,E01023888
-Vaccination Centres,Watling House,LU6 1LF,51.892613,-0.53158,E06000056,E02003646,E01017599
+Vaccination Centres,Watling House,LU6 1LF,51.892502,-0.531355,E06000056,E02003646,E01017599
 Vaccination Centres,Argos Letchworth (replacing  Da Vinci Grammar School) ,SG6 3DN,51.978286,-0.227248,E07000099,E02004916,E01023644
 Vaccination Centres,The Lodge,SS11 7XX,51.633013,0.543374,E07000070,E02004505,E01021594
 Vaccination Centres,Gainsborough Sports Centre,IP3 0SP,52.031534,1.188524,E07000202,E02006258,E01033128
@@ -2584,7 +2584,7 @@ Vaccination Centres,Riverside Park Stadium,TS3 6RS,54.578124,-1.217764,E06000002
 Vaccination Centres,Airedale General Hospital,BD20 6TD,53.898015,-1.962695,E08000032,E02002186,E01010645
 Vaccination Centres,Princes Quay Shopping Centre (Hull City Hall VC Replacement site),HU1 2PQ,53.742572,-0.339365,E06000010,E02002680,E01033104
 Vaccination Centres,"Scunthorpe VC (Ironstone) replacing Scunthorpe, Baths Hall",DN15 6HX,53.592443,-0.651828,E06000013,E02002756,E01013330
-Vaccination Centres,Etihad Tennis centre Manchester,M11 3BS,53.477957,-2.192324,E08000003,E02001059,E01005106
+Vaccination Centres,Etihad Tennis centre Manchester,M11 3BS,53.477301,-2.191764,E08000003,E02001059,E01005106
 Vaccination Centres,St Johns Shopping Centre,PR1 1FB,53.760838,-2.697713,E07000123,E02005269,E01033223
 Vaccination Centres,Lancaster Town Hall,LA1 1PL,54.047891,-2.798277,E07000121,E02005234,E01033071
 Vaccination Centres,St Helens Rugby Ground,WA9 3AL,53.446712,-2.723028,E08000013,E02001424,E01006912
@@ -2596,7 +2596,7 @@ Vaccination Centres,The Riverside Leisure Park,PO30 2QR,50.702761,-1.290296,E060
 Vaccination Centres,Southampton CCG Offices,SO16 4GX,50.92331,-1.448766,E06000045,E02003563,E01017212
 Vaccination Centres,Salt Hill Activity Centre,SL1 3SS,51.51176,-0.607164,E06000039,E02003415,E01016465
 Vaccination Centres,Oxford Kassam Stadium,OX4 4XP,51.717066,-1.210957,E07000178,E02005955,E01028552
-Vaccination Centres,Guttman Centre (Mandeville Stadium) replacing NBU,HP21 9PP,51.800965,-0.799908,E06000060,E02003670,E01017689
+Vaccination Centres,Guttman Centre (Mandeville Stadium) replacing NBU,HP21 9PP,51.800932,-0.800214,E06000060,E02003670,E01017687
 Vaccination Centres,Broad Street Mall Shopping centre Unit 49/50 ( replacing Madejski),RG1 7QE,51.454809,-0.975896,E06000038,E02003399,E01033415
 Vaccination Centres,Churchill Square VC - replacing Brighton Centre ,BN1 2TE,50.822696,-0.145989,E06000043,E02003517,E01016952
 Vaccination Centres,"Hamble House, St James Hospital site ",PO4 8FE,50.796107,-1.045439,E06000044,E02003540,E01017093
@@ -2605,7 +2605,7 @@ Vaccination Centres,Sandown Park portacabins - Sandown Park replacement site ,KT
 Vaccination Centres,Somerset Motor Museum Replacement for Royal Bath and West Showground ,BA22 7LH,51.045616,-2.549333,E07000189,E02006080,E01029164
 Vaccination Centres,FirePool Vaccination Centre,TA1 1NY,51.022247,-3.095217,E07000246,E02006105,E01029300
 Vaccination Centres,Home Park - replacement site for University Hospital Plymouth (Derriford),PL2 3DQ,50.387394,-4.1517,E06000026,E02003134,E01015106
-Vaccination Centres,Bath Racecourse,BA1 9BU,51.418358,-2.407148,E06000022,E02002994,E01014375
+Vaccination Centres,Bath Racecourse,BA1 9BU,51.418569,-2.406057,E06000022,E02002994,E01014375
 Vaccination Centres,Salisbury City Hall,SP2 7TU,51.070285,-1.800451,E06000054,E02006671,E01032014
 Vaccination Centres,Royal Cornwall Showground ,PL27 7JE,50.515645,-4.865377,E06000052,E02003937,E01018924
 Vaccination Centres,Greendale Business Park (replacing Westpoint),EX5 1EW,50.699599,-3.391389,E07000040,E02004141,E01019945
@@ -2653,7 +2653,7 @@ Hospital Hubs,COLCHESTER GENERAL HOSPITAL,CO4 5JL,51.910164,0.899182,E07000071,E
 Hospital Hubs,CONQUEST HOSPITAL,TN37 7RD,50.885167,0.56727,E07000062,E02004369,E01020986
 Hospital Hubs,Coral House,SY1 3GZ,52.740396,-2.732712,E06000051,E02006029,E01028958
 Hospital Hubs,CROYDON UNIVERSITY HOSPITAL,CR7 7YE,51.389128,-0.108758,E09000008,E02000208,E01001178
-Hospital Hubs,CUMBERLAND INFIRMARY,CA2 7HY,54.895751,-2.955298,E07000028,E02003994,E01019205
+Hospital Hubs,CUMBERLAND INFIRMARY,CA2 7HY,54.896504,-2.957796,E07000028,E02003994,E01019205
 Hospital Hubs,DARENT VALLEY HOSPITAL,DA2 8DA,51.434952,0.258645,E07000107,E02005035,E01024133
 Hospital Hubs,DARLINGTON MEMORIAL HOSPITAL,DL3 6HX,54.530374,-1.563733,E06000005,E02002566,E01012355
 Hospital Hubs,DONCASTER ROYAL INFIRMARY,DN2 5LT,53.530805,-1.108942,E08000017,E02001556,E01007567
@@ -2712,7 +2712,6 @@ Hospital Hubs,MANCHESTER ROYAL INFIRMARY,M13 9WL,53.462436,-2.227711,E08000003,E
 Hospital Hubs,MANOR HOSPITAL (through Saddlers),WS2 9PS,52.58233,-1.998924,E08000030,E02002135,E01010363
 Hospital Hubs,MAUDSLEY HOSPITAL,SE5 8AZ,51.468738,-0.091441,E09000028,E02000830,E01003913
 Hospital Hubs,MEDWAY MARITIME HOSPITAL,ME7 5NY,51.379862,0.542062,E06000035,E02003325,E01016045
-Hospital Hubs,MICHAEL CARLISLE CENTRE,S10 3TH,53.364484,-1.537421,E08000019,E02001651,E01007958
 Hospital Hubs,MILTON KEYNES HOSPITAL,MK6 5LD,52.026384,-0.73576,E06000042,E02003476,E01016845
 Hospital Hubs,Moseley Hall,B12 8JL,52.457336,-1.874124,E08000025,E02001903,E01009397
 Hospital Hubs,MUSGROVE PARK HOSPITAL,TA1 5DA,51.011569,-3.121702,E07000246,E02006109,E01029302
@@ -2791,7 +2790,7 @@ Hospital Hubs,ST BARTHOLOMEW'S HOSPITAL,EC1A 7BE,51.51775,-0.100404,E09000001,E0
 Hospital Hubs,ST GEORGE'S HOSPITAL (TOOTING),SW17 0QT,51.426682,-0.175694,E09000032,E02000956,E01004617
 Hospital Hubs,ST GEORGES HOSPITAL SITE (MORPETH),NE61 2NU,55.178558,-1.682805,E06000057,E02005721,E01027457
 Hospital Hubs,ST HELIER HOSPITAL,SM5 1AA,51.380188,-0.183708,E09000029,E02000841,E01004128
-Hospital Hubs,ST MARY'S HOSPITAL,PO30 5TG,50.710843,-1.30133,E06000046,E02003588,E01017334
+Hospital Hubs,ST MARY'S HOSPITAL,PO30 5TG,50.710832,-1.301363,E06000046,E02003588,E01017334
 Hospital Hubs,ST MARY'S HOSPITAL (HQ),W2 1NY,51.516969,-0.173569,E09000033,E02000974,E01033594
 Hospital Hubs,ST NICHOLAS HOSPITAL (NEWCASTLE UPON TYNE),NE3 3XT,55.006488,-1.6331,E08000021,E02001713,E01008356
 Hospital Hubs,ST PANCRAS HOSPITAL,NW1 0PE,51.53665,-0.131658,E09000007,E02000184,E01000958
