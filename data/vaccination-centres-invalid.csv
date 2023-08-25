@@ -1,5 +1,6 @@
 type,name,postcode
 Pharmacies,Aspire Pharmacy,DA14 6EQ
+Pharmacies,Chemcare Pharmacy - Kidbrooke,SE3 9FA
 Pharmacies,KM Brennan (Chemist) - Beaumont Leys,LE4 0RY
 Pharmacies,Lloydspharmacy - West Bromwich,B70 7AR
 Pharmacies,M W Phillips Chemists - Birmingham,B44 9ET
@@ -16,8 +17,10 @@ GP-led vaccination services,Three Villages Medical Practice,DY8 4JB
 GP-led vaccination services,Castleford Civic Centre,WF10 4JH
 GP-led vaccination services,Castleford Civic Centre,WF10 4JH
 GP-led vaccination services,"Building 141b, The Command Works, Bicester Heritage",OX26 5HA
+GP-led vaccination services,Royal South Hants Hospital,SO14 0YG
 GP-led vaccination services,The Folca Centre LVS,CT20 1DN
 GP-led vaccination services,Bath Community Academy,BA2 2QL
+GP-led vaccination services,Cinderford Health Centre,GL14 2AN
 Vaccination Centres,Centre Court Shopping Centre,SW19 8YA
 Vaccination Centres,Midland House (replacing Derby Arena),DE1 2NJ
 Vaccination Centres,Elland Road Park and Ride VC(Replacing Elland Road Stadium),
